@@ -14,6 +14,20 @@ namespace FFT.TimeStamps
     /// Unix "zero" time represented in ticks.
     /// </summary>
     private static readonly long _unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
+
+    /// <summary>
+    /// Calculates the ticks at the given moment in time. 
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static long At(int year, int month, int day)
+      => new DateTime(year, month, day, 0, 0, 0).Ticks;
+
+    /// <summary>
+    /// Calculates the ticks at the given moment in time. 
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static long At(int year, int month, int day, int hour, int minute, int second)
+      => new DateTime(year, month, day, hour, minute, second).Ticks;
   }
 
   // Floor and Ceiling

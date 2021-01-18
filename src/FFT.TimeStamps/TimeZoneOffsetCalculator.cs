@@ -228,6 +228,11 @@ namespace FFT.TimeStamps
       public long OffsetTicks;
       public bool IsInvalid;
       public bool IsAmbiguous;
+      public override bool Equals(object obj)
+        => obj is OffsetInfo other
+        && OffsetTicks == other.OffsetTicks
+        && IsInvalid == other.IsInvalid
+        && IsAmbiguous == other.IsAmbiguous;
     }
 
     public sealed class TimeZoneSegment

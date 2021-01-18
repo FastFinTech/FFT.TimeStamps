@@ -5,6 +5,7 @@
         {
           "src": "../src",
           "files": [ "**.csproj" ],
+          "exclude": [ "**/FFT.TimeStamps.Tests/**/*" ]
         }
       ],
       "dest": "api",
