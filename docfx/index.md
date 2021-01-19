@@ -1,5 +1,8 @@
 # FFT.TimeStamps
 
+[![NuGet package](https://img.shields.io/nuget/v/FFT.TimeStamps.svg)](https://nuget.org/packages/FFT.TimeStamps)
+[![Source code](https://img.shields.io/static/v1?style=flat&label=&message=Source%20code&logo=read-the-docs&color=informational)](https://github.com/FastFinTech/FFT.TimeStamps)
+
 Use this to get extremely fast timestamping with:
 1. Fast, unambiguous representation of exact times in multiple timezones.
 1. Fast comparisons of timestamps in multiple timezones.
