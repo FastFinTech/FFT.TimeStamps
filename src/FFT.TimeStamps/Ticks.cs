@@ -30,6 +30,57 @@ namespace FFT.TimeStamps
       => new DateTime(year, month, day, hour, minute, second).Ticks;
   }
 
+  // To
+  public partial class Ticks
+  {
+    /// <summary>
+    /// Calculates the total number of milliseconds represented by the given <paramref name="ticks"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double ToMilliseconds(in this long ticks)
+      => ticks / (double)TimeSpan.TicksPerMillisecond;
+
+    /// <summary>
+    /// Calculates the total number of seconds represented by the given <paramref name="ticks"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double ToSeconds(in this long ticks)
+      => ticks / (double)TimeSpan.TicksPerSecond;
+
+    /// <summary>
+    /// Calculates the total number of minutes represented by the given <paramref name="ticks"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double ToMinutes(in this long ticks)
+      => ticks / (double)TimeSpan.TicksPerMinute;
+
+    /// <summary>
+    /// Calculates the total number of hours represented by the given <paramref name="ticks"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double ToHours(in this long ticks)
+      => ticks / (double)TimeSpan.TicksPerHour;
+
+    /// <summary>
+    /// Calculates the total number of days represented by the given <paramref name="ticks"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double ToDays(in this long ticks)
+      => ticks / (double)TimeSpan.TicksPerDay;
+
+    /// <summary>
+    /// Converts the given <paramref name="ticks"/> to an equivalent <see cref="TimeSpan"/>.
+    /// </summary>
+    public static TimeSpan ToTimeSpan(in this long ticks)
+      => new TimeSpan(ticks);
+
+    /// <summary>
+    /// Converts the given <paramref name="ticks"/> to an equivalent <see cref="TimeStamp"/>.
+    /// </summary>
+    public static TimeStamp ToTimeStamp(in this long ticks)
+      => new TimeStamp(ticks);
+  }
+
   // Floor and Ceiling
   public partial class Ticks
   {
