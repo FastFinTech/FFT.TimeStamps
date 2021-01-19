@@ -18,4 +18,7 @@
   <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+  <style>    
+    .hljs { white-space: pre; overflow-x: auto; }
+  </style>
 </head>

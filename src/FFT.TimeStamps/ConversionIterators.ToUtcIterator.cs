@@ -5,7 +5,7 @@ namespace FFT.TimeStamps
 {
   public partial class ConversionIterators
   {
-    private sealed class ToUtcIterator : ITimeZoneConversionIterator, ITimeStampConversionIterator
+    private sealed class ToUtcIterator : ITimeZoneConversionIterator, IToTimeStampConversionIterator
     {
       private readonly TimeZoneOffsetCalculator _calculator;
 
@@ -66,6 +66,10 @@ namespace FFT.TimeStamps
         MoveTo(fromTimeZoneTicks);
         return new TimeStamp(fromTimeZoneTicks + DifferenceTicks);
       }
+
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      public TimeStamp GetTimeStamp(in DateTime fromTimeZone)
+        => GetTimeStamp(fromTimeZone.Ticks);
     }
   }
 }

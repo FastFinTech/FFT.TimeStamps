@@ -3,10 +3,11 @@
 namespace FFT.TimeStamps
 {
   /// <summary>
-  /// Provides the <see cref="DifferenceTicks"/> used to convert from <see cref="FromTimeZone"/> to <see cref="ToTimeZone"/>
+  /// Provides the <see cref="DifferenceTicks"/> used to convert from <see cref="FromTimeZone"/> to Utc timezone
   /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
+  /// Also provides the direct <see cref="GetTimeStamp(in long)"/> method.
   /// </summary>
-  public interface ITimeStampConversionIterator
+  public interface IToTimeStampConversionIterator
   {
     /// <summary>
     /// The timezone that we are converting from.
@@ -26,10 +27,12 @@ namespace FFT.TimeStamps
     bool MoveTo(in long fromTimeZoneTicks);
 
     /// <summary>
-    /// Advances the <see cref="ITimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
+    /// Advances the <see cref="IToTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
     /// then performs a conversion and returns the result as a <see cref="TimeStamp"/>.
     /// </summary>
     /// <param name="fromTimeZoneTicks">The time in <see cref="FromTimeZone"/> expressed in ticks.</param>
     TimeStamp GetTimeStamp(in long fromTimeZoneTicks);
+
+    TimeStamp GetTimeStamp(in DateTime fromTimeZone);
   }
 }

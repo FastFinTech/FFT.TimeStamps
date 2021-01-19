@@ -10,13 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{12D645C9-E
 		..\.editorconfig = ..\.editorconfig
 		..\.gitignore = ..\.gitignore
 		..\LICENSE = ..\LICENSE
+		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 		..\README.md = ..\README.md
 		..\version.json = ..\version.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFT.TimeStamps.Tests", "FFT.TimeStamps.Tests\FFT.TimeStamps.Tests.csproj", "{84E9B5AD-1A46-4CEE-9F2C-CB69C1138F9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFT.TimeStamps.Tests", "FFT.TimeStamps.Tests\FFT.TimeStamps.Tests.csproj", "{84E9B5AD-1A46-4CEE-9F2C-CB69C1138F9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFT.TimeStamps.Benchmarks", "FFT.TimeStamps.Benchmarks\FFT.TimeStamps.Benchmarks.csproj", "{9C622A65-FE9F-4C70-991A-10975F0C080F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFT.TimeStamps.Benchmarks", "FFT.TimeStamps.Benchmarks\FFT.TimeStamps.Benchmarks.csproj", "{9C622A65-FE9F-4C70-991A-10975F0C080F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFT.TimeStamps.Examples", "FFT.TimeStamps.Examples\FFT.TimeStamps.Examples.csproj", "{B68950F9-7744-46CB-AAC4-ABE4B2ADAE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +39,10 @@ Global
 		{9C622A65-FE9F-4C70-991A-10975F0C080F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C622A65-FE9F-4C70-991A-10975F0C080F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C622A65-FE9F-4C70-991A-10975F0C080F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68950F9-7744-46CB-AAC4-ABE4B2ADAE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68950F9-7744-46CB-AAC4-ABE4B2ADAE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68950F9-7744-46CB-AAC4-ABE4B2ADAE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68950F9-7744-46CB-AAC4-ABE4B2ADAE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@
 namespace FFT.TimeStamps
 {
   /// <summary>
-  /// Provides methods for creating <see cref="ITimeZoneConversionIterator"/> and <see cref="ITimeStampConversionIterator"/>.
+  /// Provides methods for creating <see cref="ITimeZoneConversionIterator"/> and <see cref="IToTimeStampConversionIterator"/>.
   /// </summary>
   public sealed partial class ConversionIterators
   {
@@ -19,10 +19,16 @@ namespace FFT.TimeStamps
       return new DualTimeZoneIterator(fromTimeZone, toTimeZone);
     }
 
-    public static ITimeStampConversionIterator CreateTimeStampIterator(TimeZoneInfo fromTimeZone)
+    public static IToTimeStampConversionIterator ToTimeStamp(TimeZoneInfo fromTimeZone)
     {
       if (fromTimeZone == TimeZoneInfo.Utc) throw new ArgumentException("There is no point using a converter to convert from utc.", nameof(fromTimeZone));
       return new ToUtcIterator(fromTimeZone);
+    }
+
+    public static IFromTimeStampConversionIterator FromTimeStamp(TimeZoneInfo toTimeZone)
+    {
+      if (toTimeZone == TimeZoneInfo.Utc) throw new ArgumentException("There is no point using a converter to convert to utc.", nameof(toTimeZone));
+      return new FromUtcIterator(toTimeZone);
     }
   }
 }
