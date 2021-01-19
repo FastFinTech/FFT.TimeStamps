@@ -1,5 +1,5 @@
-#- name: Concepts
-#  href: articles/intro.md
+- name: Concepts
+  href: articles/intro.md
 - name: Reference
   topicUid: FFT.TimeStamps
 - name: Github

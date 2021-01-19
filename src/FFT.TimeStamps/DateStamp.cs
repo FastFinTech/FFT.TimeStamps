@@ -13,7 +13,6 @@ namespace FFT.TimeStamps
   /// Its intent to to be very clear that it represents a DATE, and not a moment in time,
   /// and to properly serialize and deserialize as such without the influence of timezone conversions.
   /// </summary>
-  [JsonConverter(typeof(DateStampJsonConverter))]
   public readonly struct DateStamp : IEquatable<DateStamp>, IComparable<DateStamp>
   {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -400,19 +399,5 @@ next:
     public static bool operator <=(DateStamp left, DateStamp right)
 
       => left.DateTime <= right.DateTime;
-
-    //    JSON CONVERTER
-
-    internal class DateStampJsonConverter : JsonConverter
-    {
-      public override bool CanConvert(Type objectType)
-        => objectType == typeof(DateStamp) || objectType == typeof(DateStamp?);
-
-      public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
-        => writer.WriteValue(value?.ToString());
-
-      public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-        => reader.Value is null ? null : FromString((string)reader.Value);
-    }
   }
 }

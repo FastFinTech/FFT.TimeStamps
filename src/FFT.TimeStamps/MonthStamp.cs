@@ -13,10 +13,8 @@ namespace FFT.TimeStamps
   /// Its intent to to be very clear that it is a MONTH, and not a moment in time,
   /// and to properly serialize and deserialize as such without the influence of timezone conversions.
   /// </summary>
-  [JsonConverter(typeof(MonthStampConverter))]
   public readonly struct MonthStamp : IEquatable<MonthStamp>, IComparable<MonthStamp>
   {
-
     /// <summary>
     /// Minimum possible <see cref="MonthStamp"/> value of 0001-01-01
     /// </summary>
@@ -248,19 +246,5 @@ namespace FFT.TimeStamps
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator <=(MonthStamp left, MonthStamp right)
       => left.DateTime <= right.DateTime;
-
-    //    Json Converter
-
-    internal class MonthStampConverter : JsonConverter
-    {
-      public override bool CanConvert(Type objectType)
-          => objectType == typeof(MonthStamp) || objectType == typeof(MonthStamp?);
-
-      public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
-        => writer.WriteValue(value?.ToString());
-
-      public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-        => reader.Value is null ? null : FromString((string)reader.Value);
-    }
   }
 }

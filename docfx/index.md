@@ -1,14 +1,19 @@
 # FFT.TimeStamps
 
-Use this to get extremely fast timestamping when:
-1. Your primary purpose is fast, efficient storage of exact times, across multiple timezones.
-2. You run very frequent comparisons of timestamps, possibly as a way of comparing across multiple timezones.
-3. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive)
+Use this to get extremely fast timestamping with:
+1. Fast, unambiguous representation of exact times in multiple timezones.
+1. Fast comparisons of timestamps in multiple timezones.
+1. Fast arithmetic operations on timestamps.
+1. Fast timezone conversion.
+1. Fast, unambiguous timestamp serialization.
 
+The `TimeStamp` represents an exact, unambiguous moment in time.
 
-The `TimeStamp` is used to represent an exact moment in time, as ticks utc.
+The `DateStamp` represents a particular date.
 
-It's better than a `DateTime` for various reasons, the first being that, with `TimeStamp` objects,  there is absolutely no ambiguity about timezones, or, in particular, the `DateTimeKind` property of the	`DateTime`. 
+The `MonthStamp` represents a particular month.
+
+This library was developed in response to needs encountered during twenty years of developing financial applications for exchanges and traders.
 
 Let's take for example a trading platform, which deals with time in at least these timezones simultaneously:
 - The timezone that the user's computer is configured with.
@@ -17,21 +22,21 @@ Let's take for example a trading platform, which deals with time in at least the
 - The timezone of each instrument's settlement time.
 - The timezone of the trading session template applied to the chart.
 - The timezone of the instrument's trading hours as defined by the exchange.
-- The timezone in which market data is downloaded.
+- The timezone in which historical market data is downloaded.
 - The timezone used whilst storing market data to disk.
 - The timezone of news events and other market events.
 - The timezone of any custom session or event iterator such as deviations sessions, custom volume profile sessions and so forth.
 - etc.
 
-When dealing with so many timezones, the trading platform must be continually performing cross-timezone calculations, for EVERY tick that comes through the data feed, 
+Trading applications, especially those residing on a server, typically process millions of exchange events every second. Each event comes with a timestamp attached, and the trading application must perform cross-timezone calculations and comparisons for EVERY single event that comes through the data feeds.
 
-For example, a bar builder must continually compare tick timestamp (in whatever timezone that's provided) to the session open and close times (in whatever timezone that's provided) to exclude ticks outside the trading hours, and to reset bars at session breaks, etc. Throw in other session kinds, like deviation sessions, settlement sessions, market holidays, late opens, early closes, etc, AND the user's local timezone considerations, and you have quite a recipe for over-calculation going on there.
+Your application code becomes faster, simpler, and easier when you can boil every time expression down to a single paradigm with extremely fast comparison operators -- the `TimeStamp`.
 
-It's much better and easier to boil EVERYTHING down to a single paradigm with extremely fast comparison operators -- the `Apex.TimeStamps.TimeStamp`.
+Using the `TimeStamp`, we are able to express all events or moments in time with the ubiquitous `Timestamp` instead of the confusingly-timezoned `DateTime` objects. Once this is done, your comparisons/calculations become extremely fast and simple, and your code becomes very easy to read and maintain.
 
-Using the `TimeStamp`, we are able to express sessions, events, and other periods or moments of time in terms of the ubiquitous `Timestamp` rather than in terms of timezoned `DateTime` objects. Once this is done, and comparisons/calculations become extremely fast and simple, and the code becomes very easy to read and maintain.
+For the relatively rare times that the `TimeStamp` must be displayed to the user as a time string, you can convert it easily to a `DateTimeOffset` in any timezone
 
-The `TimeStamp` object itself can express itself very easily as a `DateTimeOffset` in any timezone, and great care has been put into the library to provide timezone conversions when needed that are much faster than the built-in .net framework timezone utilities.
+ The `TimeStamp` object itself can express itself very easily as a `DateTimeOffset` in any timezone, and great care has been put into the library to provide timezone conversions when needed that are much faster than the built-in .net framework timezone utilities.
 
 **Converting to various timezones.**
 
