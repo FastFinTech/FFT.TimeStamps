@@ -12,7 +12,6 @@ namespace FFT.TimeStamps
   /// 2. You run very frequent comparisons of timestamps, possibly as a way of comparing across multiple timezones.
   /// 2. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive)
   /// </summary>
-  [JsonConverter(typeof(TimeStampJsonConverter))]
   [DebuggerTypeProxy(typeof(DebuggerView))]
   public readonly partial struct TimeStamp : IComparable, IComparable<TimeStamp>, IEquatable<TimeStamp>
   {
