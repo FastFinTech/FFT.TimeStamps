@@ -23,7 +23,7 @@ namespace FFT.TimeStamps.Examples
       long ticksNewYorkTimeZone = TimeStamp.Now.AsTicks(_est); // this operation used TimeZoneOffsetCalculator internally.
 
       // use the calculator to find the equivalent time in sydney expressed in ticks.
-      long ticksSydneyTimeZone = TimeZoneOffsetCalculator.Convert(_est, _aus, ticksNewYorkTimeZone);
+      long ticksSydneyTimeZone = TimeZoneCalculator.Convert(_est, _aus, ticksNewYorkTimeZone);
     }
 
     private void DemonstrateLowLevelUtilities()
@@ -36,7 +36,7 @@ namespace FFT.TimeStamps.Examples
       long nowESTTicks = now.AsTicks(_est); // this operation used TimeZoneOffsetCalculator internally.
 
       // get a reference to the calculator for the EST timezone.
-      TimeZoneOffsetCalculator calculator = TimeZoneOffsetCalculator.Get(_est);
+      TimeZoneCalculator calculator = TimeZoneCalculator.Get(_est);
 
       // the calculator can calculate the current EST timezone offset when
       // supplied with ticks in EST timezone or in UTC timezone.

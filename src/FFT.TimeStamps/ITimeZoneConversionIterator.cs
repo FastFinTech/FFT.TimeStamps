@@ -5,6 +5,7 @@ namespace FFT.TimeStamps
   /// <summary>
   /// Provides the <see cref="DifferenceTicks"/> used to convert from <see cref="FromTimeZone"/> to <see cref="ToTimeZone"/>
   /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
+  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
   /// </summary>
   public interface ITimeZoneConversionIterator
   {

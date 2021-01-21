@@ -6,6 +6,7 @@ namespace FFT.TimeStamps
   /// Provides the <see cref="DifferenceTicks"/> used to convert from <see cref="FromTimeZone"/> to Utc timezone
   /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
   /// Also provides the direct <see cref="GetTimeStamp(in long)"/> method.
+  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
   /// </summary>
   public interface IToTimeStampConversionIterator
   {

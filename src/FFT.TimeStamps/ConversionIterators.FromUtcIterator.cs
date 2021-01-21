@@ -7,7 +7,7 @@ namespace FFT.TimeStamps
   {
     private sealed class FromUtcIterator : ITimeZoneConversionIterator, IFromTimeStampConversionIterator
     {
-      private readonly TimeZoneOffsetCalculator _calculator;
+      private readonly TimeZoneCalculator _calculator;
 
       public TimeZoneInfo FromTimeZone => TimeZoneInfo.Utc;
       public TimeZoneInfo ToTimeZone { get; }
@@ -18,7 +18,7 @@ namespace FFT.TimeStamps
       public FromUtcIterator(TimeZoneInfo toTimeZone)
       {
         ToTimeZone = toTimeZone;
-        _calculator = TimeZoneOffsetCalculator.Get(toTimeZone);
+        _calculator = TimeZoneCalculator.Get(toTimeZone);
       }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -26,7 +26,9 @@ namespace FFT.TimeStamps
       {
         if (utcTicks >= _utcEndTicks)
         {
-          DifferenceTicks = _calculator.GetOffsetFromUtcTicks(utcTicks, out _, out _utcEndTicks);
+          var segment = _calculator.GetSegment(utcTicks, TimeKind.Utc);
+          DifferenceTicks = segment.OffsetTicks;
+          _utcEndTicks = segment.EndTicks;
           return true;
         }
         return false;

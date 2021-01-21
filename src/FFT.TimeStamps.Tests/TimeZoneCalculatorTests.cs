@@ -9,16 +9,17 @@ namespace FFT.TimeStamps.Test
 {
 
   [TestClass]
-  public class TimeZoneConversionTests
+  public class TimeZoneCalculatorTests
   {
     private static readonly TimeZoneInfo _est = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"); // new york
+    private static readonly TimeZoneInfo _est2 = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"); // new york
     private static readonly TimeZoneInfo _aus = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"); // sydney
 
-    private static readonly DateTime[] _estTimes;
     private static readonly DateTime[] _utcTimes;
-    private static readonly DateTime[] _ausTimes;
+    private static readonly DateTime[] _estTimes; // contains "fly-back" times during ambiguous time zone sections when clock flies backward from daylight savings to standard time
+    private static readonly DateTime[] _ausTimes; // contains "fly-back" times during ambiguous time zone sections when clock flies backward from daylight savings to standard time
 
-    static TimeZoneConversionTests()
+    static TimeZoneCalculatorTests()
     {
       _estTimes = new DateTime[1000000];
       _ausTimes = new DateTime[1000000];
@@ -26,27 +27,25 @@ namespace FFT.TimeStamps.Test
       var start = new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc);
       var end = start.AddYears(4);
       var interval = (end.Ticks - start.Ticks) / 1000000;
-      DateTime previousUtc = DateTime.MinValue;
       for (var i = 0; i < 1000000; i++)
       {
         _utcTimes[i] = new DateTime(start.Ticks + i * interval, DateTimeKind.Utc);
-        _estTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _est);
-        _ausTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _aus);
-        previousUtc = _utcTimes[i];
+        _estTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _est); // contains "fly-back" times
+        _ausTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _aus); // contains "fly-back" times
       }
     }
 
     [TestMethod]
-    public void BasicConversionTests()
+    public void BasicConversions()
     {
       for (var i = 0; i < _utcTimes.Length; i++)
       {
         var systemOffset = _est.GetUtcOffset(_estTimes[i]);
-        var myOffset = new TimeSpan(TimeZoneOffsetCalculator.Get(_est).GetOffsetFromTimeZoneTicks(_estTimes[i].Ticks, out _, out _));
+        var myOffset = TimeZoneCalculator.Get(_est).GetSegment(_estTimes[i].Ticks, TimeKind.TimeZone).OffsetTicks.ToTimeSpan();
         Assert.AreEqual(systemOffset, myOffset);
 
         systemOffset = _aus.GetUtcOffset(_ausTimes[i]);
-        myOffset = new TimeSpan(TimeZoneOffsetCalculator.Get(_aus).GetOffsetFromTimeZoneTicks(_ausTimes[i].Ticks, out _, out _));
+        myOffset = TimeZoneCalculator.Get(_aus).GetSegment(_ausTimes[i].Ticks, TimeKind.TimeZone).OffsetTicks.ToTimeSpan();
         Assert.AreEqual(systemOffset, myOffset);
       }
 
@@ -56,25 +55,18 @@ namespace FFT.TimeStamps.Test
         Assert.AreEqual(_estTimes[i], t.As(_est).DateTime);
         Assert.AreEqual(_ausTimes[i], t.As(_aus).DateTime);
       }
+    }
 
-      //var converterEST = new SequentialConverterToDateTimeOffset(_est);
-      //var converterAUS = new SequentialConverterToDateTimeOffset(_aus);
-      //for (var i = 0; i < _utcTimes.Length; i++)
-      //{
-      //  var t = new TimeStamp(_utcTimes[i].Ticks);
-      //  var est = converterEST.Get(t);
-      //  var aus = converterAUS.Get(t);
-      //  Assert.AreEqual(est.DateTime, _estTimes[i]);
-      //  Assert.AreEqual(aus.DateTime, _ausTimes[i]);
-      //}
-
+    [TestMethod]
+    public void ExactMomentOfClockAdjustment()
+    {
       var before = new DateTime(2016, 3, 13, 6, 59, 0, DateTimeKind.Utc);
       var at = new DateTime(2016, 3, 13, 7, 0, 0, DateTimeKind.Utc);
       var after = new DateTime(2016, 3, 13, 7, 1, 0, DateTimeKind.Utc);
 
-      var beforeOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromUtcTicks(before.Ticks, out _, out _);
-      var atOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromUtcTicks(at.Ticks, out _, out _);
-      var afterOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromUtcTicks(after.Ticks, out _, out _);
+      var beforeOffset = TimeZoneCalculator.Get(_est).GetSegment(before.Ticks, TimeKind.Utc).OffsetTicks;
+      var atOffset = TimeZoneCalculator.Get(_est).GetSegment(at.Ticks, TimeKind.Utc).OffsetTicks;
+      var afterOffset = TimeZoneCalculator.Get(_est).GetSegment(after.Ticks, TimeKind.Utc).OffsetTicks;
 
       Assert.AreNotEqual(beforeOffset, atOffset);
       Assert.AreEqual(atOffset, afterOffset);
@@ -83,13 +75,17 @@ namespace FFT.TimeStamps.Test
       at = new DateTime(2016, 3, 13, 7, 3, 0, DateTimeKind.Unspecified);
       after = new DateTime(2016, 3, 13, 3, 1, 0, DateTimeKind.Unspecified);
 
-      beforeOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromTimeZoneTicks(before.Ticks, out _, out _);
-      atOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromTimeZoneTicks(at.Ticks, out _, out _);
-      afterOffset = TimeZoneOffsetCalculator.Get(_est).GetOffsetFromTimeZoneTicks(after.Ticks, out _, out _);
+      beforeOffset = TimeZoneCalculator.Get(_est).GetSegment(before.Ticks, TimeKind.TimeZone).OffsetTicks;
+      atOffset = TimeZoneCalculator.Get(_est).GetSegment(at.Ticks, TimeKind.TimeZone).OffsetTicks;
+      afterOffset = TimeZoneCalculator.Get(_est).GetSegment(after.Ticks, TimeKind.TimeZone).OffsetTicks;
 
       Assert.AreNotEqual(beforeOffset, atOffset);
       Assert.AreEqual(atOffset, afterOffset);
+    }
 
+    [TestMethod]
+    public void ConversionIterator()
+    {
       var estUtc = ConversionIterators.Create(_est, TimeZoneInfo.Utc);
       var ausUtc = ConversionIterators.Create(_aus, TimeZoneInfo.Utc);
       var utcEst = ConversionIterators.Create(TimeZoneInfo.Utc, _est);
@@ -98,16 +94,12 @@ namespace FFT.TimeStamps.Test
       var ausEst = ConversionIterators.Create(_aus, _est);
       for (var i = 0; i < _utcTimes.Length; i++)
       {
-        if (i == 63398)
-        {
-          int j = 0;
-        }
-        //Assert.AreEqual(_utcTimes[i], estUtc.GetDateTime(_estTimes[i].Ticks));
+        Assert.AreEqual(_utcTimes[i], estUtc.GetDateTime(_estTimes[i].Ticks));
         Assert.AreEqual(_utcTimes[i], ausUtc.GetDateTime(_ausTimes[i].Ticks));
-        //Assert.AreEqual(_estTimes[i], utcEst.GetDateTime(_utcTimes[i].Ticks));
-        //Assert.AreEqual(_ausTimes[i], utcAus.GetDateTime(_utcTimes[i].Ticks));
-        //Assert.AreEqual(_ausTimes[i], estAus.GetDateTime(_estTimes[i].Ticks));
-        //Assert.AreEqual(_estTimes[i], ausEst.GetDateTime(_ausTimes[i].Ticks));
+        Assert.AreEqual(_estTimes[i], utcEst.GetDateTime(_utcTimes[i].Ticks));
+        Assert.AreEqual(_ausTimes[i], utcAus.GetDateTime(_utcTimes[i].Ticks));
+        Assert.AreEqual(_ausTimes[i], estAus.GetDateTime(_estTimes[i].Ticks));
+        Assert.AreEqual(_estTimes[i], ausEst.GetDateTime(_ausTimes[i].Ticks));
       }
 
       estUtc = ConversionIterators.Create(_est, TimeZoneInfo.Utc);

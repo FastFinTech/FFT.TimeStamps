@@ -7,7 +7,7 @@ namespace FFT.TimeStamps
   {
     private sealed class ToUtcIterator : ITimeZoneConversionIterator, IToTimeStampConversionIterator
     {
-      private readonly TimeZoneOffsetCalculator _calculator;
+      private readonly TimeZoneCalculator _calculator;
 
       public TimeZoneInfo FromTimeZone { get; }
       public TimeZoneInfo ToTimeZone => TimeZoneInfo.Utc;
@@ -15,27 +15,48 @@ namespace FFT.TimeStamps
 
       private long _previousTzTicks;
       private long _tzEndTicks;
+      private TimeZoneCalculator.TimeZoneSegment? _segment;
 
       public ToUtcIterator(TimeZoneInfo fromTimeZone)
       {
         FromTimeZone = fromTimeZone;
-        _calculator = TimeZoneOffsetCalculator.Get(fromTimeZone);
+        _calculator = TimeZoneCalculator.Get(fromTimeZone);
       }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public bool MoveTo(in long fromTimeZoneTicks)
+      public bool MoveTo(in long ticks)
       {
-        if (fromTimeZoneTicks < _previousTzTicks)
+        if (ticks >= _tzEndTicks)
         {
-          DifferenceTicks = -_calculator.GetOffsetFromTimeZoneTicks(_tzEndTicks + 1, out _, out _tzEndTicks);
+          _segment = _calculator.GetSegment(ticks, TimeKind.TimeZone);
+          _tzEndTicks = _segment.EndTicks;
+          DifferenceTicks = -_segment.OffsetTicks;
+
+          // when first moving into an ambiguous zone (which typically happens as the clock flies back from
+          // daylight savings time to standard time), we assume the clock is still in daylight savings for the
+          // first movement into the ambigous segment.
+          if (_segment.IsAmbiguous)
+          {
+            // since the ambiguous segments are by definition coded with standard time, we need to
+            // search back to the most recent non-ambiguous segment to get the daylight savings offset.
+            var previousSegment = _segment.Previous;
+            while (previousSegment.IsAmbiguous)
+              previousSegment = previousSegment.Previous;
+            DifferenceTicks = -previousSegment.OffsetTicks;
+          }
+
           return true;
         }
-        else if (fromTimeZoneTicks >= _tzEndTicks)
+
+        // When in an ambiguous zone, we need to catch the moment when the clock
+        // flies back as it reverts from daylight savings back to standard time.
+        if (_segment!.IsAmbiguous && ticks < _previousTzTicks)
         {
-          DifferenceTicks = -_calculator.GetOffsetFromTimeZoneTicks(fromTimeZoneTicks, out _, out _tzEndTicks);
+          DifferenceTicks = -_segment.OffsetTicks;
           return true;
         }
-        _previousTzTicks = fromTimeZoneTicks;
+
+        _previousTzTicks = ticks;
         return false;
       }
 

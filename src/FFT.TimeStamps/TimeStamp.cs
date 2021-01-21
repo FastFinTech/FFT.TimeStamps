@@ -55,10 +55,12 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Creates a TimeStamp from the ticks in the given TimeZone.
+    /// Ambiguous times are considered to be in the standard (not daylight savings) offset.
+    /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.
     /// </summary>
     public TimeStamp(in long ticksTimeZone, in TimeZoneInfo timeZone)
-      => TicksUtc = ticksTimeZone - TimeZoneOffsetCalculator.Get(timeZone).GetOffsetFromTimeZoneTicks(ticksTimeZone, out _, out _);
+      => TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;
 
     /// <summary>
     /// Creates a TimeStamp from the given DateTimeOffset
@@ -68,12 +70,14 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Constructs a <see cref="TimeStamp"/> at the <paramref name="date"/> and <paramref name="timeOfDay"/> in the given <paramref name="timeZone"/>.
+    /// Ambiguous times are considered to be in the standard (not daylight savings) offset.
+    /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.
     /// </summary>
     public TimeStamp(in DateStamp date, in TimeSpan timeOfDay, TimeZoneInfo timeZone)
     {
       var ticksTimeZone = date.DateTime.Ticks + timeOfDay.Ticks;
-      TicksUtc = ticksTimeZone - TimeZoneOffsetCalculator.Get(timeZone).GetOffsetFromTimeZoneTicks(ticksTimeZone, out _, out _);
+      TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;
     }
 
     //    Now

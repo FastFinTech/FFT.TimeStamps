@@ -156,3 +156,9 @@ dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
 
 
+
+# SA1615: Element return value should be documented
+dotnet_diagnostic.SA1615.severity = silent
+
+# SA1503: Braces should not be omitted
+dotnet_diagnostic.SA1503.severity = none

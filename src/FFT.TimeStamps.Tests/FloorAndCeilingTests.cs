@@ -1,19 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps.Test
 {
+  using System;
+  using Microsoft.VisualStudio.TestTools.UnitTesting;
 
   [TestClass]
   public class FloorAndCeilingTests
   {
-
     [TestMethod]
     public void UtcFloorsAndCeilings()
     {
-
       var at = new DateTime(2011, 11, 11, 11, 11, 11, DateTimeKind.Utc).AddMilliseconds(111);
       Assert.AreEqual(at.ToTestString(), "2011-11-11 11:11:11.1110000");
 
@@ -64,7 +62,9 @@ namespace FFT.TimeStamps.Test
   internal static class XYZ
   {
     public static string ToTestString(this DateTimeOffset target) => target.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+
     public static string ToTestString(this DateTime target) => target.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+
     public static string ToTestString(this TimeStamp target) => target.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
 
   }

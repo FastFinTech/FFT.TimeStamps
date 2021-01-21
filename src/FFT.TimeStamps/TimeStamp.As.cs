@@ -12,8 +12,8 @@ namespace FFT.TimeStamps
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DateTimeOffset As(TimeZoneInfo timeZone)
     {
-      var offset = TimeZoneOffsetCalculator.Get(timeZone).GetOffsetFromUtcTicks(TicksUtc, out _, out _);
-      return new DateTimeOffset(TicksUtc + offset, new TimeSpan(offset));
+      var offsetTicks = TimeZoneCalculator.Get(timeZone).GetSegment(this).OffsetTicks;
+      return new DateTimeOffset(TicksUtc + offsetTicks, new TimeSpan(offsetTicks));
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public long AsTicks(TimeZoneInfo timeZone)
-        => TicksUtc + TimeZoneOffsetCalculator.Get(timeZone).GetOffsetFromUtcTicks(TicksUtc, out _, out _);
+        => TicksUtc + TimeZoneCalculator.Get(timeZone).GetSegment(this).OffsetTicks;
 
     /// <summary>
     /// Gets the Ticks property of a clock in the local time zone at the current moment.
