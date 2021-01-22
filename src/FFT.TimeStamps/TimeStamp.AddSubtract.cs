@@ -1,8 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Runtime.CompilerServices;
+
   public partial struct TimeStamp
   {
     /// <summary>
@@ -59,7 +62,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone).AddHours(hours), timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="minutes"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="minutes"/>.
     /// </summary>
     /// <param name="minutes">The number of minutes of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -77,7 +80,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone).AddMinutes(minutes), timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="seconds"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="seconds"/>.
     /// </summary>
     /// <param name="seconds">The number of seconds of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -95,7 +98,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone).AddSeconds(seconds), timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="milliseconds"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="milliseconds"/>.
     /// </summary>
     /// <param name="milliseconds">The number of milliseconds of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -113,7 +116,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone).AddMilliseconds(milliseconds), timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given <paramref name="timeSpan"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given <paramref name="timeSpan"/>.
     /// </summary>
     /// <param name="timeSpan">The amount of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -131,7 +134,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone) + timeSpan.Ticks, timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> retarded by the given <paramref name="timeSpan"/>
+    /// Returns a <see cref="TimeStamp"/> retarded by the given <paramref name="timeSpan"/>.
     /// </summary>
     /// <param name="timeSpan">The amount of ABSOLUTE time to retard the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

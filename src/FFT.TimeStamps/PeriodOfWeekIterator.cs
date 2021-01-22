@@ -1,97 +1,107 @@
-﻿using System;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+  using System;
 
-    public interface IPeriodIterator
+  /// <summary>
+  /// This class allows you to keep track of the current time in terms of "periods of the week" in a specific timezone.
+  /// </summary>
+  public sealed class PeriodOfWeekIterator
+  {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PeriodOfWeekIterator"/> class.
+    /// </summary>
+    /// <param name="timeZone"></param>
+    /// <param name="periodLength"></param>
+    /// <param name="periodOffset"></param>
+    /// <param name="at"></param>
+    public PeriodOfWeekIterator(TimeZoneInfo timeZone, TimeSpan periodLength, TimeSpan periodOffset, TimeStamp at)
     {
-        TimeZoneInfo TimeZone { get; }
-        bool IsNewPeriod { get; }
-        Period Previous { get; }
-        Period Current { get; }
-        Period Next { get; }
-        void MoveTo(TimeStamp at);
+      if (((TimeSpan.TicksPerDay * 7) % periodLength.Ticks) != 0)
+        throw new ArgumentException($"{nameof(periodLength)} '{periodLength:c}' does not divide evenly into a week.");
+
+      if (periodOffset >= periodLength)
+        throw new ArgumentException($"{nameof(periodOffset)} '{periodOffset:c}' must be less than {nameof(periodLength)} '{periodLength:c}'.");
+
+      if (periodOffset.Ticks < 0)
+        throw new ArgumentException($"{nameof(periodOffset)} '{periodOffset:c}' must be >= 0.");
+
+      if (periodLength.Ticks <= 0)
+        throw new ArgumentException($"{nameof(periodLength)} '{periodLength:c}' must be > 0.");
+
+      TimeZone = timeZone;
+      PeriodLength = periodLength;
+      PeriodOffset = periodOffset;
+      At = at;
+
+      var start = at.ToPeriodOfWeekFloor(periodLength, periodOffset, timeZone);
+      var end = start.Add(periodLength, timeZone);
+      Current = new(start, end);
+      Previous = new(start.Add(-periodLength, timeZone), start);
+      Next = new(end, end.Add(periodLength, timeZone));
     }
 
-    public class Period
+    /// <summary>
+    /// Gets the timezone that the periods of week are defined for.
+    /// </summary>
+    public TimeZoneInfo TimeZone { get; }
+
+    /// <summary>
+    /// Gets the length of the periods that the week is divided into.
+    /// </summary>
+    public TimeSpan PeriodLength { get; }
+
+    /// <summary>
+    /// Gets the offset that is used when the first period of week is not supposed to start at midday, Sunday.
+    /// </summary>
+    public TimeSpan PeriodOffset { get; }
+
+    /// <summary>
+    /// Gets the time that the iterator has been advanced to.
+    /// </summary>
+    public TimeStamp At { get; private set; }
+
+    /// <summary>
+    /// Gets a value representing the next period of week.
+    /// </summary>
+    public PeriodOfTime Previous { get; private set; }
+
+    /// <summary>
+    /// Gets a value representing the period of week in progress at the current time.
+    /// </summary>
+    public PeriodOfTime Current { get; private set; }
+
+    /// <summary>
+    /// Gets a value representing the next period of week.
+    /// </summary>
+    public PeriodOfTime Next { get; private set; }
+
+    /// <summary>
+    /// Advances the iterator to the given <paramref name="at"/>.
+    /// </summary>
+    /// <returns>True if the move resulted in a new period of week, False otherwise.</returns>
+    public bool MoveTo(in TimeStamp at)
     {
-        public TimeStamp Start;
-        public TimeStamp End;
+      var isNewPeriod = at.TicksUtc >= Current.End.TicksUtc;
+
+      if (isNewPeriod)
+      {
+        MoveNext();
+        while (at.TicksUtc >= Current.End.TicksUtc)
+          MoveNext();
+      }
+
+      At = at;
+      return isNewPeriod;
     }
 
-    public class PeriodOfWeekIterator : IPeriodIterator
+    private void MoveNext()
     {
-
-        public readonly TimeSpan PeriodLength;
-        public readonly TimeSpan PeriodOffset;
-        public TimeZoneInfo TimeZone { get; }
-        public TimeStamp At { get; private set; }
-        public bool IsNewPeriod { get; private set; }
-        public Period Previous { get; private set; }
-        public Period Current { get; private set; }
-        public Period Next { get; private set; }
-
-        public PeriodOfWeekIterator(TimeZoneInfo timeZone, TimeSpan periodLength, TimeSpan periodOffset, TimeStamp at)
-        {
-
-            if (((TimeSpan.TicksPerDay * 7) % periodLength.Ticks) != 0)
-                throw new ArgumentException($"{nameof(periodLength)} '{periodLength:c}' does not divide evenly into a week.");
-
-            if (periodOffset >= periodLength)
-                throw new ArgumentException($"{nameof(periodOffset)} '{periodOffset:c}' must be less than {nameof(periodLength)} '{periodLength:c}'.");
-
-            if (periodOffset.Ticks < 0)
-                throw new ArgumentException($"{nameof(periodOffset)} '{periodOffset:c}' must be >= 0.");
-
-            if (periodLength.Ticks <= 0)
-                throw new ArgumentException($"{nameof(periodLength)} '{periodLength:c}' must be > 0.");
-
-
-            TimeZone = timeZone;
-            PeriodLength = periodLength;
-            PeriodOffset = periodOffset;
-            At = at;
-
-            var atTicksTimeZone = at.AsTicks(TimeZone);
-            var startTicksTimeZone = atTicksTimeZone.ToPeriodOfWeekFloor(PeriodLength.Ticks, PeriodOffset.Ticks);
-            var endTicksTimeZone = startTicksTimeZone + PeriodLength.Ticks;
-            Current = new Period
-            {
-                Start = new TimeStamp(startTicksTimeZone, TimeZone),
-                End = new TimeStamp(endTicksTimeZone, TimeZone),
-            };
-            Previous = new Period
-            {
-                Start = new TimeStamp(startTicksTimeZone - PeriodLength.Ticks, TimeZone),
-                End = Current.Start,
-            };
-            Next = new Period
-            {
-                Start = Current.End,
-                End = new TimeStamp(endTicksTimeZone + PeriodLength.Ticks, TimeZone),
-            };
-
-            IsNewPeriod = true;
-        }
-
-        public void MoveTo(TimeStamp at)
-        {
-            while (at.TicksUtc > Current.End.TicksUtc)
-                MoveNext();
-            At = at;
-        }
-
-        void MoveNext()
-        {
-            IsNewPeriod = true;
-            Previous = Current;
-            Current = Next;
-            Next = new Period
-            {
-                Start = Current.End,
-                End = new TimeStamp(Current.End.AsTicks(TimeZone) + PeriodLength.Ticks, TimeZone),
-            };
-        }
+      Previous = Current;
+      Current = Next;
+      Next = new(Current.End, Current.End.Add(PeriodLength, TimeZone));
     }
+  }
 }

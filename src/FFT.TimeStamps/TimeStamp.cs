@@ -1,11 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Diagnostics;
+  using System.Runtime.CompilerServices;
+
   /// <summary>
   /// Use this to get extremely fast timestamping when:
   /// 1. Your primary purpose is fast, efficient storage of exact times, across multiple timezones.
@@ -13,15 +14,8 @@ namespace FFT.TimeStamps
   /// 2. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive)
   /// </summary>
   [DebuggerTypeProxy(typeof(DebuggerView))]
-  public readonly partial struct TimeStamp : IComparable, IComparable<TimeStamp>, IEquatable<TimeStamp>
+  public readonly partial struct TimeStamp : IComparable<TimeStamp>, IEquatable<TimeStamp>
   {
-    /// <summary>
-    /// Expresses the time to its full 1-tick (ten-millionth of a second) resolution and the timezone offset as well.
-    /// </summary>
-    private const string DEFAULT_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss.fffffff zzz";
-
-    //    Static fields
-
     /// <summary>
     /// Contains the minimum possible value of a <see cref="TimeStamp"/>
     /// </summary>
@@ -37,14 +31,15 @@ namespace FFT.TimeStamps
     /// </summary>
     public static readonly TimeStamp UnixEpoch = new TimeStamp(new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero));
 
-    //    Instance fields
-
     /// <summary>
     /// The number of ticks in UTC timezone.
     /// </summary>
     public readonly long TicksUtc;
 
-    //    Constructors 
+    /// <summary>
+    /// Expresses the time to its full 1-tick (ten-millionth of a second) resolution and the timezone offset as well.
+    /// </summary>
+    private const string DEFAULT_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss.fffffff zzz";
 
     /// <summary>
     /// Creates a new <see cref="TimeStamp"/> with the given number of ticks UTC.
@@ -79,23 +74,6 @@ namespace FFT.TimeStamps
       var ticksTimeZone = date.DateTime.Ticks + timeOfDay.Ticks;
       TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;
     }
-
-    //    Now
-
-    /// <summary>
-    /// Gets the current time as a <see cref="TimeStamp"/>.
-    /// </summary>
-    public static TimeStamp Now
-      // NB: I tried implementing this using fancy, supposedly faster methods like GetSystemTimePreciseAsFileTime blah blah blah 
-      // but the implementation coded below turned out to be the fastest possible. I guess if you check out the code for DateTime.UtcNow
-      // you will see that it does use a GetSystemTimeAsFileTime method call, but via one that is "embedded" somehow and runs much
-      // faster, even with the DateTime overhead, than we can run it by calling
-      //   [DllImport("Kernel32.dll", CallingConvention = CallingConvention.Winapi)]
-      //   private static extern void GetSystemTimePreciseAsFileTime(out long filetime);
-      // which is much slower.
-      => new TimeStamp(DateTime.UtcNow.Ticks);
-
-    //    ToString
 
     /// <summary>
     /// Creates a string representation of the utc time using the default format.
@@ -140,94 +118,24 @@ namespace FFT.TimeStamps
     public string ToString(TimeZoneInfo timeZone, string format)
       => As(timeZone).ToString(format);
 
-
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-
-    //    Comparison
-
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int CompareTo(TimeStamp other)
       => TicksUtc.CompareTo(other.TicksUtc);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int CompareTo(object obj)
-    {
-      if (obj is TimeStamp other) return CompareTo(other);
-      throw new ArgumentException($"{nameof(obj)} is not a TimeStamp.", nameof(obj));
-    }
-
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override bool Equals(object obj)
       => obj is TimeStamp other && Equals(other);
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Equals(TimeStamp other)
       => TicksUtc == other.TicksUtc;
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override int GetHashCode()
       => TicksUtc.GetHashCode();
-
-    //    Operators
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator ==(TimeStamp a, TimeStamp b)
-      => a.TicksUtc == b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator !=(TimeStamp a, TimeStamp b)
-      => a.TicksUtc != b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator ==(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc == b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator !=(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc != b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator >(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc > b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator <(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc < b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator >=(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc >= b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator <=(in TimeStamp a, in TimeStamp b)
-      => a.TicksUtc <= b.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp operator +(in TimeStamp a, in long ticks)
-      => new TimeStamp(a.TicksUtc + ticks);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp operator -(in TimeStamp a, in long ticks)
-      => new TimeStamp(a.TicksUtc - ticks);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp operator +(in TimeStamp a, in TimeSpan time)
-      => new TimeStamp(a.TicksUtc + time.Ticks);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp operator -(in TimeStamp a, in TimeSpan time)
-      => new TimeStamp(a.TicksUtc - time.Ticks);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeSpan operator -(in TimeStamp a, in TimeStamp b)
-      => new TimeSpan(a.TicksUtc - b.TicksUtc);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator long(in TimeStamp a)
-      => a.TicksUtc;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator TimeStamp(in long ticksUtc)
-      => new TimeStamp(ticksUtc);
   }
 }

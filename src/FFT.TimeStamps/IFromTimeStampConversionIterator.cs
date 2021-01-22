@@ -1,12 +1,15 @@
-﻿using System;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+
   /// <summary>
   /// Provides the <see cref="DifferenceTicks"/> used to convert from a <see cref="TimeStamp"/> to <see cref="ToTimeZone"/>
   /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
   /// Also provides methods to directly convert a <see cref="TimeStamp"/> to a <see cref="DateTime"/> or <see cref="DateTimeOffset"/>.
-  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
+  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
   /// </summary>
   public interface IFromTimeStampConversionIterator
   {
@@ -39,5 +42,12 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="timeStamp">The time to be converted.</param>
     DateTimeOffset GetDateTimeOffset(in TimeStamp timeStamp);
+
+    /// <summary>
+    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
+    /// then performs a conversion and returns the result as ticks in <see cref="ToTimeZone"/>.
+    /// </summary>
+    /// <param name="timeStamp">The time to be converted.</param>
+    long GetTicks(in TimeStamp timeStamp);
   }
 }

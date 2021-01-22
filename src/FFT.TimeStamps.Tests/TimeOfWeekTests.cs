@@ -2,6 +2,7 @@
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using static System.DayOfWeek;
 
 namespace FFT.TimeStamps.Test
 {
@@ -28,6 +29,14 @@ namespace FFT.TimeStamps.Test
 
       Assert.AreEqual(startStamp.GetNext(saturdayMidnight).AsUtc().ToString(format), "2019-12-21 00:00:00.0000000");
       Assert.AreEqual(startStamp.GetNext(fridayMidnight).AsUtc().ToString(format), "2019-12-27 00:00:00.0000000");
+    }
+
+    [TestMethod]
+    public void AddingNegativeWrapsAround()
+    {
+      var value = new TimeOfWeek(Monday, TimeSpan.Zero);
+      Assert.AreEqual(new TimeOfWeek(0), value.Add(TimeSpan.FromDays(-1)));
+      Assert.AreEqual(new TimeOfWeek(Saturday, TimeSpan.Zero), value.Add(TimeSpan.FromDays(-2)));
     }
 
     [TestMethod]

@@ -1,8 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Runtime.CompilerServices;
+
   public partial struct TimeStamp
   {
     /// <summary>
@@ -44,8 +47,11 @@ namespace FFT.TimeStamps
       // yes, this is written the long way, (particularly without using linq) to eliminate allocations.
       var result = values[0];
       for (var i = values.Length - 1; i >= 1; i--)
+      {
         if (values[i].TicksUtc < result.TicksUtc)
           result = values[i];
+      }
+
       return result;
     }
 
@@ -60,8 +66,11 @@ namespace FFT.TimeStamps
       // yes, this is written the long way, (particularly without using linq) to eliminate allocations.
       var result = values[0];
       for (var i = values.Length - 1; i >= 1; i--)
+      {
         if (values[i].TicksUtc > result.TicksUtc)
           result = values[i];
+      }
+
       return result;
     }
   }

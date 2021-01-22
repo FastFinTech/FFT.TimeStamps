@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using static System.DayOfWeek;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Runtime.CompilerServices;
+  using static System.DayOfWeek;
+
   /// <summary>
   /// Contains methods for manipulating <see cref="DateTime"/> values.
   /// </summary>
@@ -17,36 +19,36 @@ namespace FFT.TimeStamps
   public partial class DateTimes
   {
     /// <summary>
-    /// Rounds the <paramref name="timestamp"/> down to the start of the second and then 
-    /// returns zero-based index of the second within the day. 
-    /// Values returned range from 0 to 1440 * 60 - 1
-    /// </summary>        
+    /// Rounds the <paramref name="timestamp"/> down to the start of the second and then
+    /// returns zero-based index of the second within the day.
+    /// Values returned range from 0 to 1440 * 60 - 1.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToSecondOfDayIndex(in this DateTime timestamp)
       => timestamp.Ticks.ToSecondOfDayIndex();
 
     /// <summary>
-    /// Rounds the second down to the start of the second and then 
-    /// returns zero-based index of the second within the week. 
-    /// Values returned range from 0 to 6 * 1440 * 60 - 1
+    /// Rounds the second down to the start of the second and then
+    /// returns zero-based index of the second within the week.
+    /// Values returned range from 0 to 6 * 1440 * 60 - 1.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToSecondOfWeekIndex(in this DateTime timestamp)
       => timestamp.Ticks.ToSecondOfWeekIndex();
 
     /// <summary>
-    /// Rounds the minute down to the start of the minute and then 
+    /// Rounds the minute down to the start of the minute and then
     /// returns the zero-based index of the minute within the day.
-    /// Values returned range from 0 to 1439
+    /// Values returned range from 0 to 1439.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToMinuteOfDayIndex(in this DateTime timestamp)
       => timestamp.Ticks.ToMinuteOfDayIndex();
 
     /// <summary>
-    /// Rounds the minute down to the start of the minute and then 
-    /// returns zero-based index of the minute within the week. 
-    /// Values returned range from 0 to 6 * 1440 - 1
+    /// Rounds the minute down to the start of the minute and then
+    /// returns zero-based index of the minute within the week.
+    /// Values returned range from 0 to 6 * 1440 - 1.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToMinuteOfWeekIndex(in this DateTime timestamp)
@@ -81,7 +83,7 @@ namespace FFT.TimeStamps
       => new DateTime(timestamp.Ticks.ToSecondFloor(), timestamp.Kind);
 
     /// <summary>
-    /// Rounds the given timestamp up to the start of the next second. 
+    /// Rounds the given timestamp up to the start of the next second.
     /// If the timestamp is at an exact second, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -90,7 +92,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp down to the start of the minute
-    /// If the timestamp is at an exact minute, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact minute, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToMinuteFloor(in this DateTime timestamp)
@@ -98,7 +100,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp up to the start of the next minute
-    /// If the timestamp is at an exact minute, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact minute, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToMinuteCeiling(in this DateTime timestamp)
@@ -106,7 +108,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp down to the start of the hour.
-    /// If the timestamp is at an exact hour, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact hour, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToHourFloor(in this DateTime timestamp)
@@ -114,7 +116,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp up to the start of the next hour
-    /// If the timestamp is at an exact hour, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact hour, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToHourCeiling(in this DateTime timestamp)
@@ -122,7 +124,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp down to the start of the day.
-    /// If the timestamp is at an exact day, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact day, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToDayFloor(in this DateTime timestamp)
@@ -130,10 +132,8 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Rounds the timestamp up to the start of the next day.
-    /// If the timestamp is at an exact day, it returns a copy of the same timestamp
+    /// If the timestamp is at an exact day, it returns a copy of the same timestamp.
     /// </summary>
-    /// <param name="timestamp"></param>
-    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateTime ToDayCeiling(in this DateTime timestamp)
       => new DateTime(timestamp.Ticks.ToDayCeiling(), timestamp.Kind);
@@ -210,7 +210,7 @@ namespace FFT.TimeStamps
   public partial class DateTimes
   {
     /// <summary>
-    /// Returns True if the given time's <see cref="DayOfWeek"/> property is a weekend day (Saturday or Sunday)
+    /// Returns True if the given time's <see cref="DayOfWeek"/> property is a weekend day (Saturday or Sunday).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsWeekend(in this DateTime target)
@@ -364,9 +364,9 @@ next:
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the zero-based index of the period at given time <paramref name="timestamp"/>. 
+    /// the zero-based index of the period at given time <paramref name="timestamp"/>.
     /// Beginning of the first period is considered to be midnight, Sunday.
-    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength)
+    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToPeriodOfWeekIndex(in this DateTime timestamp, in TimeSpan periodLength)
@@ -376,7 +376,7 @@ next:
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
     /// the zero-based index of the period at given time <paramref name="timestamp"/>. 
     /// Beginning of the first period is considered to be midnight, Sunday, PLUS <paramref name="periodOffset"/>.
-    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength)
+    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToPeriodOfWeekIndex(in this DateTime timestamp, in TimeSpan periodLength, in TimeSpan periodOffset)
@@ -389,7 +389,7 @@ next:
     /// <summary>
     /// Divides time from <paramref name="intervalStart"/> into evenly-sized periods (intervals) of length <paramref name="intervalLength"/>
     /// and returns the beginning of the interval in progress at <paramref name="timestamp"/>.
-    /// If the <paramref name="timestamp"/> is at an exact interval start, it returns a copy of the same <paramref name="timestamp"/>
+    /// If the <paramref name="timestamp"/> is at an exact interval start, it returns a copy of the same <paramref name="timestamp"/>.
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="timestamp"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -399,7 +399,7 @@ next:
     /// <summary>
     /// Divides time from <paramref name="intervalStart"/> into evenly-sized periods (intervals) of length <paramref name="intervalLength"/>
     /// and returns the beginning of the next interval to start after <paramref name="timestamp"/>.
-    /// If the <paramref name="timestamp"/> is at an exact interval start, it returns a copy of the same <paramref name="timestamp"/>
+    /// If the <paramref name="timestamp"/> is at an exact interval start, it returns a copy of the same <paramref name="timestamp"/>.
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="timestamp"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -419,8 +419,8 @@ next:
   public partial class DateTimes
   {
     /// <summary>
-    /// Gets the number of seconds since Midnight, 1 January 1970, 
-    /// in the same timezone as the given <paramref name="timestamp"/>
+    /// Gets the number of seconds since Midnight, 1 January 1970,
+    /// in the same timezone as the given <paramref name="timestamp"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long ToUnixSeconds(in this DateTime timestamp)
@@ -428,7 +428,7 @@ next:
 
     /// <summary>
     /// Gets the number of milliseconds since Midnight, 1 January 1970, UTC.
-    /// in the same timezone as the given <paramref name="timestamp"/>
+    /// in the same timezone as the given <paramref name="timestamp"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long ToUnixMillieconds(in this DateTime timestamp)

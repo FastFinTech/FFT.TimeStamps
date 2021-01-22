@@ -1,11 +1,14 @@
-﻿using System;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+
   /// <summary>
   /// Provides the <see cref="DifferenceTicks"/> used to convert from <see cref="FromTimeZone"/> to <see cref="ToTimeZone"/>
   /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
-  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
+  /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
   /// </summary>
   public interface ITimeZoneConversionIterator
   {

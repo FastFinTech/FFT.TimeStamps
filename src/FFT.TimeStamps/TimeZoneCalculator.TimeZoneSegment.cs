@@ -1,7 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System.Runtime.CompilerServices;
+
   public sealed partial class TimeZoneCalculator
   {
     /// <summary>
@@ -9,6 +12,22 @@ namespace FFT.TimeStamps
     /// </summary>
     public sealed class TimeZoneSegment
     {
+      private readonly TimeZoneCalculator? _calculator;
+
+      private TimeZoneSegment? _next;
+      private TimeZoneSegment? _previous;
+
+      internal TimeZoneSegment(TimeKind segmentKind, long startTicks, long endTicks, bool isInvalid, bool isAmbiguous, long offsetTicks, TimeZoneCalculator calculator)
+      {
+        SegmentKind = segmentKind;
+        StartTicks = startTicks;
+        EndTicks = endTicks;
+        IsInvalid = isInvalid;
+        IsAmbiguous = isAmbiguous;
+        OffsetTicks = offsetTicks;
+        _calculator = calculator;
+      }
+
       /// <summary>
       /// Identifies the timezone type in which <see cref="StartTicks"/> and <see cref="EndTicks"/> are expressed.
       /// </summary>
@@ -43,21 +62,6 @@ namespace FFT.TimeStamps
       /// When <see cref="IsInvalid"/> or <see cref="IsAmbiguous"/> is true, this value will contain the STANDARD offset for the timezone.
       /// </summary>
       public long OffsetTicks { get; private set; }
-
-      private TimeZoneSegment? _next;
-      private TimeZoneSegment? _previous;
-      private readonly TimeZoneCalculator? _calculator;
-
-      internal TimeZoneSegment(TimeKind segmentKind, long startTicks, long endTicks, bool isInvalid, bool isAmbiguous, long offsetTicks, TimeZoneCalculator calculator)
-      {
-        SegmentKind = segmentKind;
-        StartTicks = startTicks;
-        EndTicks = endTicks;
-        IsInvalid = isInvalid;
-        IsAmbiguous = isAmbiguous;
-        OffsetTicks = offsetTicks;
-        _calculator = calculator;
-      }
 
       /// <summary>
       /// Gets the next segment.

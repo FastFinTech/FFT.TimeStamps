@@ -1,17 +1,16 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Runtime.CompilerServices;
+
   public partial class ConversionIterators
   {
     private sealed class FromUtcIterator : ITimeZoneConversionIterator, IFromTimeStampConversionIterator
     {
       private readonly TimeZoneCalculator _calculator;
-
-      public TimeZoneInfo FromTimeZone => TimeZoneInfo.Utc;
-      public TimeZoneInfo ToTimeZone { get; }
-      public long DifferenceTicks { get; private set; }
 
       private long _utcEndTicks;
 
@@ -20,6 +19,12 @@ namespace FFT.TimeStamps
         ToTimeZone = toTimeZone;
         _calculator = TimeZoneCalculator.Get(toTimeZone);
       }
+
+      public TimeZoneInfo FromTimeZone => TimeZoneInfo.Utc;
+
+      public TimeZoneInfo ToTimeZone { get; }
+
+      public long DifferenceTicks { get; private set; }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
       public bool MoveTo(in long utcTicks)
@@ -31,6 +36,7 @@ namespace FFT.TimeStamps
           _utcEndTicks = segment.EndTicks;
           return true;
         }
+
         return false;
       }
 
@@ -62,6 +68,13 @@ namespace FFT.TimeStamps
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
       public DateTimeOffset GetDateTimeOffset(in TimeStamp timeStamp)
         => GetDateTimeOffset(timeStamp.TicksUtc);
+
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      public long GetTicks(in TimeStamp timeStamp)
+      {
+        MoveTo(timeStamp.TicksUtc);
+        return timeStamp.TicksUtc + DifferenceTicks;
+      }
     }
   }
 }

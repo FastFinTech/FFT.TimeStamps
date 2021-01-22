@@ -1,8 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Runtime.CompilerServices;
+
   /// <summary>
   /// Contains methods for manipulating time when it is represented in ticks (ten-millionths of a second).
   /// </summary>
@@ -16,14 +19,14 @@ namespace FFT.TimeStamps
     private static readonly long _unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
 
     /// <summary>
-    /// Calculates the ticks at the given moment in time. 
+    /// Calculates the ticks at the given moment in time.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long At(int year, int month, int day)
       => new DateTime(year, month, day, 0, 0, 0).Ticks;
 
     /// <summary>
-    /// Calculates the ticks at the given moment in time. 
+    /// Calculates the ticks at the given moment in time.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long At(int year, int month, int day, int hour, int minute, int second)
@@ -199,105 +202,105 @@ namespace FFT.TimeStamps
   public partial class Ticks
   {
     /// <summary>
-    /// Adds the given number of <paramref name="milliseconds"/>
+    /// Adds the given number of <paramref name="milliseconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddMilliseconds(in this long ticks, in double milliseconds)
         => ticks + (long)(milliseconds * TimeSpan.TicksPerMillisecond);
 
     /// <summary>
-    /// Adds the given number of <paramref name="milliseconds"/>
+    /// Adds the given number of <paramref name="milliseconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddMilliseconds(in this long ticks, in long milliseconds)
         => ticks + milliseconds * TimeSpan.TicksPerMillisecond;
 
     /// <summary>
-    /// Adds the given number of <paramref name="seconds"/>
+    /// Adds the given number of <paramref name="seconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddSeconds(in this long ticks, in double seconds)
         => ticks + (long)(seconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
-    /// Adds the given number of <paramref name="seconds"/>
+    /// Adds the given number of <paramref name="seconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddSeconds(in this long ticks, in long seconds)
         => ticks + seconds * TimeSpan.TicksPerSecond;
 
     /// <summary>
-    /// Adds the given number of <paramref name="minutes"/>
+    /// Adds the given number of <paramref name="minutes"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddMinutes(in this long ticks, in double minutes)
         => ticks + (long)(minutes * TimeSpan.TicksPerMinute);
 
     /// <summary>
-    /// Adds the given number of <paramref name="minutes"/>
+    /// Adds the given number of <paramref name="minutes"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddMinutes(in this long ticks, in long minutes)
-        => ticks + minutes * TimeSpan.TicksPerMinute;
+        => ticks + (minutes * TimeSpan.TicksPerMinute);
 
     /// <summary>
-    /// Adds the given number of <paramref name="hours"/>
+    /// Adds the given number of <paramref name="hours"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddHours(in this long ticks, in double hours)
         => ticks + (long)(hours * TimeSpan.TicksPerHour);
 
     /// <summary>
-    /// Adds the given number of <paramref name="hours"/>
+    /// Adds the given number of <paramref name="hours"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddHours(in this long ticks, in long hours)
         => ticks + hours * TimeSpan.TicksPerHour;
 
     /// <summary>
-    /// Adds the given number of <paramref name="days"/>
+    /// Adds the given number of <paramref name="days"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddDays(in this long ticks, in double days)
         => ticks + (long)(days * TimeSpan.TicksPerDay);
 
     /// <summary>
-    /// Adds the given number of <paramref name="days"/>
+    /// Adds the given number of <paramref name="days"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddDays(in this long ticks, in long days)
         => ticks + days * TimeSpan.TicksPerDay;
 
     /// <summary>
-    /// Adds the given number of <paramref name="weeks"/>
+    /// Adds the given number of <paramref name="weeks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddWeeks(in this long ticks, in double weeks)
         => ticks + (long)(weeks * TICKS_PER_WEEK);
 
     /// <summary>
-    /// Adds the given number of <paramref name="weeks"/>
+    /// Adds the given number of <paramref name="weeks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddWeeks(in this long ticks, in long weeks)
-        => ticks + weeks * TICKS_PER_WEEK;
+        => ticks + (weeks * TICKS_PER_WEEK);
   }
 
   // ToIndex
   public partial class Ticks
   {
     /// <summary>
-    /// Rounds the second down to the start of the second and then 
-    /// returns zero-based index of the second within the day. 
-    /// Values returned range from 0 to 1440 * 60 - 1
+    /// Rounds the second down to the start of the second and then
+    /// returns zero-based index of the second within the day.
+    /// Values returned range from 0 to 1440 * 60 - 1.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToSecondOfDayIndex(in this long ticks)
       => (int)(ticks.TicksPastDay() / TimeSpan.TicksPerSecond);
 
     /// <summary>
-    /// Rounds the second down to the start of the second and then 
-    /// returns zero-based index of the second within the week. 
+    /// Rounds the second down to the start of the second and then
+    /// returns zero-based index of the second within the week.
     /// Values returned range from 0 to 7 * 1440 * 60 - 1.
     /// The zero point is midnight, Sunday.
     /// </summary>
@@ -306,7 +309,7 @@ namespace FFT.TimeStamps
       => (int)(ticks.TicksPastWeek() / TimeSpan.TicksPerSecond);
 
     /// <summary>
-    /// Rounds the minute down to the start of the minute and then 
+    /// Rounds the minute down to the start of the minute and then
     /// returns the zero-based index of the minute within the day.
     /// Values returned range from 0 to 1439
     /// The zero point is midnight, Sunday.
@@ -316,9 +319,9 @@ namespace FFT.TimeStamps
       => (int)(ticks.TicksPastDay() / TimeSpan.TicksPerMinute);
 
     /// <summary>
-    /// Rounds the minute down to the start of the minute and then 
-    /// returns zero-based index of the minute within the week. 
-    /// Values returned range from 0 to 7 * 1440 - 1
+    /// Rounds the minute down to the start of the minute and then
+    /// returns zero-based index of the minute within the week.
+    /// Values returned range from 0 to 7 * 1440 - 1.
     /// The zero point is midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -385,7 +388,7 @@ namespace FFT.TimeStamps
   {
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the beginning of the period at given time <paramref name="ticks"/>. 
+    /// the beginning of the period at given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
@@ -399,7 +402,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the beginning of the period at given time <paramref name="ticks"/>. 
+    /// the beginning of the period at given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday, PLUS <paramref name="periodOffset"/>.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
@@ -410,7 +413,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the beginning of the period after the given time <paramref name="ticks"/>. 
+    /// the beginning of the period after the given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
@@ -424,7 +427,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the beginning of the period after the given time <paramref name="ticks"/>. 
+    /// the beginning of the period after the given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday, PLUS <paramref name="periodOffset"/>.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
@@ -435,9 +438,9 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the zero-based index of the period at given time <paramref name="ticks"/>. 
+    /// the zero-based index of the period at given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday.
-    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength)
+    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToPeriodOfWeekIndex(in this long ticks, in long periodLength)
@@ -445,9 +448,9 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the zero-based index of the period at given time <paramref name="ticks"/>. 
+    /// the zero-based index of the period at given time <paramref name="ticks"/>.
     /// Beginning of the first period is considered to be midnight, Sunday, PLUS <paramref name="periodOffset"/>.
-    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength)
+    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ToPeriodOfWeekIndex(in this long ticks, in long periodLength, in long periodOffset)
@@ -460,7 +463,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Divides time from <paramref name="intervalStart"/> into evenly-sized periods (intervals) of length <paramref name="intervalLength"/>
     /// and returns the beginning of the interval in progress at <paramref name="ticks"/>.
-    /// If the <paramref name="ticks"/> is at an exact interval start, it returns a copy of the same <paramref name="ticks"/>
+    /// If the <paramref name="ticks"/> is at an exact interval start, it returns a copy of the same <paramref name="ticks"/>.
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="ticks"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -473,7 +476,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Divides time from <paramref name="intervalStart"/> into evenly-sized periods (intervals) of length <paramref name="intervalLength"/>
     /// and returns the beginning of the next interval to start after <paramref name="ticks"/>.
-    /// If the <paramref name="ticks"/> is at an exact interval start, it returns a copy of the same <paramref name="ticks"/>
+    /// If the <paramref name="ticks"/> is at an exact interval start, it returns a copy of the same <paramref name="ticks"/>.
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="ticks"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -564,7 +567,7 @@ namespace FFT.TimeStamps
     /// <param name="unixSeconds">The time since midnight, 1 Jan 1970, in seconds.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long FromUnixSeconds(in this long unixSeconds)
-      => _unixEpoch + unixSeconds * TimeSpan.TicksPerSecond;
+      => _unixEpoch + (unixSeconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
     /// Converts the given unix time to ticks.
@@ -572,6 +575,6 @@ namespace FFT.TimeStamps
     /// <param name="unixMilliseconds">The time since midnight, 1 Jan 1970, in milliseconds.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long FromUnixMilliseconds(in this long unixMilliseconds)
-      => _unixEpoch + unixMilliseconds * TimeSpan.TicksPerMillisecond;
+      => _unixEpoch + (unixMilliseconds * TimeSpan.TicksPerMillisecond);
   }
 }

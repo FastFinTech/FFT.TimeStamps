@@ -1,19 +1,18 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+  using System;
+  using System.Globalization;
+  using System.Runtime.CompilerServices;
 
   /// <summary>
   /// Use this class to specify a particular month in the Gregorian calendar.
   /// Its intent to to be very clear that it is a MONTH, and not a moment in time,
   /// and to properly serialize and deserialize as such without the influence of timezone conversions.
   /// </summary>
-  public readonly struct MonthStamp : IEquatable<MonthStamp>, IComparable<MonthStamp>
+  public readonly partial struct MonthStamp : IEquatable<MonthStamp>, IComparable<MonthStamp>
   {
     /// <summary>
     /// Minimum possible <see cref="MonthStamp"/> value of 0001-01-01
@@ -31,6 +30,31 @@ namespace FFT.TimeStamps
     /// </summary>
     public readonly DateTime DateTime;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MonthStamp"/> struct.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid month.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public MonthStamp(int year, int month)
+        : this(new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Utc))
+    {
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal MonthStamp(DateTime month)
+    {
+      DateTime = month;
+    }
+
+    /// <summary>
+    /// Gets the current month in Utc timezone.
+    /// </summary>
+    public static MonthStamp UtcThisMonth
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => TimeStamp.Now.GetMonth();
+    }
+
     public int Year
     {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -44,17 +68,36 @@ namespace FFT.TimeStamps
     }
 
     /// <summary>
+    /// Gets a string representation of the current value in the format yyyy-MM
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid month.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public MonthStamp(int year, int month) : this(new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Utc)) { }
+    public override string ToString()
+        => $"{Year:D4}-{Month:D2}";
+  }
 
+  // Add
+  public partial struct MonthStamp
+  {
+    /// <summary>
+    /// Adds the given number of months to the current value and returns the result.
+    /// </summary>
+    /// <param name="numMonths">The number of months to add. Can be negative.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal MonthStamp(DateTime month)
-    {
-      DateTime = month;
-    }
+    public MonthStamp AddMonths(int numMonths)
+      => new MonthStamp(DateTime.AddMonths(numMonths));
 
+    /// <summary>
+    /// Adds the given number of months to the current value and returns the result.
+    /// </summary>
+    /// <param name="numYears">The number of years to add. Can be negative.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public MonthStamp AddYears(int numYears)
+      => new MonthStamp(DateTime.AddYears(numYears));
+  }
+
+  // Static constructors
+  public partial struct MonthStamp
+  {
     /// <summary>
     /// Creates a <see cref="MonthStamp"/> from the given <paramref name="month"/> parameter.
     /// <paramref name="month"/> must be a <see cref="DateTime"/> with
@@ -78,48 +121,59 @@ namespace FFT.TimeStamps
     }
 
     /// <summary>
-    /// Gets the current month in Utc timezone.
+    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// </summary>
-    public static MonthStamp UtcThisMonth
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static MonthStamp FromString(string value)
     {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => TimeStamp.Now.GetMonth();
+      if (value is null)
+        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
+      return FromString(value.AsSpan());
     }
 
-    //    Add
-
+    /// <summary>
+    /// Parses a <see cref="MonthStamp"/> from the format 'yyyy-MM'.
+    /// </summary>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public MonthStamp AddMonths(int numMonths)
-      => new MonthStamp(DateTime.AddMonths(numMonths));
+    public static MonthStamp FromString(ReadOnlySpan<char> value)
+    {
+      if (value.Length == 7
+        && value[4] == '-'
+        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
+        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month))
+      {
+        return new MonthStamp(year, month);
+      }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public MonthStamp AddYears(int numYears)
-      => new MonthStamp(DateTime.AddYears(numYears));
+      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
+    }
+  }
 
-    //    Get months since / until
-
+  // Get months since / until
+  public partial struct MonthStamp
+  {
+    /// <summary>
+    /// Calculates the difference, in months, between the current value and <paramref name="other"/>.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int GetMonthsSince(MonthStamp other)
-      => 12 * (Year - other.Year) + Month - other.Month;
+      => (12 * (Year - other.Year)) + Month - other.Month;
 
+    /// <summary>
+    /// Calculates the difference, in months, between the current value and <paramref name="other"/>.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int GetMonthsUntil(MonthStamp other)
       => other.GetMonthsSince(this);
+  }
 
-    //    Min / Max
-
-    /// <summary>
-    /// Returns the lesser of the two monthstamps.
-    /// </summary>
-    public MonthStamp OrValueIfLesser(in MonthStamp d)
-        => DateTime <= d.DateTime ? this : d;
-
-    /// <summary>
-    /// Returns the greater of the two monthstamps.
-    /// </summary>
-    public MonthStamp OrValueIfGreater(in MonthStamp d)
-        => DateTime >= d.DateTime ? this : d;
-
+  // Min Max etc
+  public partial struct MonthStamp
+  {
     /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
@@ -135,8 +189,11 @@ namespace FFT.TimeStamps
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
       var result = values[0];
       for (var i = values.Length - 1; i > 0; i--)
+      {
         if (values[i] < result)
           result = values[i];
+      }
+
       return result;
     }
 
@@ -155,61 +212,41 @@ namespace FFT.TimeStamps
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
       var result = values[0];
       for (var i = values.Length - 1; i > 0; i--)
+      {
         if (values[i] > result)
           result = values[i];
+      }
+
       return result;
     }
 
-    //    ToString and FromString
+    /// <summary>
+    /// Returns the lesser of the two monthstamps.
+    /// </summary>
+    public MonthStamp OrValueIfLesser(in MonthStamp d)
+        => DateTime <= d.DateTime ? this : d;
 
     /// <summary>
-    /// Gets a string representation of the current value in the format yyyy-MM
+    /// Returns the greater of the two monthstamps.
     /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string ToString()
-        => $"{Year:D4}-{Month:D2}";
+    public MonthStamp OrValueIfGreater(in MonthStamp d)
+        => DateTime >= d.DateTime ? this : d;
+  }
 
-    /// <summary>
-    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'
-    /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static MonthStamp FromString(string value)
-    {
-      if (value is null)
-        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
-      return FromString(value.AsSpan());
-    }
-
-    /// <summary>
-    /// Parses a <see cref="MonthStamp"/> from the format 'yyyy-MM'
-    /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static MonthStamp FromString(ReadOnlySpan<char> value)
-    {
-      if (value.Length == 7
-        && value[4] == '-'
-        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
-        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month))
-      {
-        return new MonthStamp(year, month);
-      }
-      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
-    }
-
-    //    Comparison operators
-
+  // Comparison operators
+  public partial struct MonthStamp
+  {
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override bool Equals(object obj)
       => obj is MonthStamp stamp && Equals(stamp);
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Equals(MonthStamp other)
       => DateTime == other.DateTime;
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override int GetHashCode()
     {
@@ -219,9 +256,16 @@ namespace FFT.TimeStamps
       return hash.ToHashCode();
     }
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int CompareTo(MonthStamp other)
       => DateTime.CompareTo(other.DateTime);
+  }
+
+  // Operators
+  public partial struct MonthStamp
+  {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator ==(MonthStamp left, MonthStamp right)

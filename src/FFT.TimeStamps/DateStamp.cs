@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
-using static System.DayOfWeek;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Globalization;
+  using System.Runtime.CompilerServices;
+  using static System.DayOfWeek;
+
   /// <summary>
   /// Use this class to specify a particular date in the Gregorian calendar.
   /// Its intent to to be very clear that it represents a DATE, and not a moment in time,
@@ -15,7 +16,7 @@ namespace FFT.TimeStamps
   /// </summary>
   public readonly struct DateStamp : IEquatable<DateStamp>, IComparable<DateStamp>
   {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+//#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
     /**********************************************************************
      * Dev notes:
@@ -55,6 +56,56 @@ namespace FFT.TimeStamps
     /// </summary>
     public readonly DateTime DateTime;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DateStamp"/> struct.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public DateStamp(int year, int month, int day)
+        : this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc))
+    {
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal DateStamp(DateTime date)
+      => DateTime = date;
+
+    /// <summary>
+    /// Gets the current date in Utc timezone.
+    /// </summary>
+    public static DateStamp UtcToday
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => TimeStamp.Now.GetDate();
+    }
+
+    /// <summary>
+    /// Creates a <see cref="DateStamp"/> from the given <paramref name="date"/> parameter.
+    /// <paramref name="date"/> must be a <see cref="DateTime"/> with
+    ///     a) <see cref="DateTime.Kind"/> equal to <see cref="DateTimeKind.Utc"/>,
+    ///     b) <see cref="DateTime.TimeOfDay"/> equal to <see cref="TimeSpan.Zero"/>.
+    /// </summary>
+    /// <exception cref="ArgumentException">
+    /// Thrown if:
+    ///     a) The <see cref="DateTime.Kind"/> property of <paramref name="date"/> is not equal to <see cref="DateTimeKind.Utc"/>.
+    ///     b) The <see cref="DateTime.TimeOfDay"/> property of <paramref name="date"/> is not equal to <see cref="TimeSpan.Zero"/>.
+    /// </exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static DateStamp CreateFrom(DateTime date)
+    {
+      if (date.Kind != DateTimeKind.Utc) throw new ArgumentException("Kind must be Utc.", nameof(date));
+      if (date.TimeOfDay != TimeSpan.Zero) throw new ArgumentException("TimeOfDay component must be zero", nameof(date));
+      return new DateStamp(date);
+    }
+
+    /// <summary>
+    /// Gets the current date in the <paramref name="timeZone"/> given.
+    /// This operation involves a time zone conversion, so it is a little less efficient.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static DateStamp Today(TimeZoneInfo timeZone)
+      => TimeStamp.Now.GetDate(timeZone);
+
     public int Year
     {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -80,51 +131,37 @@ namespace FFT.TimeStamps
     }
 
     /// <summary>
+    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown vwhen the given values do not form a valid date.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateStamp(int year, int month, int day)
-      : this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc)) { }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal DateStamp(DateTime date)
-      => DateTime = date;
-
-    /// <summary>
-    /// Creates a <see cref="DateStamp"/> from the given <paramref name="date"/> parameter.
-    /// <paramref name="date"/> must be a <see cref="DateTime"/> with
-    ///     a) <see cref="DateTime.Kind"/> equal to <see cref="DateTimeKind.Utc"/>,
-    ///     b) <see cref="DateTime.TimeOfDay"/> equal to <see cref="TimeSpan.Zero"/>.
-    /// </summary>
-    /// <exception cref="ArgumentException">
-    /// Thrown if: 
-    ///     a) The <see cref="DateTime.Kind"/> property of <paramref name="date"/> is not equal to <see cref="DateTimeKind.Utc"/>.
-    ///     b) The <see cref="DateTime.TimeOfDay"/> property of <paramref name="date"/> is not equal to <see cref="TimeSpan.Zero"/>.
-    /// </exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static DateStamp CreateFrom(DateTime date)
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    public static DateStamp FromString(string value)
     {
-      if (date.Kind != DateTimeKind.Utc) throw new ArgumentException("Kind must be Utc.", nameof(date));
-      if (date.TimeOfDay != TimeSpan.Zero) throw new ArgumentException("TimeOfDay component must be zero", nameof(date));
-      return new DateStamp(date);
+      if (value is null)
+        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
+      return FromString(value.AsSpan());
     }
 
     /// <summary>
-    /// Gets the current date in Utc timezone.
+    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// </summary>
-    public static DateStamp UtcToday
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    public static DateStamp FromString(in ReadOnlySpan<char> value)
     {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => TimeStamp.Now.GetDate();
+      if (value.Length == 10
+        && value[4] == '-'
+        && value[7] == '-'
+        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
+        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month)
+        && int.TryParse(value.Slice(8, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var day))
+      {
+        return new DateStamp(year, month, day);
+      }
+
+      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
     }
 
-    /// <summary>
-    /// Gets the current date in the <paramref name="timeZone"/> given.
-    /// This operation involves a time zone conversion, so it is a little less efficient.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static DateStamp Today(TimeZoneInfo timeZone)
-      => TimeStamp.Now.GetDate(timeZone);
 
     /// <summary>
     /// Returns an enumerator that yields each date in the range <paramref name="from"/> until <paramref name="to"/>.
@@ -185,7 +222,7 @@ namespace FFT.TimeStamps
     public DateStamp ToWeekFloor()
       => new DateStamp(DateTime.ToWeekFloor());
 
-    //    WEEKENDS AND HOLIDAYS
+    // WEEKENDS AND HOLIDAYS
 
     /// <summary>
     /// If the current value is a weekday, it will be returned unchanged.
@@ -260,7 +297,7 @@ next:
       }
     }
 
-    //   TOSTRING / FROMSTRING
+    // TOSTRING
 
     /// <summary>
     /// Expresses the value in the format 'yyyy-MM-dd'.
@@ -268,38 +305,7 @@ next:
     public override string ToString()
         => $"{Year:D4}-{Month:D2}-{Day:D2}";
 
-    /// <summary>
-    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'
-    /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    public static DateStamp FromString(string value)
-    {
-      if (value is null)
-        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
-      return FromString(value.AsSpan());
-    }
-
-    /// <summary>
-    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'
-    /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    public static DateStamp FromString(in ReadOnlySpan<char> value)
-    {
-      if (value.Length == 10
-        && value[4] == '-'
-        && value[7] == '-'
-        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
-        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month)
-        && int.TryParse(value.Slice(8, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var day))
-      {
-        return new DateStamp(year, month, day);
-      }
-      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
-    }
-
-    //   MIN / MAX METHODS
+    // MIN / MAX METHODS
 
     /// <summary>
     /// Returns the lesser of the two datestamps.
@@ -331,8 +337,11 @@ next:
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
       var result = values[0];
       for (var i = values.Length - 1; i > 0; i--)
+      {
         if (values[i] < result)
           result = values[i];
+      }
+
       return result;
     }
 
@@ -352,25 +361,32 @@ next:
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
       var result = values[0];
       for (var i = values.Length - 1; i > 0; i--)
+      {
         if (values[i] > result)
           result = values[i];
+      }
+
       return result;
     }
 
-    //    COMPARISON OPERATORS
+    // COMPARISON OPERATORS
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override bool Equals(object obj)
       => obj is DateStamp stamp && Equals(stamp);
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Equals(DateStamp other)
       => DateTime == other.DateTime;
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override int GetHashCode()
       => -1937169414 + DateTime.GetHashCode();
 
+    /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int CompareTo(DateStamp other)
       => DateTime.CompareTo(other.DateTime);

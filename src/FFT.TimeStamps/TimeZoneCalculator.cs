@@ -1,41 +1,30 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using static System.DateTimeKind;
-using static System.Math;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Collections.Concurrent;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Runtime.CompilerServices;
+  using static System.DateTimeKind;
+  using static System.Math;
+
   /// <summary>
   /// Use this class to get extremely fast timezone offset calculation results.
   /// </summary>
   public sealed partial class TimeZoneCalculator
   {
-    ///<summary>
+    /// <summary>
     /// Used for collating groups of records into approximately one-year intervals.
-    ///</summary>
+    /// </summary>
     private const long APPROXIMATE_TICKS_PER_YEAR = TimeSpan.TicksPerDay * 365;
 
     /// <devremarks>
     /// Keying the dictionary off the TimeZoneInfo object didn't seem to work, so it's keyed off the TimeZoneInfo.Id string instead.
     /// </devremarks>
     private static readonly ConcurrentDictionary<string, TimeZoneCalculator> _store = new();
-
-    /// <summary>
-    /// Gets the TimeZoneOffsetCache for the given timeZone
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeZoneCalculator Get(TimeZoneInfo timeZone)
-      => _store.GetOrAdd(timeZone.Id, static (id, tz) => new(tz), timeZone);
-
-    /// <summary>
-    /// The timezone for which this offset cache is applicable.
-    /// </summary>
-    public TimeZoneInfo TimeZone { get; }
 
     private readonly Dictionary<int, List<TimeZoneSegment>> _utcRecords = new();
     private readonly Dictionary<int, List<TimeZoneSegment>> _timezoneRecords = new();
@@ -44,7 +33,32 @@ namespace FFT.TimeStamps
       => TimeZone = timeZone;
 
     /// <summary>
+    /// The timezone for which this offset cache is applicable.
+    /// </summary>
+    public TimeZoneInfo TimeZone { get; }
+
+    /// <summary>
+    /// Converts <paramref name="fromTimeZoneTicks"/> from <paramref name="fromTimeZone"/> to <paramref name="toTimeZone"/>.
+    /// Compute intensive. Do not use in hot path.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static long Convert(TimeZoneInfo fromTimeZone, TimeZoneInfo toTimeZone, in long fromTimeZoneTicks)
+    {
+      if (fromTimeZone == toTimeZone) return fromTimeZoneTicks;
+      var utcTicks = fromTimeZone == TimeZoneInfo.Utc ? fromTimeZoneTicks : Get(fromTimeZone).ToUtcTicks(fromTimeZoneTicks);
+      return toTimeZone == TimeZoneInfo.Utc ? utcTicks : Get(toTimeZone).ToTimeZoneTicks(utcTicks);
+    }
+
+    /// <summary>
+    /// Gets the TimeZoneOffsetCache for the given timeZone.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static TimeZoneCalculator Get(TimeZoneInfo timeZone)
+      => _store.GetOrAdd(timeZone.Id, static (id, tz) => new(tz), timeZone);
+
+    /// <summary>
     /// Returns a <see cref="TimeZoneSegment"/> active at the given <paramref name="timeStamp"/>.
+    /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <see cref="TimeKind.Utc"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TimeZoneSegment GetSegment(in TimeStamp timeStamp)
@@ -52,6 +66,7 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Returns a <see cref="TimeZoneSegment"/> active at the given time expressed in ticks in the timezone specified by <paramref name="ticksKind"/>.
+    /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <paramref name="ticksKind"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TimeZoneSegment GetSegment(in long ticks, TimeKind ticksKind)
@@ -71,113 +86,13 @@ namespace FFT.TimeStamps
       }
 
       foreach (var segment in segments)
+      {
         if (segment.StartTicks <= ticks)
           return segment;
+      }
 
       throw new Exception("Boom"); // compiler happiness - never actually executes.
     }
-
-    ///// <summary>
-    ///// Returns a <see cref="TimeZoneSegment"/> active at the given time <paramref name="utcTicks"/> expressed in the UTC timezone.
-    ///// </summary>
-    //public TimeZoneSegment GetSegmentByUtcTicks(in long utcTicks)
-    //{
-    //  var approximateYear = (int)(utcTicks / APPROXIMATE_TICKS_PER_YEAR);
-    //  if (!_utcRecords.TryGetValue(approximateYear, out var records))
-    //  {
-    //    records = CreateSegments(TimeZone, approximateYear, InfoFunc);
-    //    _utcRecords[approximateYear] = records;
-    //  }
-
-    //  foreach (var record in records)
-    //    if (record.StartTicks <= utcTicks)
-    //      return record;
-
-    //  throw new Exception("Boom"); // compiler happiness - never actually executes.
-
-    //  static OffsetInfo InfoFunc(TimeZoneInfo timeZone, long ticks) => new OffsetInfo
-    //  {
-    //    OffsetTicks = timeZone.GetUtcOffset(new DateTime(ticks, Utc)).Ticks,
-    //    IsAmbiguous = false,
-    //    IsInvalid = false,
-    //  };
-    //}
-
-    ///// <summary>
-    ///// Returns a <see cref="TimeZoneSegment"/> active at the given time <paramref name="timeZoneTicks"/> expressed in the <see cref="TimeZone"/> timezone.
-    ///// </summary>
-    //public TimeZoneSegment GetSegmentByTimezoneTicks(in long timeZoneTicks)
-    //{
-    //  var approximateYear = (int)(timeZoneTicks / APPROXIMATE_TICKS_PER_YEAR);
-    //  if (!_timezoneRecords.TryGetValue(approximateYear, out var records))
-    //  {
-    //    records = CreateSegments(TimeZone, approximateYear, InfoFunc);
-    //    _timezoneRecords[approximateYear] = records;
-    //  }
-
-    //  foreach (var record in records)
-    //    if (record.StartTicks <= timeZoneTicks)
-    //      return record;
-
-    //  throw new Exception("Boom"); // compiler happiness - never actually executes.
-
-    //  static OffsetInfo InfoFunc(TimeZoneInfo timeZone, long ticks)
-    //  {
-    //    var at = new DateTime(ticks, Unspecified);
-    //    return new OffsetInfo
-    //    {
-    //      OffsetTicks = timeZone.GetUtcOffset(at).Ticks,
-    //      IsAmbiguous = timeZone.IsAmbiguousTime(at),
-    //      IsInvalid = timeZone.IsInvalidTime(at),
-    //    };
-    //  };
-    //}
-
-    ///// <summary>
-    ///// Returns the offset of <see cref="TimeZone"/> at the given moment <paramref name="utcTicks"/>.
-    ///// </summary>
-    ///// <param name="utcTicks">The moment in time, expressed in utc ticks.</param>
-    ///// <param name="segmentStartUtcTicks">The start of a span of time with the same offset, expressed in utc ticks.</param>
-    ///// <param name="segmentEndUtcTicks">
-    ///// The end of a span of time with the same offset, expressed in utc ticks.
-    ///// Note that the span of time is EXCLUSIVE of this value, which is actually the start time of another span of time with a different offset.
-    ///// </param>
-    ///// <remarks>
-    ///// This operation involves searching cached timezone conversion records.
-    ///// It's fast compared to the methods provided by <see cref="TimeZoneInfo"/>
-    ///// but don't use it in your application hot-path unless you are caching the segment start and end times and then optimizing from there.
-    ///// </remarks>
-    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-    //public long GetOffsetFromUtcTicks(in long utcTicks, out long segmentStartUtcTicks, out long segmentEndUtcTicks)
-    //{
-    //  var segment = GetSegmentByUtcTicks(utcTicks);
-    //  segmentStartUtcTicks = segment.StartTicks;
-    //  segmentEndUtcTicks = segment.EndTicks;
-    //  return segment.OffsetTicks;
-    //}
-
-    ///// <summary>
-    ///// Returns the offset of <see cref="TimeZone"/> at the given moment <paramref name="timeZoneTicks"/>.
-    ///// </summary>
-    ///// <param name="timeZoneTicks">The moment in time, expressed in timezone ticks.</param>
-    ///// <param name="segmentStartTimeZoneTicks">The start of a span of time with the same offset, expressed in timezone ticks.</param>
-    ///// <param name="segmentEndTimeZoneTicks">
-    ///// The end of a span of time with the same offset, expressed in timezone ticks.
-    ///// Note that the span of time is EXCLUSIVE of this value, which is actually the start time of another span of time with a different offset.
-    ///// </param>
-    ///// <remarks>
-    ///// This operation involves searching cached timezone conversion records.
-    ///// It's fast compared to the methods provided by <see cref="TimeZoneInfo"/>
-    ///// but don't use it in your application hot-path unless you are caching the segment start and end times and then optimizing from there.
-    ///// </remarks>
-    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-    //public long GetOffsetFromTimeZoneTicks(in long timeZoneTicks, out long segmentStartTimeZoneTicks, out long segmentEndTimeZoneTicks)
-    //{
-    //  var segment = GetSegmentByTimezoneTicks(timeZoneTicks);
-    //  segmentStartTimeZoneTicks = segment.StartTicks;
-    //  segmentEndTimeZoneTicks = segment.EndTicks;
-    //  return segment.OffsetTicks;
-    //}
 
     /// <summary>
     /// Converts utc ticks to timezone ticks.
@@ -197,21 +112,8 @@ namespace FFT.TimeStamps
     public long ToUtcTicks(in long timeZoneTicks)
       => timeZoneTicks - GetSegment(timeZoneTicks, TimeKind.TimeZone).OffsetTicks;
 
-    /// <summary>
-    /// Converts <paramref name="fromTimeZoneTicks"/> from <paramref name="fromTimeZone"/> to <paramref name="toTimeZone"/>.
-    /// Compute intensive. Do not use in hot path.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long Convert(TimeZoneInfo fromTimeZone, TimeZoneInfo toTimeZone, in long fromTimeZoneTicks)
-    {
-      if (fromTimeZone == toTimeZone) return fromTimeZoneTicks;
-      var utcTicks = fromTimeZone == TimeZoneInfo.Utc ? fromTimeZoneTicks : Get(fromTimeZone).ToUtcTicks(fromTimeZoneTicks);
-      return toTimeZone == TimeZoneInfo.Utc ? utcTicks : Get(toTimeZone).ToTimeZoneTicks(utcTicks);
-    }
-
     private List<TimeZoneSegment> CreateSegments(int approximateYear, TimeKind ticksKind)
     {
-
       return CreateCore(approximateYear, ticksKind)
         .Reverse()
         .ToList();
@@ -221,7 +123,7 @@ namespace FFT.TimeStamps
         var startOfYear = approximateYear * APPROXIMATE_TICKS_PER_YEAR;
         var endOfYear = startOfYear + APPROXIMATE_TICKS_PER_YEAR;
         var info = GetInfo(startOfYear, ticksKind);
-        var builder = new Builder();
+        var builder = default(Builder);
         builder.Kind = ticksKind;
         builder.Calculator = this;
         builder.Info = info;
@@ -255,7 +157,7 @@ namespace FFT.TimeStamps
               if (!builder.Info.Equals(info))
               {
                 yield return builder.Build();
-                builder = new Builder();
+                builder = default(Builder);
                 builder.Kind = ticksKind;
                 builder.Calculator = this;
                 builder.Info = info;
@@ -296,11 +198,14 @@ namespace FFT.TimeStamps
       }
     }
 
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     private struct OffsetInfo
+#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
       public long OffsetTicks;
       public bool IsInvalid;
       public bool IsAmbiguous;
+
       public override bool Equals(object obj)
         => obj is OffsetInfo other
         && OffsetTicks == other.OffsetTicks

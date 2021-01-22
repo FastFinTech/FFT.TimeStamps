@@ -1,17 +1,16 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps
 {
+  using System;
+  using System.Runtime.CompilerServices;
+
   public partial class ConversionIterators
   {
     private sealed class ToUtcIterator : ITimeZoneConversionIterator, IToTimeStampConversionIterator
     {
       private readonly TimeZoneCalculator _calculator;
-
-      public TimeZoneInfo FromTimeZone { get; }
-      public TimeZoneInfo ToTimeZone => TimeZoneInfo.Utc;
-      public long DifferenceTicks { get; private set; }
 
       private long _previousTzTicks;
       private long _tzEndTicks;
@@ -22,6 +21,12 @@ namespace FFT.TimeStamps
         FromTimeZone = fromTimeZone;
         _calculator = TimeZoneCalculator.Get(fromTimeZone);
       }
+
+      public TimeZoneInfo FromTimeZone { get; }
+
+      public TimeZoneInfo ToTimeZone => TimeZoneInfo.Utc;
+
+      public long DifferenceTicks { get; private set; }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
       public bool MoveTo(in long ticks)
@@ -87,10 +92,6 @@ namespace FFT.TimeStamps
         MoveTo(fromTimeZoneTicks);
         return new TimeStamp(fromTimeZoneTicks + DifferenceTicks);
       }
-
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public TimeStamp GetTimeStamp(in DateTime fromTimeZone)
-        => GetTimeStamp(fromTimeZone.Ticks);
     }
   }
 }

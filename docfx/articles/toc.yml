@@ -2,7 +2,9 @@
   href: intro.md
 - name: TimeStamp
   href: timestamp.md
-- name: TimezoneOffsetCalculator
+- name: TimezoneCalculator
   href: timezoneCalculator.md
 - name: Conversion Iterators
   href: conversionIterators.md
+- name: Compute Intensive!
+  href: computeIntensive.md

@@ -13,7 +13,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Creates a <see cref="ITimeZoneConversionIterator"/> that is capable of providing the
     /// offset of a converstion between <paramref name="fromTimeZone"/> and <paramref name="toTimeZone"/>.
-    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
+    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
     /// </summary>
     public static ITimeZoneConversionIterator Create(TimeZoneInfo fromTimeZone, TimeZoneInfo toTimeZone)
     {
@@ -26,7 +26,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Creates an <see cref="IToTimeStampConversionIterator"/> that converts sequential <see cref="DateTime"/> and <see cref="DateTimeOffset"/> values into
     /// their equivalant <see cref="TimeStamp"/> values.
-    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
+    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
     /// </summary>
     public static IToTimeStampConversionIterator ToTimeStamp(TimeZoneInfo fromTimeZone)
     {
@@ -37,7 +37,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Creates an <see cref="IFromTimeStampConversionIterator"/> that converts <see cref="TimeStamp"/> values into
     /// their equivalant <see cref="DateTime"/> and <see cref="DateTimeOffset"/> values.
-    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator!
+    /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
     /// </summary>
     public static IFromTimeStampConversionIterator FromTimeStamp(TimeZoneInfo toTimeZone)
     {
