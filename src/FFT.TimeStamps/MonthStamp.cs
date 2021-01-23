@@ -15,12 +15,12 @@ namespace FFT.TimeStamps
   public readonly partial struct MonthStamp : IEquatable<MonthStamp>, IComparable<MonthStamp>
   {
     /// <summary>
-    /// Minimum possible <see cref="MonthStamp"/> value of 0001-01-01
+    /// Minimum possible <see cref="MonthStamp"/> value of 0001-01-01.
     /// </summary>
     public static readonly MonthStamp MinValue = CreateFrom(DateTime.SpecifyKind(DateTime.MinValue, DateTimeKind.Utc).ToMonthCeiling());
 
     /// <summary>
-    /// Maximum possible <see cref="DateStamp"/> value of 9999-12
+    /// Maximum possible <see cref="DateStamp"/> value of 9999-12.
     /// </summary>
     public static readonly MonthStamp MaxValue = CreateFrom(DateTime.SpecifyKind(DateTime.MaxValue, DateTimeKind.Utc).ToMonthFloor());
 
@@ -55,12 +55,9 @@ namespace FFT.TimeStamps
       get => TimeStamp.Now.GetMonth();
     }
 
-    public int Year
-    {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => DateTime.Year;
-    }
-
+    /// <summary>
+    /// Gets the month component of the current value.
+    /// </summary>
     public int Month
     {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -68,7 +65,16 @@ namespace FFT.TimeStamps
     }
 
     /// <summary>
-    /// Gets a string representation of the current value in the format yyyy-MM
+    /// Gets the year component of the current value.
+    /// </summary>
+    public int Year
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => DateTime.Year;
+    }
+
+    /// <summary>
+    /// Gets a string representation of the current value in the format yyyy-MM.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override string ToString()
@@ -106,7 +112,7 @@ namespace FFT.TimeStamps
     ///     c) <see cref="DateTime.TimeOfDay"/> equal to <see cref="TimeSpan.Zero"/>.
     /// </summary>
     /// <exception cref="ArgumentException">
-    /// Thrown if: 
+    /// Thrown if:
     ///     a) The <see cref="DateTime.Kind"/> property of <paramref name="month"/> is not equal to <see cref="DateTimeKind.Utc"/>.
     ///     b) The <see cref="DateTime.Day"/> property of <paramref name="month"/> is not equal to '1'.
     ///     c) The <see cref="DateTime.TimeOfDay"/> property of <paramref name="month"/> is not equal to <see cref="TimeSpan.Zero"/>.
@@ -183,7 +189,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0.</exception>
     public static MonthStamp Min(params MonthStamp[] values)
     {
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
@@ -206,7 +212,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Returns the maximum of the given values.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0.</exception>
     public static MonthStamp Max(params MonthStamp[] values)
     {
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
@@ -249,12 +255,7 @@ namespace FFT.TimeStamps
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override int GetHashCode()
-    {
-      var hash = new HashCode();
-      hash.Add(typeof(MonthStamp));
-      hash.Add(DateTime);
-      return hash.ToHashCode();
-    }
+      => DateTime.GetHashCode();
 
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

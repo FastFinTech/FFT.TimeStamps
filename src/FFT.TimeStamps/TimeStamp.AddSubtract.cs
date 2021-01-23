@@ -26,7 +26,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone) + ticks, timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="days"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="days"/>.
     /// </summary>
     /// <param name="days">The number of days of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -44,7 +44,7 @@ namespace FFT.TimeStamps
       => new TimeStamp(AsTicks(timeZone).AddDays(days), timeZone);
 
     /// <summary>
-    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="hours"/>
+    /// Returns a <see cref="TimeStamp"/> advanced by the given number of <paramref name="hours"/>.
     /// </summary>
     /// <param name="hours">The number of hours of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

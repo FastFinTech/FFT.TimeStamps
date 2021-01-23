@@ -14,10 +14,8 @@ namespace FFT.TimeStamps
   /// Its intent to to be very clear that it represents a DATE, and not a moment in time,
   /// and to properly serialize and deserialize as such without the influence of timezone conversions.
   /// </summary>
-  public readonly struct DateStamp : IEquatable<DateStamp>, IComparable<DateStamp>
+  public readonly partial struct DateStamp : IEquatable<DateStamp>, IComparable<DateStamp>
   {
-//#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-
     /**********************************************************************
      * Dev notes:
      * Yes, this class IS just a wrapper around the System.DateTime object.
@@ -25,28 +23,28 @@ namespace FFT.TimeStamps
      * a) There is no ambiguity with TimeOfDay component.
      * b) There is no confusion with the DateTimeKind property.
      * c) The json serialization / deserialization works EXACTLY as intended,
-     *    unlike the case with DateTime, where deserialization can result in a 
+     *    unlike the case with DateTime, where deserialization can result in a
      *    warped time component with misadjusted DateTimeKind property.
-     *    
-     * I could have, and did consider, writing this struct using an int as 
-     * the backing store variable instead of a DateTime. But many of the 
-     * methods and properties in this object's api are made very simple by 
+     *
+     * I could have, and did consider, writing this struct using an int as
+     * the backing store variable instead of a DateTime. But many of the
+     * methods and properties in this object's api are made very simple by
      * directly borrowing methods and properties from the DateTime, so it made
-     * sense to simplify my code (and spend a lot less time writing it) using 
+     * sense to simplify my code (and spend a lot less time writing it) using
      * the DateTime as the backing variable. The disadvantages of this choice are:
-     * a) The DateTime object is more than twice as large as an int, so this struct 
+     * a) The DateTime object is more than twice as large as an int, so this struct
      *    is more than twice as large (and slow) as it could have been.
      * My personal code didn't seem to use DateStamps in hotpath methods, so I've
      * been quite happy with the tradeoff so far.
     ***********************************************************************/
 
     /// <summary>
-    /// Minimum possible <see cref="DateStamp"/> value of 0001-01-01
+    /// Minimum possible <see cref="DateStamp"/> value of 0001-01-01.
     /// </summary>
     public static readonly DateStamp MinValue = new DateStamp(new DateTime(0, DateTimeKind.Utc));
 
     /// <summary>
-    /// Maximum possible <see cref="DateStamp"/> value of 9999-12-31
+    /// Maximum possible <see cref="DateStamp"/> value of 9999-12-31.
     /// </summary>
     public static readonly DateStamp MaxValue = new DateStamp(DateTime.MaxValue.ToDayFloor().AssumeUniversal());
 
@@ -80,7 +78,100 @@ namespace FFT.TimeStamps
     }
 
     /// <summary>
+    /// Gets the year component of the current value.
+    /// </summary>
+    public int Year
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => DateTime.Year;
+    }
+
+    /// <summary>
+    /// Gets the month component of the current value.
+    /// </summary>
+    /// <seealso cref="MonthStamp"/>
+    public int Month
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => DateTime.Month;
+    }
+
+    /// <summary>
+    /// Gets the day component of the current value.
+    /// </summary>
+    public int Day
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => DateTime.Day;
+    }
+
+    /// <summary>
+    /// Gets the <see cref="DayOfWeek"/> component of the current value.
+    /// </summary>
+    public DayOfWeek DayOfWeek
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => DateTime.DayOfWeek;
+    }
+
+    /// <summary>
+    /// Gets the month component of the current value as a <see cref="MonthStamp"/>.
+    /// </summary>
+    /// <seealso cref="Month"/>.
+    public MonthStamp MonthStamp
+    {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => new MonthStamp(Year, Month);
+    }
+
+    /// <summary>
+    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
+    /// Compute intensive. Do not use in hot path.
+    /// </summary>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    public static DateStamp FromString(string value)
+    {
+      if (value is null)
+        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
+      return FromString(value.AsSpan());
+    }
+
+    /// <summary>
+    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
+    /// Compute intensive. Do not use in hot path.
+    /// </summary>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is not in the correct format.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
+    public static DateStamp FromString(in ReadOnlySpan<char> value)
+    {
+      if (value.Length == 10
+        && value[4] == '-'
+        && value[7] == '-'
+        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
+        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month)
+        && int.TryParse(value.Slice(8, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var day))
+      {
+        return new DateStamp(year, month, day);
+      }
+
+      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
+    }
+
+    /// <summary>
+    /// Returns an enumerator that yields each date in the range <paramref name="from"/> until <paramref name="to"/>.
+    /// </summary>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="to"/> is less than <paramref name="from"/>.</exception>
+    public static IEnumerable<DateStamp> Range(DateStamp from, DateStamp to)
+    {
+      if (to < from) throw new ArgumentException($"{nameof(to)} '{to}' must be greater than or equal to {nameof(from)} '{from}'.");
+      for (var date = from; date <= to; date = date.AddDays(1))
+        yield return date;
+    }
+
+    /// <summary>
     /// Creates a <see cref="DateStamp"/> from the given <paramref name="date"/> parameter.
+    /// Compute intensive. Do not use in hot path.
     /// <paramref name="date"/> must be a <see cref="DateTime"/> with
     ///     a) <see cref="DateTime.Kind"/> equal to <see cref="DateTimeKind.Utc"/>,
     ///     b) <see cref="DateTime.TimeOfDay"/> equal to <see cref="TimeSpan.Zero"/>.
@@ -100,130 +191,117 @@ namespace FFT.TimeStamps
 
     /// <summary>
     /// Gets the current date in the <paramref name="timeZone"/> given.
-    /// This operation involves a time zone conversion, so it is a little less efficient.
+    /// Compute intensive. Do not use in hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DateStamp Today(TimeZoneInfo timeZone)
       => TimeStamp.Now.GetDate(timeZone);
 
-    public int Year
-    {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => DateTime.Year;
-    }
-
-    public int Month
-    {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => DateTime.Month;
-    }
-
-    public int Day
-    {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => DateTime.Day;
-    }
-
-    public DayOfWeek DayOfWeek
-    {
-      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => DateTime.DayOfWeek;
-    }
-
     /// <summary>
-    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
+    /// Expresses the value in the format 'yyyy-MM-dd'.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is null or not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    public static DateStamp FromString(string value)
-    {
-      if (value is null)
-        throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
-      return FromString(value.AsSpan());
-    }
+    public override string ToString()
+        => $"{Year:D4}-{Month:D2}-{Day:D2}";
+  }
 
+  // Other calculations
+  public partial struct DateStamp
+  {
     /// <summary>
-    /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
+    /// Adds the given <paramref name="numDays"/> to the current value.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is not in the correct format.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    public static DateStamp FromString(in ReadOnlySpan<char> value)
-    {
-      if (value.Length == 10
-        && value[4] == '-'
-        && value[7] == '-'
-        && int.TryParse(value.Slice(0, 4), NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
-        && int.TryParse(value.Slice(5, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var month)
-        && int.TryParse(value.Slice(8, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out var day))
-      {
-        return new DateStamp(year, month, day);
-      }
-
-      throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
-    }
-
-
-    /// <summary>
-    /// Returns an enumerator that yields each date in the range <paramref name="from"/> until <paramref name="to"/>.
-    /// </summary>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="to"/> is less than <paramref name="from"/>.</exception>
-    public static IEnumerable<DateStamp> Range(DateStamp from, DateStamp to)
-    {
-      if (to < from) throw new ArgumentException($"{nameof(to)} '{to}' must be greater than or equal to {nameof(from)} '{from}'.");
-      for (var date = from; date <= to; date = date.AddDays(1))
-        yield return date;
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DateStamp AddDays(int numDays)
       => new DateStamp(DateTime.AddDays(numDays));
 
+    /// <summary>
+    /// Adds the given <paramref name="numMonths"/> to the current value.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DateStamp AddMonths(int numMonths)
       => new DateStamp(DateTime.AddMonths(numMonths));
 
+    /// <summary>
+    /// Adds the given <paramref name="numYears"/> to the current value.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DateStamp AddYears(int numYears)
       => new DateStamp(DateTime.AddYears(numYears));
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public MonthStamp GetMonthStamp()
-        => new MonthStamp(Year, Month);
-
+    /// <summary>
+    /// Calculates the difference between the current value and <paramref name="other"/>.
+    /// The result is a positive value if the current value is greater than <paramref name="other"/>, negative otherwise.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int GetDaysSince(DateStamp other)
         => (int)DateTime.Subtract(other.DateTime).TotalDays;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int GetDaysSince(DayOfWeek dayOfWeek)
-    {
-      var result = (int)DayOfWeek - (int)dayOfWeek;
-      if (result >= 0) return result;
-      return result + 7;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int GetDaysUntil(DayOfWeek dayOfWeek)
-    {
-      var result = (int)dayOfWeek - (int)DayOfWeek;
-      if (result >= 0) return result;
-      return result + 7;
-    }
-
+    /// <summary>
+    /// Calculates the difference between the current value and <paramref name="other"/>.
+    /// The result is a positive value if the current value is less than <paramref name="other"/>, negative otherwise.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int GetDaysUntil(DateStamp other)
       => other.GetDaysSince(this);
 
     /// <summary>
-    /// Returns the Sunday at the beginning of the week. 
+    /// Calculates the number of days that have elapsed between the current value and the most recent occurence of <paramref name="dayOfWeek"/>.
+    /// The result can range from 0 to 6.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public int GetDaysSince(DayOfWeek dayOfWeek)
+    {
+      var result = (int)DayOfWeek - (int)dayOfWeek;
+      return result >= 0 ? result : result + 7;
+    }
+
+    /// <summary>
+    /// Calculates the number of days that will pass from the current value until the soonest occurence of <paramref name="dayOfWeek"/>.
+    /// The result can range from 0 to 6.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public int GetDaysUntil(DayOfWeek dayOfWeek)
+    {
+      var result = (int)dayOfWeek - (int)DayOfWeek;
+      return result >= 0 ? result : result + 7;
+    }
+
+    /// <summary>
+    /// Returns the Sunday at the beginning of the week.
     /// The same value is returned if the value is already Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DateStamp ToWeekFloor()
       => new DateStamp(DateTime.ToWeekFloor());
+  }
 
-    // WEEKENDS AND HOLIDAYS
+  // Equals, GetHashCode, IEquatable, IComparable
+  public partial struct DateStamp
+  {
+    /// <inheritdoc/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override bool Equals(object obj)
+      => obj is DateStamp stamp && Equals(stamp);
 
+    /// <inheritdoc/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool Equals(DateStamp other)
+      => DateTime == other.DateTime;
+
+    /// <inheritdoc/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override int GetHashCode()
+      => -1937169414 + DateTime.GetHashCode();
+
+    /// <inheritdoc/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public int CompareTo(DateStamp other)
+      => DateTime.CompareTo(other.DateTime);
+  }
+
+  // Weekends and holidays
+  public partial struct DateStamp
+  {
     /// <summary>
     /// If the current value is a weekday, it will be returned unchanged.
     /// Otherwise, the first weekday in the future (a Monday) will be returned.
@@ -270,7 +348,7 @@ namespace FFT.TimeStamps
       {
         if (value.IsWeekend()) goto next;
         foreach (var date in datesToSkip)
-          if (date == value) goto next;
+          if (date.Equals(value)) goto next;
         return value;
 next:
         value = value.AddDays(1);
@@ -290,37 +368,17 @@ next:
       {
         if (value.IsWeekend()) goto next;
         foreach (var date in datesToSkip)
-          if (date == value) goto next;
+          if (date.Equals(value)) goto next;
         return value;
 next:
         value = value.AddDays(-1);
       }
     }
+  }
 
-    // TOSTRING
-
-    /// <summary>
-    /// Expresses the value in the format 'yyyy-MM-dd'.
-    /// </summary>
-    public override string ToString()
-        => $"{Year:D4}-{Month:D2}-{Day:D2}";
-
-    // MIN / MAX METHODS
-
-    /// <summary>
-    /// Returns the lesser of the two datestamps.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateStamp OrValueIfLesser(in DateStamp d)
-      => DateTime <= d.DateTime ? this : d;
-
-    /// <summary>
-    /// Returns the greater of the two datestamps.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateStamp OrValueIfGreater(in DateStamp d)
-      => DateTime >= d.DateTime ? this : d;
-
+  // Min / max
+  public partial struct DateStamp
+  {
     /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
@@ -331,7 +389,7 @@ next:
     /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0.</exception>
     public static DateStamp Min(params DateStamp[] values)
     {
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
@@ -355,7 +413,7 @@ next:
     /// <summary>
     /// Returns the maximum of the given values.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="values"/> is null or of length 0.</exception>
     public static DateStamp Max(params DateStamp[] values)
     {
       if (values is not { Length: > 0 }) throw new ArgumentException("Number of values must be greater than zero.", nameof(values));
@@ -369,27 +427,25 @@ next:
       return result;
     }
 
-    // COMPARISON OPERATORS
-
-    /// <inheritdoc/>
+    /// <summary>
+    /// Returns the lesser of the two datestamps.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object obj)
-      => obj is DateStamp stamp && Equals(stamp);
+    public DateStamp OrValueIfLesser(in DateStamp d)
+      => DateTime <= d.DateTime ? this : d;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Returns the greater of the two datestamps.
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool Equals(DateStamp other)
-      => DateTime == other.DateTime;
+    public DateStamp OrValueIfGreater(in DateStamp d)
+      => DateTime >= d.DateTime ? this : d;
+  }
 
-    /// <inheritdoc/>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override int GetHashCode()
-      => -1937169414 + DateTime.GetHashCode();
-
-    /// <inheritdoc/>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int CompareTo(DateStamp other)
-      => DateTime.CompareTo(other.DateTime);
+  // Operators
+  public partial struct DateStamp
+  {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator ==(DateStamp left, DateStamp right)

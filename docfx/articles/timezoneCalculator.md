@@ -1,4 +1,10 @@
+ ---
+ uid: article-timezonecalculator
+ title: TimeZoneCalculator
+ ---
  # TimeZoneCalculator
+
+ [`TimeZoneCalculator` api spec](xref:FFT.TimeStamps.TimeZoneCalculator)
 
 ### Usage
 

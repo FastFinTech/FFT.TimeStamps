@@ -213,7 +213,7 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddMilliseconds(in this long ticks, in long milliseconds)
-        => ticks + milliseconds * TimeSpan.TicksPerMillisecond;
+        => ticks + (milliseconds * TimeSpan.TicksPerMillisecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="seconds"/>.
@@ -227,7 +227,7 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddSeconds(in this long ticks, in long seconds)
-        => ticks + seconds * TimeSpan.TicksPerSecond;
+        => ticks + (seconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="minutes"/>.
@@ -255,7 +255,7 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddHours(in this long ticks, in long hours)
-        => ticks + hours * TimeSpan.TicksPerHour;
+        => ticks + (hours * TimeSpan.TicksPerHour);
 
     /// <summary>
     /// Adds the given number of <paramref name="days"/>.
@@ -269,7 +269,7 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static long AddDays(in this long ticks, in long days)
-        => ticks + days * TimeSpan.TicksPerDay;
+        => ticks + (days * TimeSpan.TicksPerDay);
 
     /// <summary>
     /// Adds the given number of <paramref name="weeks"/>.

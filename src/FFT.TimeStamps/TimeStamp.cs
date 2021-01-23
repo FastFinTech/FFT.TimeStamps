@@ -11,18 +11,18 @@ namespace FFT.TimeStamps
   /// Use this to get extremely fast timestamping when:
   /// 1. Your primary purpose is fast, efficient storage of exact times, across multiple timezones.
   /// 2. You run very frequent comparisons of timestamps, possibly as a way of comparing across multiple timezones.
-  /// 2. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive)
+  /// 2. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive).
   /// </summary>
   [DebuggerTypeProxy(typeof(DebuggerView))]
   public readonly partial struct TimeStamp : IComparable<TimeStamp>, IEquatable<TimeStamp>
   {
     /// <summary>
-    /// Contains the minimum possible value of a <see cref="TimeStamp"/>
+    /// Contains the minimum possible value of a <see cref="TimeStamp"/>.
     /// </summary>
     public static readonly TimeStamp MinValue = new TimeStamp(0); // also the equivalent of default(TimeStamp), because of the 0
 
     /// <summary>
-    /// Contains the maximum possible value of a <see cref="TimeStamp"/>
+    /// Contains the maximum possible value of a <see cref="TimeStamp"/>.
     /// </summary>
     public static readonly TimeStamp MaxValue = new TimeStamp(long.MaxValue);
 
@@ -42,14 +42,13 @@ namespace FFT.TimeStamps
     private const string DEFAULT_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss.fffffff zzz";
 
     /// <summary>
-    /// Creates a new <see cref="TimeStamp"/> with the given number of ticks UTC.
+    /// Initializes a new instance of the <see cref="TimeStamp"/> struct with the given number of ticks UTC.
     /// </summary>
-    /// <param name="ticksUtc"></param>
     public TimeStamp(in long ticksUtc)
       => TicksUtc = ticksUtc;
 
     /// <summary>
-    /// Creates a TimeStamp from the ticks in the given TimeZone.
+    /// Initializes a new instance of the <see cref="TimeStamp"/> struct from the ticks in the given TimeZone.
     /// Ambiguous times are considered to be in the standard (not daylight savings) offset.
     /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.
@@ -58,13 +57,14 @@ namespace FFT.TimeStamps
       => TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;
 
     /// <summary>
-    /// Creates a TimeStamp from the given DateTimeOffset
+    /// Initializes a new instance of the <see cref="TimeStamp"/> struct from the given <see cref="DateTimeOffset"/>.
     /// </summary>
     public TimeStamp(in DateTimeOffset at)
       => TicksUtc = at.Ticks - at.Offset.Ticks;
 
     /// <summary>
-    /// Constructs a <see cref="TimeStamp"/> at the <paramref name="date"/> and <paramref name="timeOfDay"/> in the given <paramref name="timeZone"/>.
+    /// Initializes a new instance of the <see cref="TimeStamp"/> struct
+    /// at the <paramref name="date"/> and <paramref name="timeOfDay"/> in the given <paramref name="timeZone"/>.
     /// Ambiguous times are considered to be in the standard (not daylight savings) offset.
     /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.

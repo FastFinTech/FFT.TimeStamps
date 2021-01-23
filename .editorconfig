@@ -71,8 +71,7 @@ csharp_style_conditional_delegate_call = true:suggestion
 # Prefer "var" everywhere
 csharp_style_var_for_built_in_types = true:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
-csharp_style_var_elsewhere = false:suggestion
-
+csharp_style_var_elsewhere = false:silent
 
 # Newline settings
 csharp_new_line_before_open_brace = all
@@ -195,3 +194,6 @@ dotnet_diagnostic.SA1512.severity = none
 
 # SA1515: Single-line comment should be preceded by blank line
 dotnet_diagnostic.SA1515.severity = none
+
+# SA0001: XML comment analysis is disabled due to project configuration
+dotnet_diagnostic.SA0001.severity = none

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps.Test
 {
+  using System;
+  using Microsoft.VisualStudio.TestTools.UnitTesting;
 
   [TestClass]
   public class TimeZoneCalculatorTests
@@ -29,7 +27,7 @@ namespace FFT.TimeStamps.Test
       var interval = (end.Ticks - start.Ticks) / 1000000;
       for (var i = 0; i < 1000000; i++)
       {
-        _utcTimes[i] = new DateTime(start.Ticks + i * interval, DateTimeKind.Utc);
+        _utcTimes[i] = new DateTime(start.Ticks + (i * interval), DateTimeKind.Utc);
         _estTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _est); // contains "fly-back" times
         _ausTimes[i] = TimeZoneInfo.ConvertTimeFromUtc(_utcTimes[i], _aus); // contains "fly-back" times
       }

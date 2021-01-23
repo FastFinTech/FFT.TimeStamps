@@ -95,7 +95,7 @@ namespace FFT.TimeStamps
     /// the beginning of the period active at the current time.
     /// Beginning of the first period is considered to be midnight, Sunday.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
-    /// If the current time is at an exact period start, the same value is returned
+    /// If the current time is at an exact period start, the same value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TimeStamp ToPeriodOfWeekFloor(in TimeSpan periodLength, TimeZoneInfo timeZone)
@@ -106,7 +106,7 @@ namespace FFT.TimeStamps
     /// the beginning of the period active at the current time.
     /// Beginning of the first period is considered to be midnight, Sunday.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
-    /// If the current time is at an exact period start, the same value is returned
+    /// If the current time is at an exact period start, the same value is returned.
     /// Daylight savings adjustments for the given <paramref name="timeZone"/> are respected.
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
@@ -119,7 +119,7 @@ namespace FFT.TimeStamps
     /// the beginning of the period after the period active at the current time.
     /// Beginning of the first period is considered to be midnight, Sunday.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLengthInMinutes * TimeSpan.TicksPerMinute)
-    /// If the current time is at an exact period start, the same value is returned
+    /// If the current time is at an exact period start, the same value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TimeStamp ToPeriodOfWeekCeiling(in TimeSpan periodLength, TimeZoneInfo timeZone)
@@ -142,7 +142,7 @@ namespace FFT.TimeStamps
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
     /// the zero-based index of the period at the current time.
     /// Beginning of the first period is considered to be midnight, Sunday.
-    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength)
+    /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int ToPeriodOfWeekIndex(in TimeSpan periodLength, TimeZoneInfo timeZone)

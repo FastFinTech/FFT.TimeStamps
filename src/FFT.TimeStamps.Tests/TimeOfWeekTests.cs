@@ -1,23 +1,23 @@
-﻿using System;
-using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using static System.DayOfWeek;
+﻿// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace FFT.TimeStamps.Test
 {
+  using System;
+  using System.Globalization;
+  using Microsoft.VisualStudio.TestTools.UnitTesting;
+  using Newtonsoft.Json;
+  using static System.DayOfWeek;
 
   [TestClass]
   public class TimeOfWeekTests
   {
-
     [TestMethod]
     public void GetAbsolutePrevious_And_GetAbsoluteNext_TimeOfWeek()
     {
-
       var format = "yyyy-MM-dd HH:mm:ss.fffffff";
 
-      /// Just after 5am on a Friday
+      // Just after 5am on a Friday
       var start = DateTime.ParseExact("2019-12-20 05:37:23.4849404", format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
       var startStamp = new TimeStamp(start.Ticks);

@@ -9,20 +9,6 @@ namespace FFT.TimeStamps
   public partial struct TimeStamp
   {
     /// <summary>
-    /// Returns the lesser of the two timestamps.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp OrValueIfLesser(in TimeStamp t)
-      => TicksUtc <= t.TicksUtc ? this : t;
-
-    /// <summary>
-    /// Returns the greater of the two timestamps.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp OrValueIfGreater(in TimeStamp t)
-        => TicksUtc >= t.TicksUtc ? this : t;
-
-    /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -73,5 +59,19 @@ namespace FFT.TimeStamps
 
       return result;
     }
+
+    /// <summary>
+    /// Returns the lesser of the two timestamps.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public TimeStamp OrValueIfLesser(in TimeStamp t)
+      => TicksUtc <= t.TicksUtc ? this : t;
+
+    /// <summary>
+    /// Returns the greater of the two timestamps.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public TimeStamp OrValueIfGreater(in TimeStamp t)
+        => TicksUtc >= t.TicksUtc ? this : t;
   }
 }

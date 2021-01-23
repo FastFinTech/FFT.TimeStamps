@@ -374,7 +374,7 @@ next:
 
     /// <summary>
     /// Divides the week into periods of length <paramref name="periodLength"/>, and then calculates
-    /// the zero-based index of the period at given time <paramref name="timestamp"/>. 
+    /// the zero-based index of the period at given time <paramref name="timestamp"/>.
     /// Beginning of the first period is considered to be midnight, Sunday, PLUS <paramref name="periodOffset"/>.
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>

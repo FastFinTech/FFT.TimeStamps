@@ -16,7 +16,7 @@ Use this to get extremely fast timestamping with:
 - The [`DateStamp`](xref:FFT.TimeStamps.DateStamp) represents a particular date.
 - The [`MonthStamp`](xref:FFT.TimeStamps.MonthStamp) represents a particular month.
 - The [`TimeOfWeek`](xref:FFT.TimeStamps.TimeOfWeek) represents a moment that occurs every week, 10am Monday, for example.
-- The [`TimeZoneOffsetCalculator`](xref:FFT.TimeStamps.TimeZoneOffsetCalculator) provides extremely fast timezone conversions using cached conversion offset records.
+- The [`TimeZoneCalculator`](xref:FFT.TimeStamps.TimeZoneCalculator) provides extremely fast timezone conversions using cached conversion offset records.
 - The [`ITimeStampConversionIterator`](xref:FFT.TimeStamps.ITimeStampConversionIterator) provides the fastest possible way to convert a sequential stream of `DateTime` objects to their equivalent `TimeStamp`. You would use this when processing the data from an external data source.
 - The [`ITimeZoneConversionIterator`](xref:FFT.TimeStamps.ITimeZoneConversionIterator) provides the fastest possible opposite-direction conversion of a sequential stream of `TimeStamp` objects to their equivalent `DateTime` or `DateTimeOffset` counterparts in a given timezone. You would use this when converting internal data to a traditional format expected by an external consumer.
 

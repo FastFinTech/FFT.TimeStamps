@@ -13,10 +13,6 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Initializes a new instance of the <see cref="PeriodOfWeekIterator"/> class.
     /// </summary>
-    /// <param name="timeZone"></param>
-    /// <param name="periodLength"></param>
-    /// <param name="periodOffset"></param>
-    /// <param name="at"></param>
     public PeriodOfWeekIterator(TimeZoneInfo timeZone, TimeSpan periodLength, TimeSpan periodOffset, TimeStamp at)
     {
       if (((TimeSpan.TicksPerDay * 7) % periodLength.Ticks) != 0)

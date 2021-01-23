@@ -66,6 +66,5 @@ namespace FFT.TimeStamps.Test
     public static string ToTestString(this DateTime target) => target.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
 
     public static string ToTestString(this TimeStamp target) => target.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
-
   }
 }

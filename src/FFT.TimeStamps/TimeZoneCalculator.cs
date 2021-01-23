@@ -12,7 +12,8 @@ namespace FFT.TimeStamps
   using static System.Math;
 
   /// <summary>
-  /// Use this class to get extremely fast timezone offset calculation results.
+  /// Use this class to get extremely fast timezone conversion data.
+  /// see [Article](xref:article-timezonecalculator).
   /// </summary>
   public sealed partial class TimeZoneCalculator
   {
@@ -154,6 +155,7 @@ namespace FFT.TimeStamps
                 yield return builder.Build();
                 yield break;
               }
+
               if (!builder.Info.Equals(info))
               {
                 yield return builder.Build();
