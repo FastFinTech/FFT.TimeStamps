@@ -50,6 +50,7 @@ namespace FFT.TimeStamps
             DifferenceTicks = -previousSegment.OffsetTicks;
           }
 
+          _previousTzTicks = ticks;
           return true;
         }
 
@@ -58,6 +59,7 @@ namespace FFT.TimeStamps
         if (_segment!.IsAmbiguous && ticks < _previousTzTicks)
         {
           DifferenceTicks = -_segment.OffsetTicks;
+          _previousTzTicks = ticks;
           return true;
         }
 
