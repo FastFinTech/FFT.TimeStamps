@@ -19,7 +19,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="ticksSinceWeekFloor">The number of ticks (ten-millionths of a second) since midnight, Sunday.</param>
     /// <exception cref="ArgumentException">Thrown if <paramref name="ticksSinceWeekFloor"/> is less than zero or greater than <see cref="EndOfWeek"/>.</exception>
-    public TimeOfWeek(in long ticksSinceWeekFloor)
+    public TimeOfWeek(long ticksSinceWeekFloor)
     {
       if (ticksSinceWeekFloor < 0 || ticksSinceWeekFloor > TICKS_PER_WEEK)
         throw new ArgumentException("Value must be positive and less than or equal to the number of ticks in a week.", nameof(ticksSinceWeekFloor));
@@ -32,7 +32,7 @@ namespace FFT.TimeStamps
     /// <param name="dayOfWeek">The day of week for this value.</param>
     /// <param name="timeOfDay">The tine of day for this value.</param>
     /// <exception cref="ArgumentException">Thrown when invalid parameters are given.</exception>
-    public TimeOfWeek(in DayOfWeek dayOfWeek, in TimeSpan timeOfDay)
+    public TimeOfWeek(DayOfWeek dayOfWeek, TimeSpan timeOfDay)
     {
       if ((int)dayOfWeek < 0 || (int)dayOfWeek > 6) throw new ArgumentException($"{nameof(dayOfWeek)} '{dayOfWeek}' must be a valid day of the week.");
       if (timeOfDay.Ticks < 0 || timeOfDay.Ticks >= TimeSpan.TicksPerDay) throw new ArgumentException($"{nameof(timeOfDay)} '{timeOfDay}' must be at least zero and less than 24 hours.");
@@ -79,7 +79,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Gets the <see cref="TimeOfWeek"/> for the given <paramref name="dateTime"/>.
     /// </summary>
-    public static TimeOfWeek CreateFrom(in DateTime dateTime)
+    public static TimeOfWeek CreateFrom(DateTime dateTime)
         => new TimeOfWeek(dateTime.DayOfWeek, dateTime.TimeOfDay);
 
     /// <summary>
@@ -103,7 +103,7 @@ namespace FFT.TimeStamps
     /// The result will always be less than <see cref="EndOfWeek"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeOfWeek Add(in TimeSpan time)
+    public TimeOfWeek Add(TimeSpan time)
     {
       var ticks = (TicksSinceWeekFloor + time.Ticks) % TICKS_PER_WEEK;
       if (ticks < 0)
@@ -158,27 +158,27 @@ namespace FFT.TimeStamps
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator >(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator >(TimeOfWeek left, TimeOfWeek right)
       => left.TicksSinceWeekFloor > right.TicksSinceWeekFloor;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator <(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator <(TimeOfWeek left, TimeOfWeek right)
       => left.TicksSinceWeekFloor < right.TicksSinceWeekFloor;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator >=(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator >=(TimeOfWeek left, TimeOfWeek right)
       => left.TicksSinceWeekFloor >= right.TicksSinceWeekFloor;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator <=(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator <=(TimeOfWeek left, TimeOfWeek right)
       => left.TicksSinceWeekFloor <= right.TicksSinceWeekFloor;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator ==(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator ==(TimeOfWeek left, TimeOfWeek right)
       => left.Equals(right);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool operator !=(in TimeOfWeek left, in TimeOfWeek right)
+    public static bool operator !=(TimeOfWeek left, TimeOfWeek right)
       => !left.Equals(right);
   }
 }

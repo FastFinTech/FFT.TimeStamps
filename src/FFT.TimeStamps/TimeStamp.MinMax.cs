@@ -64,14 +64,14 @@ namespace FFT.TimeStamps
     /// Returns the lesser of the two timestamps.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp OrValueIfLesser(in TimeStamp t)
+    public TimeStamp OrValueIfLesser(TimeStamp t)
       => TicksUtc <= t.TicksUtc ? this : t;
 
     /// <summary>
     /// Returns the greater of the two timestamps.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp OrValueIfGreater(in TimeStamp t)
+    public TimeStamp OrValueIfGreater(TimeStamp t)
         => TicksUtc >= t.TicksUtc ? this : t;
   }
 }

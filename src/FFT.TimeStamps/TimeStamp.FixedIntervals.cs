@@ -18,7 +18,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToIntervalFloor(in TimeStamp intervalStart, in TimeSpan intervalLength)
+    public TimeStamp ToIntervalFloor(TimeStamp intervalStart, TimeSpan intervalLength)
       => new TimeStamp(TicksUtc.ToIntervalFloor(intervalStart.TicksUtc, intervalLength.Ticks));
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToIntervalCeiling(in TimeStamp intervalStart, in TimeSpan intervalLength)
+    public TimeStamp ToIntervalCeiling(TimeStamp intervalStart, TimeSpan intervalLength)
       => new TimeStamp(TicksUtc.ToIntervalCeiling(intervalStart.TicksUtc, intervalLength.Ticks));
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToIntervalFloor(in TimeStamp intervalStart, in TimeSpan intervalLength, TimeZoneInfo timeZone)
+    public TimeStamp ToIntervalFloor(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToIntervalFloor(intervalStart.AsTicks(timeZone), intervalLength.Ticks), timeZone);
 
     /// <summary>
@@ -61,7 +61,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToIntervalCeiling(in TimeStamp intervalStart, in TimeSpan intervalLength, TimeZoneInfo timeZone)
+    public TimeStamp ToIntervalCeiling(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToIntervalCeiling(intervalStart.AsTicks(timeZone), intervalLength.Ticks), timeZone);
 
     /// <summary>
@@ -73,7 +73,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int ToIntervalIndex(in TimeStamp intervalStart, in TimeSpan intervalLength)
+    public int ToIntervalIndex(TimeStamp intervalStart, TimeSpan intervalLength)
       => TicksUtc.ToIntervalIndex(intervalStart.TicksUtc, intervalLength.Ticks);
 
     /// <summary>
@@ -87,7 +87,7 @@ namespace FFT.TimeStamps
     /// or if <paramref name="intervalLength"/> is less than or equal to zero.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int ToIntervalIndex(in TimeStamp intervalStart, in TimeSpan intervalLength, TimeZoneInfo timeZone)
+    public int ToIntervalIndex(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)
       => AsTicks(timeZone).ToIntervalIndex(intervalStart.AsTicks(timeZone), intervalLength.Ticks);
 
     /// <summary>
@@ -98,7 +98,7 @@ namespace FFT.TimeStamps
     /// If the current time is at an exact period start, the same value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToPeriodOfWeekFloor(in TimeSpan periodLength, TimeZoneInfo timeZone)
+    public TimeStamp ToPeriodOfWeekFloor(TimeSpan periodLength, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToPeriodOfWeekFloor(periodLength.Ticks), timeZone);
 
     /// <summary>
@@ -111,7 +111,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToPeriodOfWeekFloor(in TimeSpan periodLength, in TimeSpan periodOffset, TimeZoneInfo timeZone)
+    public TimeStamp ToPeriodOfWeekFloor(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToPeriodOfWeekFloor(periodLength.Ticks, periodOffset.Ticks), timeZone);
 
     /// <summary>
@@ -122,7 +122,7 @@ namespace FFT.TimeStamps
     /// If the current time is at an exact period start, the same value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToPeriodOfWeekCeiling(in TimeSpan periodLength, TimeZoneInfo timeZone)
+    public TimeStamp ToPeriodOfWeekCeiling(TimeSpan periodLength, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToPeriodOfWeekCeiling(periodLength.Ticks), timeZone);
 
     /// <summary>
@@ -135,7 +135,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp ToPeriodOfWeekCeiling(in TimeSpan periodLength, in TimeSpan periodOffset, TimeZoneInfo timeZone)
+    public TimeStamp ToPeriodOfWeekCeiling(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).ToPeriodOfWeekCeiling(periodLength.Ticks, periodOffset.Ticks), timeZone);
 
     /// <summary>
@@ -145,7 +145,7 @@ namespace FFT.TimeStamps
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int ToPeriodOfWeekIndex(in TimeSpan periodLength, TimeZoneInfo timeZone)
+    public int ToPeriodOfWeekIndex(TimeSpan periodLength, TimeZoneInfo timeZone)
       => AsTicks(timeZone).ToPeriodOfWeekIndex(periodLength.Ticks);
 
     /// <summary>
@@ -157,7 +157,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int ToPeriodOfWeekIndex(in TimeSpan periodLength, in TimeSpan periodOffset, TimeZoneInfo timeZone)
+    public int ToPeriodOfWeekIndex(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)
       => AsTicks(timeZone).ToPeriodOfWeekIndex(periodLength.Ticks, periodOffset.Ticks);
   }
 }

@@ -143,7 +143,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is not in the correct format.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the given values do not form a valid date.</exception>
-    public static DateStamp FromString(in ReadOnlySpan<char> value)
+    public static DateStamp FromString(ReadOnlySpan<char> value)
     {
       if (value.Length == 10
         && value[4] == '-'
@@ -383,7 +383,7 @@ next:
     /// Returns the minimum of the given values.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static DateStamp Min(in DateStamp v1, in DateStamp v2)
+    public static DateStamp Min(DateStamp v1, DateStamp v2)
       => v1 < v2 ? v1 : v2;
 
     /// <summary>
@@ -407,7 +407,7 @@ next:
     /// Returns the maximum of the given values.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static DateStamp Max(in DateStamp v1, in DateStamp v2)
+    public static DateStamp Max(DateStamp v1, DateStamp v2)
       => v1 > v2 ? v1 : v2;
 
     /// <summary>
@@ -431,14 +431,14 @@ next:
     /// Returns the lesser of the two datestamps.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateStamp OrValueIfLesser(in DateStamp d)
+    public DateStamp OrValueIfLesser(DateStamp d)
       => DateTime <= d.DateTime ? this : d;
 
     /// <summary>
     /// Returns the greater of the two datestamps.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateStamp OrValueIfGreater(in DateStamp d)
+    public DateStamp OrValueIfGreater(DateStamp d)
       => DateTime >= d.DateTime ? this : d;
   }
 
@@ -469,7 +469,6 @@ next:
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator <=(DateStamp left, DateStamp right)
-
       => left.DateTime <= right.DateTime;
   }
 }

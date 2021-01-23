@@ -78,7 +78,7 @@ namespace FFT.TimeStamps
     /// Advances the iterator to the given <paramref name="at"/>.
     /// </summary>
     /// <returns>True if the move resulted in a new period of week, False otherwise.</returns>
-    public bool MoveTo(in TimeStamp at)
+    public bool MoveTo(TimeStamp at)
     {
       var isNewPeriod = at.TicksUtc >= Current.End.TicksUtc;
 

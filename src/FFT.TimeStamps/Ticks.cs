@@ -40,47 +40,47 @@ namespace FFT.TimeStamps
     /// Calculates the total number of milliseconds represented by the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double ToMilliseconds(in this long ticks)
+    public static double ToMilliseconds(this long ticks)
       => ticks / (double)TimeSpan.TicksPerMillisecond;
 
     /// <summary>
     /// Calculates the total number of seconds represented by the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double ToSeconds(in this long ticks)
+    public static double ToSeconds(this long ticks)
       => ticks / (double)TimeSpan.TicksPerSecond;
 
     /// <summary>
     /// Calculates the total number of minutes represented by the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double ToMinutes(in this long ticks)
+    public static double ToMinutes(this long ticks)
       => ticks / (double)TimeSpan.TicksPerMinute;
 
     /// <summary>
     /// Calculates the total number of hours represented by the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double ToHours(in this long ticks)
+    public static double ToHours(this long ticks)
       => ticks / (double)TimeSpan.TicksPerHour;
 
     /// <summary>
     /// Calculates the total number of days represented by the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double ToDays(in this long ticks)
+    public static double ToDays(this long ticks)
       => ticks / (double)TimeSpan.TicksPerDay;
 
     /// <summary>
     /// Converts the given <paramref name="ticks"/> to an equivalent <see cref="TimeSpan"/>.
     /// </summary>
-    public static TimeSpan ToTimeSpan(in this long ticks)
+    public static TimeSpan ToTimeSpan(this long ticks)
       => new TimeSpan(ticks);
 
     /// <summary>
     /// Converts the given <paramref name="ticks"/> to an equivalent <see cref="TimeStamp"/>.
     /// </summary>
-    public static TimeStamp ToTimeStamp(in this long ticks)
+    public static TimeStamp ToTimeStamp(this long ticks)
       => new TimeStamp(ticks);
   }
 
@@ -91,7 +91,7 @@ namespace FFT.TimeStamps
     /// Rounds the given value down to the beginning of the millisecond.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToMillisecondFloor(in this long ticks)
+    public static long ToMillisecondFloor(this long ticks)
       => ticks - (ticks % TimeSpan.TicksPerMillisecond);
 
     /// <summary>
@@ -99,7 +99,7 @@ namespace FFT.TimeStamps
     /// If the given value is already at the beginning of the millisecond, a copy of the value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToMillisecondsCeiling(in this long ticks)
+    public static long ToMillisecondsCeiling(this long ticks)
     {
       var ticksPastMillisecond = ticks % TimeSpan.TicksPerMillisecond;
       return ticksPastMillisecond == 0 ? ticks : ticks - ticksPastMillisecond + TimeSpan.TicksPerMillisecond;
@@ -109,7 +109,7 @@ namespace FFT.TimeStamps
     /// Rounds the given value down to the beginning of the second.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToSecondFloor(in this long ticks)
+    public static long ToSecondFloor(this long ticks)
       => ticks - (ticks % TimeSpan.TicksPerSecond);
 
     /// <summary>
@@ -117,7 +117,7 @@ namespace FFT.TimeStamps
     /// If the given value is already at the beginning of the second, a copy of the value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToSecondCeiling(in this long ticks)
+    public static long ToSecondCeiling(this long ticks)
     {
       var ticksPastSecond = ticks % TimeSpan.TicksPerSecond;
       return ticksPastSecond == 0 ? ticks : ticks - ticksPastSecond + TimeSpan.TicksPerSecond;
@@ -127,7 +127,7 @@ namespace FFT.TimeStamps
     /// Rounds the given value down to the beginning of the minute.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToMinuteFloor(in this long ticks)
+    public static long ToMinuteFloor(this long ticks)
       => ticks - (ticks % TimeSpan.TicksPerMinute);
 
     /// <summary>
@@ -135,7 +135,7 @@ namespace FFT.TimeStamps
     /// If the given value is already at the beginning of the minute, a copy of the value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToMinuteCeiling(in this long ticks)
+    public static long ToMinuteCeiling(this long ticks)
     {
       var ticksPastMinute = ticks % TimeSpan.TicksPerMinute;
       return ticksPastMinute == 0 ? ticks : ticks - ticksPastMinute + TimeSpan.TicksPerMinute;
@@ -145,7 +145,7 @@ namespace FFT.TimeStamps
     /// Rounds the given value down to the beginning of the hour.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToHourFloor(in this long ticks)
+    public static long ToHourFloor(this long ticks)
       => ticks - (ticks % TimeSpan.TicksPerHour);
 
     /// <summary>
@@ -153,7 +153,7 @@ namespace FFT.TimeStamps
     /// If the given value is already at the beginning of the hour, a copy of the value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToHourCeiling(in this long ticks)
+    public static long ToHourCeiling(this long ticks)
     {
       var ticksPastHour = ticks % TimeSpan.TicksPerHour;
       return ticksPastHour == 0 ? ticks : ticks - ticksPastHour + TimeSpan.TicksPerHour;
@@ -163,7 +163,7 @@ namespace FFT.TimeStamps
     /// Rounds the given value down to the beginning of the day.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToDayFloor(in this long ticks)
+    public static long ToDayFloor(this long ticks)
       => ticks - (ticks % TimeSpan.TicksPerDay);
 
     /// <summary>
@@ -171,7 +171,7 @@ namespace FFT.TimeStamps
     /// If the given value is already at the beginning of the day, a copy of the value is returned.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToDayCeiling(in this long ticks)
+    public static long ToDayCeiling(this long ticks)
     {
       var ticksPastDay = ticks % TimeSpan.TicksPerDay;
       return ticksPastDay == 0 ? ticks : ticks - ticksPastDay + TimeSpan.TicksPerDay;
@@ -182,7 +182,7 @@ namespace FFT.TimeStamps
     /// Week floor is considered midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToWeekFloor(in this long ticks)
+    public static long ToWeekFloor(this long ticks)
       => ticks - ticks.TicksPastWeek();
 
     /// <summary>
@@ -191,7 +191,7 @@ namespace FFT.TimeStamps
     /// Week ceiling is considered midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToWeekCeiling(in this long ticks)
+    public static long ToWeekCeiling(this long ticks)
     {
       var ticksPastWeek = ticks.TicksPastWeek();
       return ticksPastWeek == 0 ? ticks : ticks - ticksPastWeek + TICKS_PER_WEEK;
@@ -205,84 +205,84 @@ namespace FFT.TimeStamps
     /// Adds the given number of <paramref name="milliseconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddMilliseconds(in this long ticks, in double milliseconds)
+    public static long AddMilliseconds(this long ticks, double milliseconds)
         => ticks + (long)(milliseconds * TimeSpan.TicksPerMillisecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="milliseconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddMilliseconds(in this long ticks, in long milliseconds)
+    public static long AddMilliseconds(this long ticks, long milliseconds)
         => ticks + (milliseconds * TimeSpan.TicksPerMillisecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="seconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddSeconds(in this long ticks, in double seconds)
+    public static long AddSeconds(this long ticks, double seconds)
         => ticks + (long)(seconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="seconds"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddSeconds(in this long ticks, in long seconds)
+    public static long AddSeconds(this long ticks, long seconds)
         => ticks + (seconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
     /// Adds the given number of <paramref name="minutes"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddMinutes(in this long ticks, in double minutes)
+    public static long AddMinutes(this long ticks, double minutes)
         => ticks + (long)(minutes * TimeSpan.TicksPerMinute);
 
     /// <summary>
     /// Adds the given number of <paramref name="minutes"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddMinutes(in this long ticks, in long minutes)
+    public static long AddMinutes(this long ticks, long minutes)
         => ticks + (minutes * TimeSpan.TicksPerMinute);
 
     /// <summary>
     /// Adds the given number of <paramref name="hours"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddHours(in this long ticks, in double hours)
+    public static long AddHours(this long ticks, double hours)
         => ticks + (long)(hours * TimeSpan.TicksPerHour);
 
     /// <summary>
     /// Adds the given number of <paramref name="hours"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddHours(in this long ticks, in long hours)
+    public static long AddHours(this long ticks, long hours)
         => ticks + (hours * TimeSpan.TicksPerHour);
 
     /// <summary>
     /// Adds the given number of <paramref name="days"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddDays(in this long ticks, in double days)
+    public static long AddDays(this long ticks, double days)
         => ticks + (long)(days * TimeSpan.TicksPerDay);
 
     /// <summary>
     /// Adds the given number of <paramref name="days"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddDays(in this long ticks, in long days)
+    public static long AddDays(this long ticks, long days)
         => ticks + (days * TimeSpan.TicksPerDay);
 
     /// <summary>
     /// Adds the given number of <paramref name="weeks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddWeeks(in this long ticks, in double weeks)
+    public static long AddWeeks(this long ticks, double weeks)
         => ticks + (long)(weeks * TICKS_PER_WEEK);
 
     /// <summary>
     /// Adds the given number of <paramref name="weeks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long AddWeeks(in this long ticks, in long weeks)
+    public static long AddWeeks(this long ticks, long weeks)
         => ticks + (weeks * TICKS_PER_WEEK);
   }
 
@@ -295,7 +295,7 @@ namespace FFT.TimeStamps
     /// Values returned range from 0 to 1440 * 60 - 1.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToSecondOfDayIndex(in this long ticks)
+    public static int ToSecondOfDayIndex(this long ticks)
       => (int)(ticks.TicksPastDay() / TimeSpan.TicksPerSecond);
 
     /// <summary>
@@ -305,7 +305,7 @@ namespace FFT.TimeStamps
     /// The zero point is midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToSecondOfWeekIndex(in this long ticks)
+    public static int ToSecondOfWeekIndex(this long ticks)
       => (int)(ticks.TicksPastWeek() / TimeSpan.TicksPerSecond);
 
     /// <summary>
@@ -315,7 +315,7 @@ namespace FFT.TimeStamps
     /// The zero point is midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToMinuteOfDayIndex(in this long ticks)
+    public static int ToMinuteOfDayIndex(this long ticks)
       => (int)(ticks.TicksPastDay() / TimeSpan.TicksPerMinute);
 
     /// <summary>
@@ -325,7 +325,7 @@ namespace FFT.TimeStamps
     /// The zero point is midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToMinuteOfWeekIndex(in this long ticks)
+    public static int ToMinuteOfWeekIndex(this long ticks)
       => (int)(ticks.TicksPastWeek() / TimeSpan.TicksPerMinute);
   }
 
@@ -336,7 +336,7 @@ namespace FFT.TimeStamps
     /// Calculates and returns the moment at <paramref name="timeOfDay"/> that mostly recently occurs at or before <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long GetPrevious(in this long ticks, in TimeSpan timeOfDay)
+    public static long GetPrevious(this long ticks, TimeSpan timeOfDay)
     {
       if (timeOfDay.Ticks >= TimeSpan.TicksPerDay) throw new ArgumentException($"{nameof(timeOfDay)} must be less than 24 hours. Actual value: {timeOfDay}");
       var ticksPastDay = ticks.TicksPastDay();
@@ -349,7 +349,7 @@ namespace FFT.TimeStamps
     /// Calculates and returns the moment at <paramref name="timeOfDay"/> that first occurs at or after <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long GetNext(in this long ticks, in TimeSpan timeOfDay)
+    public static long GetNext(this long ticks, TimeSpan timeOfDay)
     {
       if (timeOfDay.Ticks >= TimeSpan.TicksPerDay) throw new ArgumentException($"{nameof(timeOfDay)} must be less than 24 hours. Actual value: {timeOfDay}");
       var ticksPastDay = ticks.TicksPastDay();
@@ -362,7 +362,7 @@ namespace FFT.TimeStamps
     /// Calculates and returns the moment at <paramref name="timeOfWeek"/> that mostly recently occurs at or before <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long GetPrevious(in this long ticks, in TimeOfWeek timeOfWeek)
+    public static long GetPrevious(this long ticks, TimeOfWeek timeOfWeek)
     {
       var ticksPastWeek = ticks.TicksPastWeek();
       return ticksPastWeek >= timeOfWeek.TicksSinceWeekFloor
@@ -374,7 +374,7 @@ namespace FFT.TimeStamps
     /// Calculates and returns the moment at <paramref name="timeOfWeek"/> that first occurs at or after <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long GetNext(in this long ticks, in TimeOfWeek timeOfWeek)
+    public static long GetNext(this long ticks, TimeOfWeek timeOfWeek)
     {
       var ticksPastWeek = ticks.TicksPastWeek();
       return ticksPastWeek <= timeOfWeek.TicksSinceWeekFloor
@@ -394,7 +394,7 @@ namespace FFT.TimeStamps
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToPeriodOfWeekFloor(in this long ticks, in long periodLength)
+    public static long ToPeriodOfWeekFloor(this long ticks, long periodLength)
     {
       var ticksPastBlock = ticks.TicksPastWeek() % periodLength;
       return ticks - ticksPastBlock;
@@ -408,7 +408,7 @@ namespace FFT.TimeStamps
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToPeriodOfWeekFloor(in this long ticks, in long periodLength, in long periodOffset)
+    public static long ToPeriodOfWeekFloor(this long ticks, long periodLength, long periodOffset)
       => (ticks - periodOffset).ToPeriodOfWeekFloor(periodLength) + periodOffset;
 
     /// <summary>
@@ -419,7 +419,7 @@ namespace FFT.TimeStamps
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToPeriodOfWeekCeiling(in this long ticks, in long periodLength)
+    public static long ToPeriodOfWeekCeiling(this long ticks, long periodLength)
     {
       var ticksPastBlock = ticks.TicksPastWeek() % periodLength;
       return ticksPastBlock == 0 ? ticks : ticks - ticksPastBlock + periodLength;
@@ -433,7 +433,7 @@ namespace FFT.TimeStamps
     /// If the timestamp is at an exact period start, it returns a copy of the same timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToPeriodOfWeekCeiling(in this long ticks, in long periodLength, in long periodOffset)
+    public static long ToPeriodOfWeekCeiling(this long ticks, long periodLength, long periodOffset)
       => (ticks - periodOffset).ToPeriodOfWeekCeiling(periodLength) + periodOffset;
 
     /// <summary>
@@ -443,7 +443,7 @@ namespace FFT.TimeStamps
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToPeriodOfWeekIndex(in this long ticks, in long periodLength)
+    public static int ToPeriodOfWeekIndex(this long ticks, long periodLength)
       => (int)(ticks.TicksPastWeek() / periodLength);
 
     /// <summary>
@@ -453,7 +453,7 @@ namespace FFT.TimeStamps
     /// Periods include the first tick (index == 0) and exclude the the first tick of the next period (index &lt; periodLength).
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToPeriodOfWeekIndex(in this long ticks, in long periodLength, in long periodOffset)
+    public static int ToPeriodOfWeekIndex(this long ticks, long periodLength, long periodOffset)
       => (ticks - periodOffset).ToPeriodOfWeekIndex(periodLength);
   }
 
@@ -467,7 +467,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="ticks"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToIntervalFloor(in this long ticks, in long intervalStart, in long intervalLength)
+    public static long ToIntervalFloor(this long ticks, long intervalStart, long intervalLength)
     {
       var ticksPastInterval = (ticks - intervalStart) % intervalLength;
       return ticks - ticksPastInterval;
@@ -480,7 +480,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="ticks"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToIntervalCeiling(in this long ticks, in long intervalStart, in long intervalLength)
+    public static long ToIntervalCeiling(this long ticks, long intervalStart, long intervalLength)
     {
       var ticksPastInterval = (ticks - intervalStart) % intervalLength;
       return ticksPastInterval == 0 ? ticks : ticks - ticksPastInterval + intervalLength;
@@ -492,7 +492,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <remarks>You will get unexpected results if <paramref name="ticks"/> is less than <paramref name="intervalStart"/> or if <paramref name="intervalLength"/> is less than or equal to zero.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int ToIntervalIndex(in this long ticks, in long intervalStart, in long intervalLength)
+    public static int ToIntervalIndex(this long ticks, long intervalStart, long intervalLength)
         => (int)((ticks - intervalStart) / intervalLength);
   }
 
@@ -503,21 +503,21 @@ namespace FFT.TimeStamps
     /// Gets the <see cref="DayOfWeek"/> for the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static DayOfWeek ToDayOfWeek(in this long ticks)
+    public static DayOfWeek ToDayOfWeek(this long ticks)
       => (DayOfWeek)(ticks.TicksPastWeek() / TimeSpan.TicksPerDay);
 
     /// <summary>
     /// Gets the <see cref="TimeSpan"/> time of day for the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeSpan ToTimeOfDay(in this long ticks)
+    public static TimeSpan ToTimeOfDay(this long ticks)
       => new TimeSpan(ticks.TicksPastDay());
 
     /// <summary>
     /// Gets the <see cref="TimeOfWeek"/> for the given <paramref name="ticks"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeOfWeek ToTimeOfWeek(in this long ticks)
+    public static TimeOfWeek ToTimeOfWeek(this long ticks)
       => new TimeOfWeek(ticks.TicksPastWeek());
 
     /// <summary>
@@ -525,7 +525,7 @@ namespace FFT.TimeStamps
     /// Beginning of the day is considered to be midnight.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long TicksPastDay(in this long ticks)
+    public static long TicksPastDay(this long ticks)
       => ticks % TimeSpan.TicksPerDay;
 
     /// <summary>
@@ -533,7 +533,7 @@ namespace FFT.TimeStamps
     /// Beginning of the week is considered to be midnight, Sunday.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long TicksPastWeek(in this long ticks)
+    public static long TicksPastWeek(this long ticks)
       // Add TimeSpan.TicksPerDay first because the datetime at 0 ticks is midnight, Monday.
       => (ticks + TimeSpan.TicksPerDay) % TICKS_PER_WEEK;
 
@@ -542,7 +542,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <exception cref="ArgumentException">Thrown if <paramref name="ticks"/> is not exactly a whole second.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToUnixSeconds(in this long ticks)
+    public static long ToUnixSeconds(this long ticks)
     {
       if (ticks % TimeSpan.TicksPerSecond != 0)
         throw new ArgumentException("Can only convert exact seconds to unix timestamp.", nameof(ticks));
@@ -554,7 +554,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <exception cref="ArgumentException">Thrown if <paramref name="ticks"/> is not exactly a whole millisecond.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long ToUnixMilliseconds(in this long ticks)
+    public static long ToUnixMilliseconds(this long ticks)
     {
       if (ticks % TimeSpan.TicksPerMillisecond != 0)
         throw new ArgumentException("Can only convert exact milliseconds to unix timestamp.", nameof(ticks));
@@ -566,7 +566,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="unixSeconds">The time since midnight, 1 Jan 1970, in seconds.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long FromUnixSeconds(in this long unixSeconds)
+    public static long FromUnixSeconds(this long unixSeconds)
       => _unixEpoch + (unixSeconds * TimeSpan.TicksPerSecond);
 
     /// <summary>
@@ -574,7 +574,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="unixMilliseconds">The time since midnight, 1 Jan 1970, in milliseconds.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long FromUnixMilliseconds(in this long unixMilliseconds)
+    public static long FromUnixMilliseconds(this long unixMilliseconds)
       => _unixEpoch + (unixMilliseconds * TimeSpan.TicksPerMillisecond);
   }
 }

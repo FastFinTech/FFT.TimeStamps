@@ -44,7 +44,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Initializes a new instance of the <see cref="TimeStamp"/> struct with the given number of ticks UTC.
     /// </summary>
-    public TimeStamp(in long ticksUtc)
+    public TimeStamp(long ticksUtc)
       => TicksUtc = ticksUtc;
 
     /// <summary>
@@ -53,13 +53,13 @@ namespace FFT.TimeStamps
     /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.
     /// </summary>
-    public TimeStamp(in long ticksTimeZone, in TimeZoneInfo timeZone)
+    public TimeStamp(long ticksTimeZone, TimeZoneInfo timeZone)
       => TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TimeStamp"/> struct from the given <see cref="DateTimeOffset"/>.
     /// </summary>
-    public TimeStamp(in DateTimeOffset at)
+    public TimeStamp(DateTimeOffset at)
       => TicksUtc = at.Ticks - at.Offset.Ticks;
 
     /// <summary>
@@ -69,7 +69,7 @@ namespace FFT.TimeStamps
     /// Invalid times are considered to be in the standard (not daylight savings) offset.
     /// Compute intensive. Don't use it in a hot path.
     /// </summary>
-    public TimeStamp(in DateStamp date, in TimeSpan timeOfDay, TimeZoneInfo timeZone)
+    public TimeStamp(DateStamp date, TimeSpan timeOfDay, TimeZoneInfo timeZone)
     {
       var ticksTimeZone = date.DateTime.Ticks + timeOfDay.Ticks;
       TicksUtc = ticksTimeZone - TimeZoneCalculator.Get(timeZone).GetSegment(ticksTimeZone, TimeKind.TimeZone).OffsetTicks;

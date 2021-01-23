@@ -38,7 +38,7 @@ namespace FFT.TimeStamps
     /// Creates a <see cref="DateTimeOffset"/> object offset with the given offset.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public DateTimeOffset AsOffset(in TimeSpan offset)
+    public DateTimeOffset AsOffset(TimeSpan offset)
       => new DateTimeOffset(TicksUtc + offset.Ticks, offset);
 
     /// <summary>

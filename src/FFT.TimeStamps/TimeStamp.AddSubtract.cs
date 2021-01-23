@@ -12,7 +12,7 @@ namespace FFT.TimeStamps
     /// Creates a new <see cref="TimeStamp"/> by adding the given number of ticks to the instance.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddTicks(in long ticks)
+    public TimeStamp AddTicks(long ticks)
       => new TimeStamp(TicksUtc + ticks);
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace FFT.TimeStamps
     /// <param name="ticks">The number of ticks of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddTicks(in long ticks, TimeZoneInfo timeZone)
+    public TimeStamp AddTicks(long ticks, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone) + ticks, timeZone);
 
     /// <summary>
@@ -30,7 +30,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="days">The number of days of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddDays(in double days)
+    public TimeStamp AddDays(double days)
       => new TimeStamp(TicksUtc.AddDays(days));
 
     /// <summary>
@@ -40,7 +40,7 @@ namespace FFT.TimeStamps
     /// <param name="days">The number of days of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddDays(in double days, TimeZoneInfo timeZone)
+    public TimeStamp AddDays(double days, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).AddDays(days), timeZone);
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="hours">The number of hours of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddHours(in double hours)
+    public TimeStamp AddHours(double hours)
       => new TimeStamp(TicksUtc.AddHours(hours));
 
     /// <summary>
@@ -58,7 +58,7 @@ namespace FFT.TimeStamps
     /// <param name="hours">The number of hours of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddHours(in double hours, TimeZoneInfo timeZone)
+    public TimeStamp AddHours(double hours, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).AddHours(hours), timeZone);
 
     /// <summary>
@@ -66,7 +66,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="minutes">The number of minutes of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddMinutes(in double minutes)
+    public TimeStamp AddMinutes(double minutes)
       => new TimeStamp(TicksUtc.AddMinutes(minutes));
 
     /// <summary>
@@ -76,7 +76,7 @@ namespace FFT.TimeStamps
     /// <param name="minutes">The number of minutes of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddMinutes(in double minutes, TimeZoneInfo timeZone)
+    public TimeStamp AddMinutes(double minutes, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).AddMinutes(minutes), timeZone);
 
     /// <summary>
@@ -84,7 +84,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="seconds">The number of seconds of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddSeconds(in double seconds)
+    public TimeStamp AddSeconds(double seconds)
       => new TimeStamp(TicksUtc.AddSeconds(seconds));
 
     /// <summary>
@@ -94,7 +94,7 @@ namespace FFT.TimeStamps
     /// <param name="seconds">The number of seconds of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddSeconds(in double seconds, TimeZoneInfo timeZone)
+    public TimeStamp AddSeconds(double seconds, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).AddSeconds(seconds), timeZone);
 
     /// <summary>
@@ -102,7 +102,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="milliseconds">The number of milliseconds of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddMilliseconds(in double milliseconds)
+    public TimeStamp AddMilliseconds(double milliseconds)
       => new TimeStamp(TicksUtc.AddMilliseconds(milliseconds));
 
     /// <summary>
@@ -112,7 +112,7 @@ namespace FFT.TimeStamps
     /// <param name="milliseconds">The number of milliseconds of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp AddMilliseconds(in double milliseconds, TimeZoneInfo timeZone)
+    public TimeStamp AddMilliseconds(double milliseconds, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).AddMilliseconds(milliseconds), timeZone);
 
     /// <summary>
@@ -120,7 +120,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="timeSpan">The amount of ABSOLUTE time to advance the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp Add(in TimeSpan timeSpan)
+    public TimeStamp Add(TimeSpan timeSpan)
       => new TimeStamp(TicksUtc + timeSpan.Ticks);
 
     /// <summary>
@@ -130,7 +130,7 @@ namespace FFT.TimeStamps
     /// <param name="timeSpan">The amount of TIMEZONE time to advance the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp Add(in TimeSpan timeSpan, TimeZoneInfo timeZone)
+    public TimeStamp Add(TimeSpan timeSpan, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone) + timeSpan.Ticks, timeZone);
 
     /// <summary>
@@ -138,7 +138,7 @@ namespace FFT.TimeStamps
     /// </summary>
     /// <param name="timeSpan">The amount of ABSOLUTE time to retard the <see cref="TimeStamp"/>.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp Subtract(in TimeSpan timeSpan)
+    public TimeStamp Subtract(TimeSpan timeSpan)
       => new TimeStamp(TicksUtc - timeSpan.Ticks);
 
     /// <summary>
@@ -148,14 +148,14 @@ namespace FFT.TimeStamps
     /// <param name="timeSpan">The amount of TIMEZONE time to retard the <see cref="TimeStamp"/>.</param>
     /// <param name="timeZone">The timezone of the clock being adjusted.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp Subtract(in TimeSpan timeSpan, TimeZoneInfo timeZone)
+    public TimeStamp Subtract(TimeSpan timeSpan, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone) - timeSpan.Ticks, timeZone);
 
     /// <summary>
     /// Calculates the time difference between this time and the given <paramref name="timeStamp"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeSpan Subtract(in TimeStamp timeStamp)
+    public TimeSpan Subtract(TimeStamp timeStamp)
       => new TimeSpan(TicksUtc - timeStamp.TicksUtc);
   }
 }

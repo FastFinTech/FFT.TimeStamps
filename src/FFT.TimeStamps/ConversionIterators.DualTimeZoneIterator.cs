@@ -28,7 +28,7 @@ namespace FFT.TimeStamps
       public long DifferenceTicks { get; private set; }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public bool MoveTo(in long fromTimeZoneTicks)
+      public bool MoveTo(long fromTimeZoneTicks)
       {
         var change = _toUtc.MoveTo(fromTimeZoneTicks);
         var utcTicks = fromTimeZoneTicks + _toUtc.DifferenceTicks;
@@ -44,21 +44,21 @@ namespace FFT.TimeStamps
       }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public long GetTicks(in long fromTimeZoneTicks)
+      public long GetTicks(long fromTimeZoneTicks)
       {
         MoveTo(fromTimeZoneTicks);
         return fromTimeZoneTicks + DifferenceTicks;
       }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public DateTime GetDateTime(in long fromTimeZoneTicks)
+      public DateTime GetDateTime(long fromTimeZoneTicks)
       {
         MoveTo(fromTimeZoneTicks);
         return new DateTime(fromTimeZoneTicks + DifferenceTicks, DateTimeKind.Unspecified);
       }
 
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      public DateTimeOffset GetDateTimeOffset(in long fromTimeZoneTicks)
+      public DateTimeOffset GetDateTimeOffset(long fromTimeZoneTicks)
       {
         MoveTo(fromTimeZoneTicks);
         return new DateTimeOffset(fromTimeZoneTicks + DifferenceTicks, new TimeSpan(_fromUtc.DifferenceTicks));

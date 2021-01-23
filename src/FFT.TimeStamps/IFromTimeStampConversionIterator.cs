@@ -7,7 +7,7 @@ namespace FFT.TimeStamps
 
   /// <summary>
   /// Provides the <see cref="DifferenceTicks"/> used to convert from a <see cref="TimeStamp"/> to <see cref="ToTimeZone"/>
-  /// at the time given in the last call to <see cref="MoveTo(in long)"/>.
+  /// at the time given in the last call to <see cref="MoveTo(long)"/>.
   /// Also provides methods to directly convert a <see cref="TimeStamp"/> to a <see cref="DateTime"/> or <see cref="DateTimeOffset"/>.
   /// IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.
   /// </summary>
@@ -27,27 +27,27 @@ namespace FFT.TimeStamps
     /// Advances the <see cref="IFromTimeStampConversionIterator"/> to the given time expressed as ticks utc timezone.
     /// Returns true if <see cref="DifferenceTicks"/> has changed since the last advance, false otherwise.
     /// </summary>
-    bool MoveTo(in long utcTicks);
+    bool MoveTo(long utcTicks);
 
     /// <summary>
-    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
+    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(long)"/>,
     /// then performs a conversion and returns the result as a <see cref="DateTime"/>.
     /// </summary>
     /// <param name="timeStamp">The time to be converted.</param>
-    DateTime GetDateTime(in TimeStamp timeStamp);
+    DateTime GetDateTime(TimeStamp timeStamp);
 
     /// <summary>
-    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
+    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(long)"/>,
     /// then performs a conversion and returns the result as a <see cref="DateTimeOffset"/>.
     /// </summary>
     /// <param name="timeStamp">The time to be converted.</param>
-    DateTimeOffset GetDateTimeOffset(in TimeStamp timeStamp);
+    DateTimeOffset GetDateTimeOffset(TimeStamp timeStamp);
 
     /// <summary>
-    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(in long)"/>,
+    /// Advances the <see cref="IFromTimeStampConversionIterator"/> with an internal call to <see cref="MoveTo(long)"/>,
     /// then performs a conversion and returns the result as ticks in <see cref="ToTimeZone"/>.
     /// </summary>
     /// <param name="timeStamp">The time to be converted.</param>
-    long GetTicks(in TimeStamp timeStamp);
+    long GetTicks(TimeStamp timeStamp);
   }
 }

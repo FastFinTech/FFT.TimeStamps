@@ -183,7 +183,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Returns the minimum of the given values.
     /// </summary>
-    public static MonthStamp Min(in MonthStamp m1, in MonthStamp m2)
+    public static MonthStamp Min(MonthStamp m1, MonthStamp m2)
       => m1 < m2 ? m1 : m2;
 
     /// <summary>
@@ -206,7 +206,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Returns the maximum of the given values.
     /// </summary>
-    public static MonthStamp Max(in MonthStamp m1, in MonthStamp m2)
+    public static MonthStamp Max(MonthStamp m1, MonthStamp m2)
       => m1 > m2 ? m1 : m2;
 
     /// <summary>
@@ -229,13 +229,13 @@ namespace FFT.TimeStamps
     /// <summary>
     /// Returns the lesser of the two monthstamps.
     /// </summary>
-    public MonthStamp OrValueIfLesser(in MonthStamp d)
+    public MonthStamp OrValueIfLesser(MonthStamp d)
         => DateTime <= d.DateTime ? this : d;
 
     /// <summary>
     /// Returns the greater of the two monthstamps.
     /// </summary>
-    public MonthStamp OrValueIfGreater(in MonthStamp d)
+    public MonthStamp OrValueIfGreater(MonthStamp d)
         => DateTime >= d.DateTime ? this : d;
   }
 

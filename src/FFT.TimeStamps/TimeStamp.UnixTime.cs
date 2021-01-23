@@ -12,7 +12,7 @@ namespace FFT.TimeStamps
     /// Creates a timestamp the given number of seconds after midnight, 1 January 1970 UTC.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp FromUnixSeconds(in long unixSeconds)
+    public static TimeStamp FromUnixSeconds(long unixSeconds)
       => UnixEpoch.AddSeconds(unixSeconds);
 
     /// <summary>
@@ -20,7 +20,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp FromUnixSeconds(in long unixSeconds, TimeZoneInfo timeZone)
+    public static TimeStamp FromUnixSeconds(long unixSeconds, TimeZoneInfo timeZone)
     {
       var ticksTimeZone = Ticks.FromUnixSeconds(unixSeconds);
       return new TimeStamp(ticksTimeZone, timeZone);
@@ -30,7 +30,7 @@ namespace FFT.TimeStamps
     /// Creates a timestamp the given number of milliseconds after midnight, 1 January 1970 UTC.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp FromUnixMilliseconds(in long unixMilliseconds)
+    public static TimeStamp FromUnixMilliseconds(long unixMilliseconds)
       => UnixEpoch.AddMilliseconds(unixMilliseconds);
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TimeStamp FromUnixMilliseconds(in long unixMilliseconds, TimeZoneInfo timeZone)
+    public static TimeStamp FromUnixMilliseconds(long unixMilliseconds, TimeZoneInfo timeZone)
     {
       var ticksTimeZone = Ticks.FromUnixMilliseconds(unixMilliseconds);
       return new TimeStamp(ticksTimeZone, timeZone);

@@ -12,14 +12,14 @@ namespace FFT.TimeStamps
     /// Calculates the moment at <paramref name="timeOfDay"/> in UTC timezone that occurs at or just before the given timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetPrevious(in TimeSpan timeOfDay)
+    public TimeStamp GetPrevious(TimeSpan timeOfDay)
       => new TimeStamp(TicksUtc.GetPrevious(timeOfDay));
 
     /// <summary>
     /// Calculates the moment at <paramref name="timeOfDay"/> in UTC timezone that occurs at or just after the given timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetNext(in TimeSpan timeOfDay)
+    public TimeStamp GetNext(TimeSpan timeOfDay)
       => new TimeStamp(TicksUtc.GetNext(timeOfDay));
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetPrevious(in TimeSpan timeOfDay, TimeZoneInfo timeZone)
+    public TimeStamp GetPrevious(TimeSpan timeOfDay, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).GetPrevious(timeOfDay), timeZone);
 
     /// <summary>
@@ -35,21 +35,21 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetNext(in TimeSpan timeOfDay, TimeZoneInfo timeZone)
+    public TimeStamp GetNext(TimeSpan timeOfDay, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).GetNext(timeOfDay), timeZone);
 
     /// <summary>
     /// Calculates the moment at <paramref name="timeOfWeek"/> in UTC timezone that occurs at or just before the given timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetPrevious(in TimeOfWeek timeOfWeek)
+    public TimeStamp GetPrevious(TimeOfWeek timeOfWeek)
       => new TimeStamp(TicksUtc.GetPrevious(timeOfWeek));
 
     /// <summary>
     /// Calculates the moment at <paramref name="timeOfWeek"/> in UTC timezone that occurs at or just after the given timestamp.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetNext(in TimeOfWeek timeOfWeek)
+    public TimeStamp GetNext(TimeOfWeek timeOfWeek)
       => new TimeStamp(TicksUtc.GetNext(timeOfWeek));
 
     /// <summary>
@@ -57,7 +57,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetPrevious(in TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)
+    public TimeStamp GetPrevious(TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).GetPrevious(timeOfWeek), timeZone);
 
     /// <summary>
@@ -65,7 +65,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in a hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeStamp GetNext(in TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)
+    public TimeStamp GetNext(TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)
       => new TimeStamp(AsTicks(timeZone).GetNext(timeOfWeek), timeZone);
   }
 }

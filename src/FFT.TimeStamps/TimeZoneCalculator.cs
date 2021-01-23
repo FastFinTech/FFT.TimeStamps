@@ -43,7 +43,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static long Convert(TimeZoneInfo fromTimeZone, TimeZoneInfo toTimeZone, in long fromTimeZoneTicks)
+    public static long Convert(TimeZoneInfo fromTimeZone, TimeZoneInfo toTimeZone, long fromTimeZoneTicks)
     {
       if (fromTimeZone == toTimeZone) return fromTimeZoneTicks;
       var utcTicks = fromTimeZone == TimeZoneInfo.Utc ? fromTimeZoneTicks : Get(fromTimeZone).ToUtcTicks(fromTimeZoneTicks);
@@ -62,7 +62,7 @@ namespace FFT.TimeStamps
     /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <see cref="TimeKind.Utc"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeZoneSegment GetSegment(in TimeStamp timeStamp)
+    public TimeZoneSegment GetSegment(TimeStamp timeStamp)
       => GetSegment(timeStamp.TicksUtc, TimeKind.Utc);
 
     /// <summary>
@@ -70,7 +70,7 @@ namespace FFT.TimeStamps
     /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <paramref name="ticksKind"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TimeZoneSegment GetSegment(in long ticks, TimeKind ticksKind)
+    public TimeZoneSegment GetSegment(long ticks, TimeKind ticksKind)
     {
       var approximateYear = (int)(ticks / APPROXIMATE_TICKS_PER_YEAR);
       var dictionary = ticksKind switch
@@ -100,7 +100,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public long ToTimeZoneTicks(in long utcTicks)
+    public long ToTimeZoneTicks(long utcTicks)
       => utcTicks + GetSegment(utcTicks, TimeKind.Utc).OffsetTicks;
 
     /// <summary>
@@ -110,7 +110,7 @@ namespace FFT.TimeStamps
     /// Compute intensive. Do not use in hot path.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public long ToUtcTicks(in long timeZoneTicks)
+    public long ToUtcTicks(long timeZoneTicks)
       => timeZoneTicks - GetSegment(timeZoneTicks, TimeKind.TimeZone).OffsetTicks;
 
     private List<TimeZoneSegment> CreateSegments(int approximateYear, TimeKind ticksKind)
@@ -173,7 +173,7 @@ namespace FFT.TimeStamps
       }
     }
 
-    private OffsetInfo GetInfo(in long ticks, TimeKind ticksKind)
+    private OffsetInfo GetInfo(long ticks, TimeKind ticksKind)
     {
       if (ticksKind == TimeKind.Utc)
       {
