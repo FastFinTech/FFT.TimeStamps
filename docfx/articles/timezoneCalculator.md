@@ -2,17 +2,14 @@
  uid: article-timezonecalculator
  title: TimeZoneCalculator
  ---
+ 
  # TimeZoneCalculator
 
- [`TimeZoneCalculator` api spec](xref:FFT.TimeStamps.TimeZoneCalculator)
+ [TimeZoneCalculator api spec](xref:FFT.TimeStamps.TimeZoneCalculator)
 
-### Usage
+### Basic usage
 
-The static `TimeZoneOffsetCalculator.Convert` method allows you to convert times directly from one timezone to another. This is the slowest utility method available in the library (but much faster than you can find anywhere else), and you would use it in situations where its either not used frequently, or where you don't know in advance which timezones will be converted.
-
-The `TimeZoneOffsetCalculator.GetOffsetFromTimeZoneTicks` and `TimeZoneOffsetCalculator.GetOffsetFromUtcTicks` methods not only provide you with a very fast calculation, but they also provide you with a range of time in which the timezone offset does not change. Taking advantage of this range of time can help you write more efficient conversions. The [`Conversion iterators`](conversionIterators.md) use this feature internally which is why they are so incredibly efficient.
-
-[!code-csharp[TimeZoneOffsetCalculator example code](../../src/FFT.TimeStamps.Examples/TimeZoneCalculatorExamples.cs)]
+The static `TimeZoneCalculator.Convert` method allows you to convert times directly from one timezone to another. This is the slowest utility method available in the library (but much faster than you can find anywhere else), and you would use it in situations where its either not used frequently, or where you don't know in advance which timezones will be converted.
 
 ### TimeZoneCalculator.GetSegment
 
@@ -29,6 +26,12 @@ It provides you with a lot of helpful information about a specific period of tim
 
 >[!TIP]
 > The period of time represented by the `TimeZoneSegment` is EXCLUSIVE of the `TimeZoneSegment.EndTicks`. In fact, `TimeZoneSegment.EndTicks` is actually the same as the `TimeZoneSegment.StartTicks` of the next segment!
+
+### Basic examples
+
+[!code-csharp[TimeZoneOffsetCalculator example code](../../src/FFT.TimeStamps.Examples/TimeZoneCalculatorExamples.cs)]
+
+### Advanced examples
 
 The Conversion iterator code below shows a great example of using the segments to fully optimize execution and handle the ambiguous time periods:
 
