@@ -1,19 +1,19 @@
- ---
- uid: article-timezonecalculator
- title: TimeZoneCalculator
- ---
- 
- # TimeZoneCalculator
+# TimeZoneCalculator
 
- [TimeZoneCalculator api spec](xref:FFT.TimeStamps.TimeZoneCalculator)
+### Api specification links
+
+ The [TimeZoneCalculator](xref:FFT.TimeStamps.TimeZoneCalculator) class helps you to: 
+ 
+ - Access fast, utilities for converting values between timezones
+ - Convert `DateTime` and `DateTimeOffset` values to `TimeStamp` and vice-versa.
 
 ### Basic usage
 
-The static `TimeZoneCalculator.Convert` method allows you to convert times directly from one timezone to another. This is the slowest utility method available in the library (but much faster than you can find anywhere else), and you would use it in situations where its either not used frequently, or where you don't know in advance which timezones will be converted.
+The static [`TimeZoneCalculator.Convert`](xref:FFT.TimeStamps.TimeZoneCalculator.Convert(System.TimeZoneInfo,System.TimeZoneInfo,System.Int64)) method allows you to convert times directly from one timezone to another. This is the slowest utility method available in the library (but much faster than you can find anywhere else), and you would use it in situations where its either not used in a critical hot path, or where you don't know in advance which timezones will be converted.
 
 ### TimeZoneCalculator.GetSegment
 
-The [`TimeZoneCalculator.TimeZoneSegment`](xref:FFT.TimeStamps.TimeZoneCalculator.TimeZoneSegment) class is returned by the [`TimeZoneCalculator.GetSegment(TimeStamp time)`](xref:FFT.TimeStamps.TimeZoneCalculator.GetSegment(FFT.TimeStamps.TimeStamp@)) method and the [`TimeZoneCalculator.GetSegment(long ticks, TimeKind ticksKind)`](xref:FFT.TimeStamps.TimeZoneCalculator.GetSegment(System.Int64@,FFT.TimeStamps.TimeKind)) method.
+The [`TimeZoneCalculator.TimeZoneSegment`](xref:FFT.TimeStamps.TimeZoneCalculator.TimeZoneSegment) class is returned by the [`TimeZoneCalculator.GetSegment(TimeStamp time)`](xref:FFT.TimeStamps.TimeZoneCalculator.GetSegment(FFT.TimeStamps.TimeStamp)) method and the [`TimeZoneCalculator.GetSegment(long ticks, TimeKind ticksKind)`](xref:FFT.TimeStamps.TimeZoneCalculator.GetSegment(System.Int64,FFT.TimeStamps.TimeKind)) method.
 
 It provides you with a lot of helpful information about a specific period of time in which a timezone's offset remains constant. By obtaining and caching a `TimeZoneCalculator.TimeZoneSegment` you can speed up your code and create more sophisticated logic.
 
@@ -33,9 +33,7 @@ It provides you with a lot of helpful information about a specific period of tim
 
 ### Advanced examples
 
-The Conversion iterator code below shows a great example of using the segments to fully optimize execution and handle the ambiguous time periods:
-
-[!code-csharp[Example of using the segments](../../src/FFT.TimeStamps/ConversionIterators.ToUtcIterator.cs)]
+Checkout the code for the [`ToUtcIterator`](https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/ConversionIterators.ToUtcIterator.cs) class for an example of advanced `TimeZoneCalculator.TimeZoneSegment` usage.
 
 ### Benchmarking
 

@@ -1,3 +1,6 @@
+[!include[ReadMe](~/../README.md)]
+
+
 # FFT.TimeStamps
 
 [![NuGet package](https://img.shields.io/nuget/v/FFT.TimeStamps.svg)](https://nuget.org/packages/FFT.TimeStamps)

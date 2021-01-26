@@ -10,7 +10,7 @@ Use this library to get extremely fast timestamping with:
 1. Fast arithmetic operations on timestamps.
 1. Fast timezone conversion.
 1. Fast, unambiguous timestamp serialization.
-1. A broad range of time calculation utilities.
+1. A broad range of time calculation and comparison utilities that are particularly useful within FinTech applications.
 
 ### Brief overview
 
@@ -32,16 +32,16 @@ Let's take for example a trading platform, which deals with time in at least the
 - The timezone of the chart being displayed to the user.
 - The timezone of each instrument's exchange.
 - The timezone of each instrument's settlement time.
-- The timezone of the trading session template applied to the chart.
+- The timezone of the trading session hours template applied to the chart.
 - The timezone of the instrument's trading hours as defined by the exchange.
 - The timezone in which historical market data is downloaded.
 - The timezone used whilst storing market data to disk.
 - The timezone of news events and other market events.
 - The timezone of any custom session such as custom volume profile sessions.
+- The timezone of exchange closures, particularly when the closure is only a partial day.
 - The timezone used in data retrieved from external services.
 - The timezone expected by external services consuming your data.
 - etc.
 
 Trading applications, especially those residing on a server, typically process millions of exchange events every second. Each event comes with a timestamp, and the trading application must perform cross-timezone calculations and comparisons for EVERY single event that comes through the data feeds.
 
-[Read the full documentation](https://fastfintech.github.io/FFT.TimeStamps/)

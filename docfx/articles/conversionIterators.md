@@ -1,14 +1,20 @@
 # Conversion Iterators
 
+### Api specification links
+
+The [`ConversionIterators`](xref:FFT.TimeStamps.ConversionIterators) class provides methods to create iterators of various types:
+
+- [`IToTimeStampConversionIterator`](xref:FFT.TimeStamps.IToTimeStampConversionIterator)
+- [`IFromTimeStampConversionIterator`](xref:FFT.TimeStamps.IFromTimeStampConversionIterator) Converts `TimeStamp` objects to times in a known timezone.
+- [`ITimeZoneConversionIterator`](xref:FFT.TimeStamps.ITimeZoneConversionIterator) Converts time values from one timezone to another.
+
 Conversion iterators provide the fastest-possible way to perform timezone conversions on a stream of chronological-order times. They are also the best way to transform streams of `TimeStamp` objects to `DateTime` or `DateTimeOffset` objects or vice versa.
 
-Even though your application may use `TimeStamps` internally, it may need to read information from an external service that provides `DateTime` data in a known timezone. Additionally, your application may need to provide data to an external consumer that expects it to be provided with `DateTime` objects in a particular timezone.
-
-In these circumstances, the Conversion iterators provide an extremely efficient way to achieve the required conversion. 
-
-Or, you may need to simply convert chronological-order `DateTime` objects from one timezone to another, without any use of `TimeStamp` objects at all. The Conversion iterators will suit your need perfectly for this as well.
-
 [Benchmark testing](#benchmarking) shows that the Conversion iterators are 32 times faster at converting timezones than the built-in .net framework types.
+
+### Basic usage
+
+[!code-csharp[Conversion iterators example code](../../src/FFT.TimeStamps.Examples/ConversionIteratorExamples.cs)]
 
 > [!WARNING]
 > Conversion iterators require that the input times be supplied in ascending chronological order in order to provide correct conversion results. This requirement allows code optimization to make the conversion algorithm extremely efficient, but it also means you can get incorrect results if you accidentally supply inputs in descending chronological order. The iterators are coded to be fast, so they do not check YOUR work to ensure you have provided only ascending chronological order inputs.
@@ -16,20 +22,10 @@ Or, you may need to simply convert chronological-order `DateTime` objects from o
 >[!TIP]
 > The exception to the warning rule above is for moments when a timezone clock flies back in time, typically from its advanced Daylight Savings offset to its normal Standard time offset. When the clock flies back in time, you will have to pass an out-of-chronological order timestamp to the Conversion iterator. The iterator has been coded to handle this correctly. See the [Ambiguous times](#ambiguous-times) section below for more information.
 
-### Usage
-
-Use methods provided in the [`ConversionIterators`](xref:FFT.TimeStamps.ConversionIterators) class to create an iterators of various types:
-
-- [`IToTimeStampConversionIterator`](xref:FFT.TimeStamps.IToTimeStampConversionIterator) Converts times from a known timezone to `TimeStamp` objects.
-- [`IFromTimeStampConversionIterator`](xref:FFT.TimeStamps.IFromTimeStampConversionIterator) Converts `TimeStamp` objects to times in a known timezone.
-- [`ITimeZoneConversionIterator`](xref:FFT.TimeStamps.ITimeZoneConversionIterator) Converts time values from one timezone to another.
-
-[!code-csharp[Conversion iterators example code](../../src/FFT.TimeStamps.Examples/ConversionIteratorExamples.cs)]
-
 > [!TIP]
 > Did you notice in the examples above that the conversion iterators can provide outputs in multiple formats (`long ticksTimezone`, `DateTime`, `DateTimeOffset`, and `TimeStamp`), but they accept inputs only in `long ticksTimezone`? 
 >
-> The conversion iterators should not accept `DateTime` objects as inputs because they can be ambiguous due to their `DateTimeKind` property, and checking this property and doing all the extra work would slow them down, not to mention introducing errors that you would only know to avoid if you read the documentation very carefully. They are meant to be fast and error-free. By accepting only `long ticks` inputs, they require you to think carefully when you are writing the code that uses them, and helps you avoid making mistakes from simply not knowing the internal implementation details.
+> The conversion iterators should not accept `DateTime` objects as inputs because they can be ambiguous due to their `DateTimeKind` property, and checking this property and doing all the extra work would slow them down, not to mention introducing errors that you would only know to avoid if you read the documentation very carefully. They are meant to be fast and error-free. By accepting only `long ticks` inputs, Conversion iterators require you to think carefully when you are writing the code that uses them, and helps you avoid making mistakes from simply not knowing the internal implementation details.
 
 ### Ambiguous times
 
@@ -39,10 +35,12 @@ In this scenario, just on this day, the clock must complete the period of time f
 
 Default behaviour in the .net framework classes and, therefore in `FFT.TimeStamps`, is to treat ambiguous times as though they are in the timezone's standard offset, which is the same as assuming that the clock is passing through the ambiguous period for the second time.
 
-However, a conversion iterator must be able to handle the situation where times are streamed through it corresponding to the clock's first passage through the ambiguous period, and then to the clock's second passage through it. When the conversion iterator detects the input flying back in time, it assumes that the clock is now passing through the ambiguous period for the second time.
+However, a conversion iterator must be able to handle the situation where times are streamed through it corresponding to the clock's first passage through the ambiguous period (with the timezone's Daylight Savings offset), and then to the clock's second passage through it (with the timezone's Standard Offset). When the conversion iterator detects the input flying back in time, it assumes that the clock is now passing through the ambiguous period for the second time.
+
+Checkout the code for the [`ToUtcIterator`](https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/ConversionIterators.ToUtcIterator.cs) class for an example of how to work with the [`TimeZoneCalculator`](timezoneCalculator.md) within ambiguous time periods.
 
 >[!TIP]
-> Ambiguous times happen when converting from timezones that have daylight savings or some other shift, but they never happen when converting from UTC or any timezone that does not change.
+> Ambiguous times happen when converting from timezones that adjustments such as daylight savings, but they never happen when converting from UTC or any timezone that does not change.
 
 ### Benchmarking
 

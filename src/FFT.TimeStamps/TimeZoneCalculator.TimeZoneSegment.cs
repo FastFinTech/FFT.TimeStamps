@@ -8,7 +8,7 @@ namespace FFT.TimeStamps
   public sealed partial class TimeZoneCalculator
   {
     /// <summary>
-    /// Represents a period of time in which a particular timezone has a consistent offset from UTC.
+    /// Represents a period of time in which a particular timezone has a consistent properties such as offset from UTC, ambiguity and validity.
     /// </summary>
     public sealed class TimeZoneSegment
     {

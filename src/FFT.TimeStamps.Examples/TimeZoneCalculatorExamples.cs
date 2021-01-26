@@ -5,15 +5,10 @@ namespace FFT.TimeStamps.Examples
 {
   using System;
   using System.Diagnostics;
+  using static FFT.TimeStamps.Examples.TimeZones;
 
   internal class TimeZoneCalculatorExamples : IExample
   {
-    // New York, USA
-    private static readonly TimeZoneInfo _est = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-
-    // Sydney, Australia
-    private static readonly TimeZoneInfo _aus = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
-
     public void Run()
     {
       DemonstrateSimpleConversion();
@@ -27,10 +22,10 @@ namespace FFT.TimeStamps.Examples
     private void DemonstrateSimpleConversion()
     {
       // get the current time in new york expressed in ticks.
-      long ticksNewYorkTimeZone = TimeStamp.Now.AsTicks(_est); // this operation used TimeZoneOffsetCalculator internally.
+      long ticksNewYorkTimeZone = TimeStamp.Now.AsTicks(NewYork); // this operation used TimeZoneOffsetCalculator internally.
 
       // use the calculator to find the equivalent time in sydney expressed in ticks.
-      long ticksSydneyTimeZone = TimeZoneCalculator.Convert(_est, _aus, ticksNewYorkTimeZone);
+      long ticksSydneyTimeZone = TimeZoneCalculator.Convert(NewYork, Sydney, ticksNewYorkTimeZone);
     }
 
     /// <summary>
@@ -49,7 +44,7 @@ namespace FFT.TimeStamps.Examples
       long utcTicks = now.TicksUtc;
 
       // get a reference to the calculator for the EST timezone.
-      TimeZoneCalculator calculator = TimeZoneCalculator.Get(_est);
+      TimeZoneCalculator calculator = TimeZoneCalculator.Get(NewYork);
 
       // get a segment with StartTicks and EndTicks expressed in UTC timezone.
       TimeZoneCalculator.TimeZoneSegment utcSeg = calculator.GetSegment(utcTicks, TimeKind.Utc);
