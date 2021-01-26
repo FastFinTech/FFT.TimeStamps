@@ -10,4 +10,4 @@ It's fine to use the methods, generally speaking - they are still much faster th
 
 These compute-intensive methods have been provided for your convenience, and can cost you some cpu time if you use them carelessly.
 
-![Compute intensive summary](/images/ComputeIntensive.jpg "Compute intensive summary")
+![Compute intensive summary](~/images/ComputeIntensive.jpg "Compute intensive summary")
