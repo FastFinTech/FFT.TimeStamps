@@ -5,11 +5,7 @@
         {
           "src": "../src",
           "files": [ "**.csproj" ],
-          "exclude": [ 
-            "**/FFT.TimeStamps.Tests/**/*",
-            "**/FFT.TimeStamps.Benchmarks/**/*",
-            "**/FFT.TimeStamps.Examples/**/*"
-           ]
+          "exclude": [ "**/FFT.TimeStamps.Tests/**/*" ]
         }
       ],
       "dest": "api",

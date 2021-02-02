@@ -1,5 +1,48 @@
+[!include[ReadMe](~/../README.md)]
 
 
+# FFT.TimeStamps
+
+[![NuGet package](https://img.shields.io/nuget/v/FFT.TimeStamps.svg)](https://nuget.org/packages/FFT.TimeStamps)
+[![Source code](https://img.shields.io/static/v1?style=flat&label=&message=Source%20code&logo=read-the-docs&color=informational)](https://github.com/FastFinTech/FFT.TimeStamps)
+
+Use this to get extremely fast timestamping with:
+1. Fast, unambiguous representation of exact times in multiple timezones.
+1. Fast comparisons of timestamps in multiple timezones.
+1. Fast arithmetic operations on timestamps.
+1. Fast timezone conversion.
+1. Fast, unambiguous timestamp serialization.
+
+### Brief overview
+
+- The [`TimeStamp`](xref:FFT.TimeStamps.TimeStamp) represents an exact, unambiguous moment in time.
+- The [`DateStamp`](xref:FFT.TimeStamps.DateStamp) represents a particular date.
+- The [`MonthStamp`](xref:FFT.TimeStamps.MonthStamp) represents a particular month.
+- The [`TimeOfWeek`](xref:FFT.TimeStamps.TimeOfWeek) represents a moment that occurs every week, 10am Monday, for example.
+- The [`TimeZoneCalculator`](xref:FFT.TimeStamps.TimeZoneCalculator) provides extremely fast timezone conversions using cached conversion offset records.
+- The [`ITimeStampConversionIterator`](xref:FFT.TimeStamps.ITimeStampConversionIterator) provides the fastest possible way to convert a sequential stream of `DateTime` objects to their equivalent `TimeStamp`. You would use this when processing the data from an external data source.
+- The [`ITimeZoneConversionIterator`](xref:FFT.TimeStamps.ITimeZoneConversionIterator) provides the fastest possible opposite-direction conversion of a sequential stream of `TimeStamp` objects to their equivalent `DateTime` or `DateTimeOffset` counterparts in a given timezone. You would use this when converting internal data to a traditional format expected by an external consumer.
+
+### Background information
+
+This library was developed in response to needs encountered whilst developing financial applications for exchanges and traders.
+
+Let's take for example a trading platform, which deals with time in at least these timezones simultaneously:
+- The timezone that the user's computer is configured with.
+- The timezone of the chart being displayed to the user.
+- The timezone of each instrument's exchange.
+- The timezone of each instrument's settlement time.
+- The timezone of the trading session template applied to the chart.
+- The timezone of the instrument's trading hours as defined by the exchange.
+- The timezone in which historical market data is downloaded.
+- The timezone used whilst storing market data to disk.
+- The timezone of news events and other market events.
+- The timezone of any custom session such as custom volume profile sessions.
+- The timezone used in data retrieved from external services.
+- The timezone expected by external services consuming your data.
+- etc.
+
+Trading applications, especially those residing on a server, typically process millions of exchange events every second. Each event comes with a timestamp attached, and the trading application must perform cross-timezone calculations and comparisons for EVERY single event that comes through the data feeds.
 
 Your application code becomes faster, simpler, and easier when you can boil every time expression down to a single paradigm with extremely fast comparison operators -- the `TimeStamp`.
 
@@ -12,33 +55,29 @@ Timezone conversions are performed much faster in this library than using the co
 **Converting to various timezones.**
 
 ```csharp
-TimeZoneInfo newYork = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
 TimeStamp someTimeStamp = TimeStamp.Now.AddHours(-200); // just a random time.
 DateTimeOffset utcOffset = someTimeStamp.AsUtc(); // Expressed in UTC timezone.
 DateTimeOffset localOffset = someTimeStamp.AsLocal(); // Expressed in local timezone.
-DateTimeOffset estOffset = someTimeStamp.As(newYork); // Expressed in Eastern Standard timezone with daylight savings applied.
+DateTimeOffset estOffset = someTimeStamp.As(Apex.TimeZones.TimeZoneReferences.EasternStandardTime); // Expressed in Eastern Standard timezone with daylight savings applied.
 ```
 
 **Extremely rapid conversions**
 
-Since a lot of what is done in a trading application is with sequentially-increasing timestamps, eg, a tick data stream, further optimization has been provided for forward-only sequential timezone conversion, both from a timestamp and to a timestamp, using the `Conversion iterator` objects.
+Since a lot of what is done in the trading platform is with sequentially-increasing timestamps, eg, a tick data stream, further optimization has been provided for forward-only sequential timezone conversion, both from a timestamp and to a timestamp, using the `SequentialConverterToDateTime` and `SequentialConverterToTimeStamp` objects.
 
 ```csharp
-/// Example of converting TimeStamps to various other time objects in the local time zone
-/// using the extremely-fast IFromTimeStampConversionIterator, which 
+/// Example of converting TimeStamps to DateTimes in the local time zone
+/// using the extremely-fast SequentialConverterToDateTime object, which 
 /// only works properly when the input TimeStamps are in ascending order.
-IFromTimeStampConversionIterator converter = ConversionIterators.FromTimeStamp(toTimeZone: TimeZoneInfo.Local)
+var converter = new SequentialConverterToDateTime(TimeZoneInfo.Local);
 foreach(var tick in tickStream) { 
-	DateTime localTime = converter.GetDateTime(tick.TimeStamp); // VERY fast conversion
-    DateTimeOffset localTimeOffset = converter.GetDateTimeOffset(tick.TimeStamp);
-    long localTimeTicks = converter.GetTicks(tickTimeStamp);
+	var localTime = converter.Get(tick.TimeStamp); // VERY fast conversion
 }
 
 /// Reverse conversion example.
-TimeZoneInfo newYork = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-IToTimeStampConversionIterator reverseConverter = ConversionIterators.TimeStamp(fromTimeZone: newYork);
+var reverseConverter = new SequentialConverterToTimeStamp(TimeZoneInfo.Local);
 foreach(var dateTime in someStream) { 
-    var timeStamp = converter.GetTimeStamp(dateTime.Ticks); // VERY fast conversion.
+    var timeStamp = converter.Get(dateTime); // VERY fast conversion.
 }
 ```
 
@@ -77,32 +116,13 @@ For `DateTime` serialization to work as intended, developers must be extremely c
 # DateStamp and MonthStamp
 The `DateStamp` and `MonthStamp` are intended to remove ambiguity when expressing a date or a month that is not a moment in time, but a particular date or month in the Gregorian calendar. Using these objects prevents bugs caused by many factors not limited to serialization/deserialization ambiguity, individual PC locale settings, and programmer confusion.
 
+# Other ways the library improved using code.
+
+Before I introduced this object to the toolkit, our trading platform objects were each plastered with multiple `DateTime` properties, each property expressing the same moment in a different timezone. It was horrible to read, code, and maintain, and program execution was much slower.
+
+Using the `TimesStamp`, we have made our time-related code now easier to read and maintain. Program execution is also much faster, since we are dealing with streams of millions of time-related objects such as market tick data, and performing time comparisons on each of them as they are processed.
+
 # See also
 
 NodaTime is a very good library written by the famous John Skeet.
 `TimeStamp` objects suit the trading platform's requirements better though. 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script lang="JavaScript">
-    $(window).on('load', function(){
-        alert('iframe stuff loaded');
-        if (parent) { 
-            alert('posting message 2');
-            parent.contentWindow.postMessage({}, '*');
-        }
-    });
-  window.addEventListener('message', event => {
-      alert('received message');
-    // // IMPORTANT: check the origin of the data! 
-    // if (event.origin.startsWith('http://your-first-site.com')) { 
-    //     // The data was sent from your site.
-    //     // Data sent with postMessage is stored in event.data:
-    //     console.log(event.data); 
-    // } else {
-    //     // The data was NOT sent from your site! 
-    //     // Be careful! Do not use it. This else branch is
-    //     // here just for clarity, you usually shouldn't need it.
-    //     return; 
-    // } 
-  }); 
-</script>
