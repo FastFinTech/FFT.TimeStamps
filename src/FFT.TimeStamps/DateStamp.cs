@@ -208,6 +208,29 @@ namespace FFT.TimeStamps
   public partial struct DateStamp
   {
     /// <summary>
+    /// Gets the moment at the beginning of the day (midnight) in UTC timezone.
+    /// </summary>
+    public TimeStamp GetStartTime() => new TimeStamp(DateTime.Ticks);
+
+    /// <summary>
+    /// Gets the moment at the beginning of the day (midnight) in the given
+    /// <paramref name="timeZone"/>.
+    /// </summary>
+    public TimeStamp GetStartTime(TimeZoneInfo timeZone) => new TimeStamp(DateTime.Ticks, timeZone);
+
+    /// <summary>
+    /// Gets the moment at the end of the day (midnight of the following day) in
+    /// UTC timezone.
+    /// </summary>
+    public TimeStamp GetEndTime() => new TimeStamp(DateTime.Ticks + TimeSpan.TicksPerDay);
+
+    /// <summary>
+    /// Gets the moment at the end of the day (midnight of the following day) in
+    /// the given <paramref name="timeZone"/>.
+    /// </summary>
+    public TimeStamp GetEndTime(TimeZoneInfo timeZone) => new TimeStamp(DateTime.Ticks + TimeSpan.TicksPerDay, timeZone);
+
+    /// <summary>
     /// Adds the given <paramref name="numDays"/> to the current value.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
