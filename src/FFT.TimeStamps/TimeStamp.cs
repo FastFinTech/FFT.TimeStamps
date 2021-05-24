@@ -6,6 +6,7 @@ namespace FFT.TimeStamps
   using System;
   using System.Diagnostics;
   using System.Runtime.CompilerServices;
+  using System.Runtime.InteropServices;
 
   /// <summary>
   /// Use this to get extremely fast timestamping when:
@@ -40,6 +41,11 @@ namespace FFT.TimeStamps
     /// Expresses the time to its full 1-tick (ten-millionth of a second) resolution and the timezone offset as well.
     /// </summary>
     private const string DEFAULT_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss.fffffff zzz";
+
+    static TimeStamp()
+    {
+      SetupGetNowTicks();
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TimeStamp"/> struct with the given number of ticks UTC.
