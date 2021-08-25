@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>TimeStamp </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="TimeStamp ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+    <style>    
+      .hljs { white-space: pre; overflow-x: auto; }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="timestamp">TimeStamp</h1>
+
+<h3 id="api-specification-links">Api specification links</h3>
+<p>The <a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html"><code>TimeStamp</code></a> gives you extremely fast timestamping, efficient comparison of times in differing zones bypassing timezone conversion calculations, and a large library of time-related methods that are heavily used by FinTech applications.</p>
+<p>Related objects are the <a class="xref" href="../api/FFT.TimeStamps.DateStamp.html"><code>DateStamp</code></a>, the <a class="xref" href="../api/FFT.TimeStamps.MonthStamp.html"><code>MonthStamp</code></a>, the <a class="xref" href="../api/FFT.TimeStamps.PeriodOfTime.html"><code>PeriodOfTime</code></a>, and the <a class="xref" href="../api/FFT.TimeStamps.TimeOfWeek.html"><code>TimeOfWeek</code></a>.</p>
+<h3 id="basic-usage">Basic usage</h3>
+<p><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_Now"><code>TimeStamp.Now</code></a> gives you the current time, and there are a range of constructors as well.</p>
+<h4 id="tostring">ToString</h4>
+<p>There are a range of <code>ToString</code> methods available. The method with the most options allows you to define a timezone and a format string.</p>
+<pre><code class="lang-csharp" name="Main">// Copyright (c) True Goodwill. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace FFT.TimeStamps.Examples
+{
+  using System;
+  using static FFT.TimeStamps.Examples.TimeZones;
+
+  internal class ToStringExamples : IExample
+  {
+    public void Run()
+    {
+      // midnight, new year's day, 2020, New York.
+      var time = new TimeStamp(new DateStamp(2020, 1, 1), TimeSpan.Zero, NewYork);
+      Console.WriteLine($&quot;Time in New York is '{time.ToString(NewYork, &quot;yy-MM-dd HH:mm:ss&quot;)}'.&quot;);
+      Console.WriteLine($&quot;Time in Sydney is '{time.ToString(Sydney, &quot;yy-MM-dd HH:mm:ss&quot;)}'.&quot;);
+      /* Output:
+        Time in New York is '20-01-01 00:00:00'.
+        Time in Sydney is '20-01-01 16:00:00'.
+      */
+    }
+  }
+}
+</code></pre><h4 id="parsing-strings">Parsing strings</h4>
+<p><code>FFT.TimeStamps</code> does not provide string parsing methods because the edge cases are broad and the possibility of you making mistakes because of a misunderstanding of the internal implemenation is high. Only you truly understand what various formats that you will need to parse, and what variants they come in. Therefore you should write your own string parsing code.</p>
+<p>The below code shows an example of how you could parse a string to create a <code>TimeStamp</code>.</p>
+<p>The problem with the code below is that we never know what <code>System.DateTimeKind</code> property will be given to the <code>dateTime</code> object, because it changes depending on the input string. Therefore we don<code>t know if its </code>dateTime.Ticks` property will be expressed in local timezone, Utc timezone, or some other known timezone. The range of possibilities make it very difficult to include these kinds of methods in the library and still have a library that does exactly what its public api leads you to expect. Instead, the library gives you constructors that have a very clear intent and outcome.</p>
+<pre><code class="lang-csharp">// Example of a parsing method that could be used by your application with a known
+// range of inputs, but would cause unexpected results to many developers if included in the library.
+public static bool TryParse(string value, TimeZoneInfo timeZone, out TimeStamp result)
+{
+  if (DateTime.TryParse(value, out var dateTime))
+  {
+    result = new TimeStamp(dateTime.Ticks, timeZone);
+    return true;
+  }
+
+  result = default;
+  return false;
+}
+</code></pre>
+<h4 id="floor-and-ceiling">Floor and Ceiling</h4>
+<p>The various floor and ceiling methods such as <code>TimeStamp.ToSecondFloor</code> allow you to round timestamp values to convenient intervals.</p>
+<p>Some of the method overloads take a <code>TimeZoneInfo</code> parameter, allowing you to get a <code>TimeStamp</code> value that represents the rounded time interval in a particular timezone.</p>
+<p>For example, the method <code>TimeStamp.ToDayFloor(TimeZoneInfo timezone)</code> which returns the moment at midnight before the current value, would give very different results when passed different timezones.</p>
+<p>Floor/Ceiling intervals provided in the library include: <em>millisecond, second, minute, hour, day, week, and month</em>.</p>
+<h4 id="getnext-and-getprevious">GetNext and GetPrevious</h4>
+<p>These methods allow you to get the next or previous <code>TimeStamp</code> that occurs at a specific time of day or time of week.</p>
+<ul>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetPrevious(System.TimeSpan)"><code>GetPrevious(TimeSpan timeOfDay)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetPrevious(System.TimeSpan,System.TimeZoneInfo)"><code>GetPrevious(TimeSpan timeOfDay, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetNext(System.TimeSpan)"><code>GetNext(TimeSpan timeOfDay)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetNext(System.TimeSpan,System.TimeZoneInfo)"><code>GetNext(TimeSpan timeOfDay, TimeZoneInfo timeZone)</code></a></li>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_GetPrevious_FFT_TimeStamps_TimeOfWeek_"><code>GetPrevious(TimeOfWeek timeOfWeek)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetPrevious(FFT.TimeStamps.TimeOfWeek,System.TimeZoneInfo)"><code>GetPrevious(TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)</code></a></li>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_GetNext_FFT_TimeStamps_TimeOfWeek_"><code>GetNext(TimeOfWeek timeOfWeek)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.GetNext(FFT.TimeStamps.TimeOfWeek,System.TimeZoneInfo)"><code>GetNext(TimeOfWeek timeOfWeek, TimeZoneInfo timeZone)</code></a></li>
+</ul>
+<h4 id="to-index">To index</h4>
+<p>These methods are helpful when aggregating timestamped data.</p>
+<ul>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_ToSecondOfDayIndex"><code>ToSecondOfDayIndex()</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToSecondOfDayIndex(System.TimeZoneInfo)"><code>ToSecondOfDayIndex(TimeZoneInfo timeZone)</code></a></li>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_ToSecondOfWeekIndex"><code>ToSecondOfWeekIndex()</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToSecondOfWeekIndex(System.TimeZoneInfo)"><code>ToSecondOfWeekIndex(TimeZoneInfo timeZone)</code></a></li>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_ToMinuteOfDayIndex"><code>ToMinuteOfDayIndex()</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToMinuteOfDayIndex(System.TimeZoneInfo)"><code>ToMinuteOfDayIndex(TimeZoneInfo timeZone)</code></a></li>
+<li><a class="xref" href="../api/FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_ToMinuteOfWeekIndex"><code>ToMinuteOfWeekIndex()</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToMinuteOfWeekIndex(System.TimeZoneInfo)"><code>ToMinuteOfWeekIndex(TimeZoneInfo timeZone)</code></a></li>
+</ul>
+<pre><code class="lang-csharp">// example of one possible use of an index:
+// detecting when the timestamp has moved from one minute to the next
+int previousMinuteIndex = -1;
+foreach(TimeStamp time in someDataStream)
+{
+  int index = time.ToMinuteOfWeekIndex(someTimeZone);
+  if (index != prevousMinuteIndex)
+  {
+    // it's the first timestamp of a new minute
+    // do something 
+    previousMinuteIndex = index;
+  }
+}
+</code></pre>
+<h4 id="period-of-week-and-fixed-intervals">Period of week and fixed intervals</h4>
+<p>FinTech applications often need to compare data during a certain section of the week, eg 9am-10am on Monday morning, with data in the same period of the week in previous weeks. In particular, the application will need to make these calculations with sensitivity for timezone offset changes. The absolute time difference between 9am Monday from week to week might not always be exactly 7 x 24hrs due to timezone offset changes.</p>
+<p>The general concept of a &quot;period of week&quot; is that the week can be broken into a number of evenly-spaced intervals, such as 10min, 1hr, 4hr, etc, and that data can be aggregated into summaries for each interval. <code>periodLength</code> is the length of the interval, and <code>periodOffset</code> is an optional &quot;shift&quot; that you can use to adjust the start/end points of each interval. For example, if you want to divide the week into hourly intervals starting at half-past the hour, such as 9:30 to 10:30, you would use <code>periodLength=1hr</code> and <code>periodOffset=30min</code>.</p>
+<p>The following methods and their various overloads allow you to quickly correlate timestamps with the period of week that they fall within:</p>
+<ul>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekFloor(System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekFloor(TimeSpan periodLength, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekFloor(System.TimeSpan,System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekFloor(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekCeiling(System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekCeiling(TimeSpan periodLength, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekCeiling(System.TimeSpan,System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekCeiling(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekIndex(System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekIndex(TimeSpan periodLength, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToPeriodOfWeekIndex(System.TimeSpan,System.TimeSpan,System.TimeZoneInfo)"><code>ToPeriodOfWeekIndex(TimeSpan periodLength, TimeSpan periodOffset, TimeZoneInfo timeZone)</code></a></li>
+</ul>
+<p>There is a <a class="xref" href="../api/FFT.TimeStamps.PeriodOfWeekIterator.html"><code>PeriodOfWeekIterator</code></a> that allows you to track the period of the week when dealing with ascending chronological order timestamps.</p>
+<p>Similar to period of week, <strong>fixed intervals</strong> allow you to break time into evenly-spaced intervals that are defined by a particular &quot;start time&quot; and &quot;interval length&quot;.</p>
+<ul>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalFloor(FFT.TimeStamps.TimeStamp,System.TimeSpan)"><code>ToIntervalFloor(TimeStamp intervalStart, TimeSpan intervalLength)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalFloor(FFT.TimeStamps.TimeStamp,System.TimeSpan,System.TimeZoneInfo)"><code>ToIntervalFloor(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalCeiling(FFT.TimeStamps.TimeStamp,System.TimeSpan)"><code>ToIntervalCeiling(TimeStamp intervalStart, TimeSpan intervalLength)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalCeiling(FFT.TimeStamps.TimeStamp,System.TimeSpan,System.TimeZoneInfo)"><code>ToIntervalCeiling(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalIndex(FFT.TimeStamps.TimeStamp,System.TimeSpan)"><code>ToIntervalIndex(TimeStamp intervalStart, TimeSpan intervalLength)</code></a></li>
+<li><a href="xref:FFT.TimeStamps.TimeStamp.ToIntervalIndex(FFT.TimeStamps.TimeStamp,System.TimeSpan,System.TimeZoneInfo)"><code>ToIntervalIndex(TimeStamp intervalStart, TimeSpan intervalLength, TimeZoneInfo timeZone)</code></a></li>
+</ul>
+<pre><code class="lang-csharp">// example of one possible use of a period of week ceiling: 
+// aggregating data by the period of week, using the ceiling as a dictionary key
+var periodLength = TimeSpan.FromHours(1);
+foreach(var item in someDataFeed)
+{
+  var key = item.Time.ToPeriodOfWeekCeiling(periodLength, someTimeZone);
+  someDictionary[key] += item.value;
+}
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/docfx/articles/timestamp.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>

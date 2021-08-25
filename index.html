@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>FFT.TimeStamps </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="FFT.TimeStamps ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+    <style>    
+      .hljs { white-space: pre; overflow-x: auto; }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="ffttimestamps">FFT.TimeStamps</h1>
+
+<p><a href="https://github.com/FastFinTech/FFT.TimeStamps"><img src="https://img.shields.io/static/v1?style=flat&amp;label=&amp;message=Source%20Code&amp;logo=read-the-docs&amp;color=informational" alt="Source code"></a>
+<a href="https://nuget.org/packages/FFT.TimeStamps"><img src="https://img.shields.io/nuget/v/FFT.TimeStamps.svg" alt="NuGet package"></a>
+<a href="https://fastfintech.github.io/FFT.TimeStamps/"><img src="https://img.shields.io/static/v1?style=flat&amp;label=&amp;message=Documentation&amp;logo=read-the-docs&amp;color=green" alt="Full documentation"></a></p>
+<p>Use this library to get extremely fast timestamping with:</p>
+<ol>
+<li>Fast, unambiguous representation of exact times in multiple timezones.</li>
+<li>Fast comparisons of timestamps in multiple timezones.</li>
+<li>Fast arithmetic operations on timestamps.</li>
+<li>Fast timezone conversion.</li>
+<li>Fast, unambiguous timestamp serialization.</li>
+<li>A broad range of time calculation and comparison utilities that are particularly useful within FinTech applications.</li>
+</ol>
+<h3 id="brief-overview">Brief overview</h3>
+<ul>
+<li>The <a href="https://fastfintech.github.io/FFT.TimeStamps/api/FFT.TimeStamps.TimeStamp.html"><code>TimeStamp</code></a> represents an exact, unambiguous moment in time.</li>
+<li>The <a href="https://fastfintech.github.io/FFT.TimeStamps/api/FFT.TimeStamps.DateStamp.html"><code>DateStamp</code></a> represents a particular date.</li>
+<li>The <a href="https://fastfintech.github.io/FFT.TimeStamps/api/FFT.TimeStamps.MonthStamp.html"><code>MonthStamp</code></a> represents a particular month.</li>
+<li>The <a href="https://fastfintech.github.io/FFT.TimeStamps/api/FFT.TimeStamps.TimeOfWeek.html"><code>TimeOfWeek</code></a> represents a moment that occurs every week, 10am Monday, for example.</li>
+<li>The <a href="https://fastfintech.github.io/FFT.TimeStamps/articles/timezoneCalculator.html"><code>TimeZoneCalculator</code></a> provides extremely fast timezone conversions using cached conversion offset records.</li>
+<li>The various <a href="https://fastfintech.github.io/FFT.TimeStamps/articles/conversionIterators.html">Conversion iterators</a> provide the fastest-possible way to perform timezone conversions on a stream of chronological-order times. They are also the best way to transform streams of TimeStamp objects to DateTime or DateTimeOffset objects or vice versa.</li>
+</ul>
+<h3 id="background-information">Background information</h3>
+<p><code>FFT.TimeStamps</code> was developed in response to needs encountered whilst developing financial applications for exchanges and traders.</p>
+<p>Let's take for example a trading platform, which deals with time in at least these timezones simultaneously:</p>
+<ul>
+<li>The timezone that the user's computer is configured with.</li>
+<li>The timezone of the chart being displayed to the user.</li>
+<li>The timezone of each instrument's exchange.</li>
+<li>The timezone of each instrument's settlement time.</li>
+<li>The timezone of the trading session hours template applied to the chart.</li>
+<li>The timezone of the instrument's trading hours as defined by the exchange.</li>
+<li>The timezone in which historical market data is downloaded.</li>
+<li>The timezone used whilst storing market data to disk.</li>
+<li>The timezone of news events and other market events.</li>
+<li>The timezone of any custom session such as custom volume profile sessions.</li>
+<li>The timezone of exchange closures, particularly when the closure is only a partial day.</li>
+<li>The timezone used in data retrieved from external services.</li>
+<li>The timezone expected by external services consuming your data.</li>
+<li>etc.</li>
+</ul>
+<p>Trading applications, especially those residing on a server, typically process millions of exchange events every second. Each event comes with a timestamp, and the trading application must perform cross-timezone calculations and comparisons for EVERY single event that comes through the data feeds.</p>
+<h1 id="ffttimestamps">FFT.TimeStamps</h1>
+<p><a href="https://nuget.org/packages/FFT.TimeStamps"><img src="https://img.shields.io/nuget/v/FFT.TimeStamps.svg" alt="NuGet package"></a>
+<a href="https://github.com/FastFinTech/FFT.TimeStamps"><img src="https://img.shields.io/static/v1?style=flat&amp;label=&amp;message=Source%20code&amp;logo=read-the-docs&amp;color=informational" alt="Source code"></a></p>
+<p>Use this to get extremely fast timestamping with:</p>
+<ol>
+<li>Fast, unambiguous representation of exact times in multiple timezones.</li>
+<li>Fast comparisons of timestamps in multiple timezones.</li>
+<li>Fast arithmetic operations on timestamps.</li>
+<li>Fast timezone conversion.</li>
+<li>Fast, unambiguous timestamp serialization.</li>
+</ol>
+<h3 id="brief-overview">Brief overview</h3>
+<ul>
+<li>The <a class="xref" href="api/FFT.TimeStamps.TimeStamp.html"><code>TimeStamp</code></a> represents an exact, unambiguous moment in time.</li>
+<li>The <a class="xref" href="api/FFT.TimeStamps.DateStamp.html"><code>DateStamp</code></a> represents a particular date.</li>
+<li>The <a class="xref" href="api/FFT.TimeStamps.MonthStamp.html"><code>MonthStamp</code></a> represents a particular month.</li>
+<li>The <a class="xref" href="api/FFT.TimeStamps.TimeOfWeek.html"><code>TimeOfWeek</code></a> represents a moment that occurs every week, 10am Monday, for example.</li>
+<li>The <a class="xref" href="api/FFT.TimeStamps.TimeZoneCalculator.html"><code>TimeZoneCalculator</code></a> provides extremely fast timezone conversions using cached conversion offset records.</li>
+<li>The <a href="xref:FFT.TimeStamps.ITimeStampConversionIterator"><code>ITimeStampConversionIterator</code></a> provides the fastest possible way to convert a sequential stream of <code>DateTime</code> objects to their equivalent <code>TimeStamp</code>. You would use this when processing the data from an external data source.</li>
+<li>The <a class="xref" href="api/FFT.TimeStamps.ITimeZoneConversionIterator.html"><code>ITimeZoneConversionIterator</code></a> provides the fastest possible opposite-direction conversion of a sequential stream of <code>TimeStamp</code> objects to their equivalent <code>DateTime</code> or <code>DateTimeOffset</code> counterparts in a given timezone. You would use this when converting internal data to a traditional format expected by an external consumer.</li>
+</ul>
+<h3 id="background-information">Background information</h3>
+<p>This library was developed in response to needs encountered whilst developing financial applications for exchanges and traders.</p>
+<p>Let's take for example a trading platform, which deals with time in at least these timezones simultaneously:</p>
+<ul>
+<li>The timezone that the user's computer is configured with.</li>
+<li>The timezone of the chart being displayed to the user.</li>
+<li>The timezone of each instrument's exchange.</li>
+<li>The timezone of each instrument's settlement time.</li>
+<li>The timezone of the trading session template applied to the chart.</li>
+<li>The timezone of the instrument's trading hours as defined by the exchange.</li>
+<li>The timezone in which historical market data is downloaded.</li>
+<li>The timezone used whilst storing market data to disk.</li>
+<li>The timezone of news events and other market events.</li>
+<li>The timezone of any custom session such as custom volume profile sessions.</li>
+<li>The timezone used in data retrieved from external services.</li>
+<li>The timezone expected by external services consuming your data.</li>
+<li>etc.</li>
+</ul>
+<p>Trading applications, especially those residing on a server, typically process millions of exchange events every second. Each event comes with a timestamp attached, and the trading application must perform cross-timezone calculations and comparisons for EVERY single event that comes through the data feeds.</p>
+<p>Your application code becomes faster, simpler, and easier when you can boil every time expression down to a single paradigm with extremely fast comparison operators -- the <code>TimeStamp</code>.</p>
+<p>When you are able to express all events or moments in time with the ubiquitous <code>Timestamp</code> instead of the confusingly-timezoned <code>DateTime</code> objects, your comparisons/calculations become extremely fast and simple, and your code becomes very easy to read and maintain.</p>
+<p>For the relatively rare times that the <code>TimeStamp</code> must be displayed to the user as a formatted string, you can use its <code>ToString(&quot;format&quot;, timeZone)</code> method which performs the timezone conversion and string formatting for you.</p>
+<p>Timezone conversions are performed much faster in this library than using the conventional <code>TimeZoneInfo.Convert</code> methods. For extremely fast conversion of sequential-order timestamps, the <code>ConversionIterator</code> utilities are provided.</p>
+<p><strong>Converting to various timezones.</strong></p>
+<pre><code class="lang-csharp">TimeStamp someTimeStamp = TimeStamp.Now.AddHours(-200); // just a random time.
+DateTimeOffset utcOffset = someTimeStamp.AsUtc(); // Expressed in UTC timezone.
+DateTimeOffset localOffset = someTimeStamp.AsLocal(); // Expressed in local timezone.
+DateTimeOffset estOffset = someTimeStamp.As(Apex.TimeZones.TimeZoneReferences.EasternStandardTime); // Expressed in Eastern Standard timezone with daylight savings applied.
+</code></pre>
+<p><strong>Extremely rapid conversions</strong></p>
+<p>Since a lot of what is done in the trading platform is with sequentially-increasing timestamps, eg, a tick data stream, further optimization has been provided for forward-only sequential timezone conversion, both from a timestamp and to a timestamp, using the <code>SequentialConverterToDateTime</code> and <code>SequentialConverterToTimeStamp</code> objects.</p>
+<pre><code class="lang-csharp">/// Example of converting TimeStamps to DateTimes in the local time zone
+/// using the extremely-fast SequentialConverterToDateTime object, which 
+/// only works properly when the input TimeStamps are in ascending order.
+var converter = new SequentialConverterToDateTime(TimeZoneInfo.Local);
+foreach(var tick in tickStream) { 
+	var localTime = converter.Get(tick.TimeStamp); // VERY fast conversion
+}
+
+/// Reverse conversion example.
+var reverseConverter = new SequentialConverterToTimeStamp(TimeZoneInfo.Local);
+foreach(var dateTime in someStream) { 
+    var timeStamp = converter.Get(dateTime); // VERY fast conversion.
+}
+</code></pre>
+<h1 id="removing-ambiguity">Removing ambiguity</h1>
+<p><code>DateTime</code> objects create ambiguity and impossible times when passing sequentially through time.</p>
+<p>For example, when <em>Eastern Standard Time</em> daylight savings comes to an end at 2am, the clock flies back to 1am. Therefore, the time <code>1:30am</code> is <strong>ambiguous</strong>. It could refer to the either of two moments in real time. It's impossible to step a <code>DateTime</code> object sequentially through time, minute by minute or second by second during this ambiguous period, without making computational compensation for the issue.</p>
+<p>Additionally, when <em>Eastern Standard Time</em> daylight savings begins at 2am, the click flies forward to 3am. Therefore the time <code>2:30am</code> is <strong>impossible</strong> ... it never exists at all! But the <code>DateTime</code> object will happily step forward through impossible times without ever giving the using code any warning that the computational results are going to be wrong.</p>
+<p>On the other hand, a <code>TimeStamp</code> object can be stepped sequentially though all of time without any kind of confusion.</p>
+<pre><code class="lang-csharp">var est = TimeZoneInfo.FindSystemTimeZoneById(&quot;Eastern Standard Time&quot;);
+var start = new TimeStamp(new DateTime(2019, 3, 10, 2, 0, 0, DateTimeKind.Utc).Ticks, est); // At 2am, the clock flies forward to 3am
+var end = new TimeStamp(new DateTime(2019, 11, 3, 2, 0, 0, DateTimeKind.Utc).Ticks, est); // At 2am, the clock flies backward to 1am.
+var start = TimeStamp.Now.ToAbsoluteMinuteFloor();
+var end = TimeStamp.AddAbsoluteDays(10);
+for(var time = start; time &lt;= end; time = time.AddAbsoluteMinutes(1)) { 
+    // Do something with an unambiguous moment in time.
+    // In this example, the console output would clearly show repeated (ambiguous) times as well as skipped (impossible) times.
+    Console.WriteLine(time.As(est).ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+}
+</code></pre>
+<h1 id="solving-serialization-issues">Solving serialization issues</h1>
+<p>Another issue solved by the <code>TimeStamp</code> is the issue of serialization and deserialization. JSON itself doesn't have a well-defined standard for DateTimes, and this leads to difficulty with interpretation of the <code>DateTime.Kind</code> property. A <code>DateTime</code> serialized as utc can appear on the destination computer with <code>Kind</code> property set to <code>Local</code>, leading to unexpected behaviours. This is just one of many examples of DateTime serialization failing us because of the ambiguity of the <code>DateTime</code> object.</p>
+<p>For example, a <code>DateTime</code> object with <code>Kind == Utc</code> might be serialized by a server as <code>2020-05-20T00:00:00+00.00</code>, and appear when deserialized as a <code>DateTime</code> object with a value of <code>2020-05-19T20:00:00-04:00</code> and <code>Kind == Local</code>. This kind of thing has caused issues many times due to its unexpected nature and the intended use of the deserialized object.</p>
+<p>For <code>DateTime</code> serialization to work as intended, developers must be extremely careful about setting up serialization/deserialization settings on both ends of the communication, and make sure that tests are setup to fail to prevent future coders from accidentally breaking things when they adjust serializer settings for some totally unrelated purpose. For <code>TimeStamp</code> serialization to work as intended, NOTHING needs to be done. It just works perfectly.</p>
+<p><code>TimeStamps</code> are not ambiguous, and they serialize exactly. They also serialize to perfect resolution (the tick, one ten-millionth of a second), unlike the <code>DateTime</code>, which serializes usually only to the millisecond or worse, depending on serializer settings.</p>
+<h1 id="datestamp-and-monthstamp">DateStamp and MonthStamp</h1>
+<p>The <code>DateStamp</code> and <code>MonthStamp</code> are intended to remove ambiguity when expressing a date or a month that is not a moment in time, but a particular date or month in the Gregorian calendar. Using these objects prevents bugs caused by many factors not limited to serialization/deserialization ambiguity, individual PC locale settings, and programmer confusion.</p>
+<h1 id="other-ways-the-library-improved-using-code">Other ways the library improved using code.</h1>
+<p>Before I introduced this object to the toolkit, our trading platform objects were each plastered with multiple <code>DateTime</code> properties, each property expressing the same moment in a different timezone. It was horrible to read, code, and maintain, and program execution was much slower.</p>
+<p>Using the <code>TimesStamp</code>, we have made our time-related code now easier to read and maintain. Program execution is also much faster, since we are dealing with streams of millions of time-related objects such as market tick data, and performing time comparisons on each of them as they are processed.</p>
+<h1 id="see-also">See also</h1>
+<p>NodaTime is a very good library written by the famous John Skeet.
+<code>TimeStamp</code> objects suit the trading platform's requirements better though.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/docfx/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>

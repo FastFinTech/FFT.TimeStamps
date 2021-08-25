@@ -1,0 +1,2274 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct DateStamp
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct DateStamp
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+    <style>    
+      .hljs { white-space: pre; overflow-x: auto; }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FFT.TimeStamps.DateStamp">
+  
+  
+  <h1 id="FFT_TimeStamps_DateStamp" data-uid="FFT.TimeStamps.DateStamp" class="text-break">Struct DateStamp
+  </h1>
+  <div class="markdown level0 summary"><p>Use this class to specify a particular date in the Gregorian calendar.
+Its intent to to be very clear that it represents a DATE, and not a moment in time,
+and to properly serialize and deserialize as such without the influence of timezone conversions.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>&gt;</div>
+    <div><span class="xref">IComparable</span>&lt;<a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>&gt;</div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FFT.TimeStamps.html">FFT.TimeStamps</a></h6>
+  <h6><strong>Assembly</strong>: FFT.TimeStamps.dll</h6>
+  <h5 id="FFT_TimeStamps_DateStamp_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct DateStamp : IEquatable&lt;DateStamp&gt;, IComparable&lt;DateStamp&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp__ctor_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L61">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp__ctor_" data-uid="FFT.TimeStamps.DateStamp.#ctor*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp__ctor_System_Int32_System_Int32_System_Int32_" data-uid="FFT.TimeStamps.DateStamp.#ctor(System.Int32,System.Int32,System.Int32)">DateStamp(Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp(int year, int month, int day)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">year</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">month</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">day</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_DateTime.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.DateTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L55">View Source</a>
+  </span>
+  <h4 id="FFT_TimeStamps_DateStamp_DateTime" data-uid="FFT.TimeStamps.DateStamp.DateTime">DateTime</h4>
+  <div class="markdown level1 summary"><p>A <a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_DateTime">DateTime</a> set at exactly midnight of the day represented by this <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>.
+Its <see cref="!:DateTime.Kind"></see> property is set equal to <see cref="!:DateTimeKind.Utc"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly DateTime DateTime</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_MaxValue.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.MaxValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L49">View Source</a>
+  </span>
+  <h4 id="FFT_TimeStamps_DateStamp_MaxValue" data-uid="FFT.TimeStamps.DateStamp.MaxValue">MaxValue</h4>
+  <div class="markdown level1 summary"><p>Maximum possible <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> value of 9999-12-31.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DateStamp MaxValue</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_MinValue.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.MinValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L44">View Source</a>
+  </span>
+  <h4 id="FFT_TimeStamps_DateStamp_MinValue" data-uid="FFT.TimeStamps.DateStamp.MinValue">MinValue</h4>
+  <div class="markdown level1 summary"><p>Minimum possible <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> value of 0001-01-01.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DateStamp MinValue</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Day.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Day%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L102">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Day_" data-uid="FFT.TimeStamps.DateStamp.Day*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Day" data-uid="FFT.TimeStamps.DateStamp.Day">Day</h4>
+  <div class="markdown level1 summary"><p>Gets the day component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Day { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_DayOfWeek.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.DayOfWeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L111">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_DayOfWeek_" data-uid="FFT.TimeStamps.DateStamp.DayOfWeek*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_DayOfWeek" data-uid="FFT.TimeStamps.DateStamp.DayOfWeek">DayOfWeek</h4>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_DayOfWeek">DayOfWeek</a> component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DayOfWeek DayOfWeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DayOfWeek</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Month.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Month%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L93">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Month_" data-uid="FFT.TimeStamps.DateStamp.Month*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Month" data-uid="FFT.TimeStamps.DateStamp.Month">Month</h4>
+  <div class="markdown level1 summary"><p>Gets the month component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Month { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="FFT_TimeStamps_DateStamp_Month_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_MonthStamp">MonthStamp</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_MonthStamp.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.MonthStamp%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L121">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_MonthStamp_" data-uid="FFT.TimeStamps.DateStamp.MonthStamp*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_MonthStamp" data-uid="FFT.TimeStamps.DateStamp.MonthStamp">MonthStamp</h4>
+  <div class="markdown level1 summary"><p>Gets the month component of the current value as a <a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_MonthStamp">MonthStamp</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MonthStamp MonthStamp { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.MonthStamp.html">MonthStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="FFT_TimeStamps_DateStamp_MonthStamp_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_Month">Month</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_UtcToday.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.UtcToday%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L74">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_UtcToday_" data-uid="FFT.TimeStamps.DateStamp.UtcToday*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_UtcToday" data-uid="FFT.TimeStamps.DateStamp.UtcToday">UtcToday</h4>
+  <div class="markdown level1 summary"><p>Gets the current date in Utc timezone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp UtcToday { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Year.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Year%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L83">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Year_" data-uid="FFT.TimeStamps.DateStamp.Year*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Year" data-uid="FFT.TimeStamps.DateStamp.Year">Year</h4>
+  <div class="markdown level1 summary"><p>Gets the year component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Year { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_AddDays_System_Int32_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.AddDays(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L236">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_AddDays_" data-uid="FFT.TimeStamps.DateStamp.AddDays*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_AddDays_System_Int32_" data-uid="FFT.TimeStamps.DateStamp.AddDays(System.Int32)">AddDays(Int32)</h4>
+  <div class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">numDays</code> to the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp AddDays(int numDays)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">numDays</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_AddMonths_System_Int32_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.AddMonths(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L243">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_AddMonths_" data-uid="FFT.TimeStamps.DateStamp.AddMonths*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_AddMonths_System_Int32_" data-uid="FFT.TimeStamps.DateStamp.AddMonths(System.Int32)">AddMonths(Int32)</h4>
+  <div class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">numMonths</code> to the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp AddMonths(int numMonths)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">numMonths</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_AddYears_System_Int32_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.AddYears(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L250">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_AddYears_" data-uid="FFT.TimeStamps.DateStamp.AddYears*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_AddYears_System_Int32_" data-uid="FFT.TimeStamps.DateStamp.AddYears(System.Int32)">AddYears(Int32)</h4>
+  <div class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">numYears</code> to the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp AddYears(int numYears)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">numYears</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_CompareTo_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.CompareTo(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L320">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_CompareTo_" data-uid="FFT.TimeStamps.DateStamp.CompareTo*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_CompareTo_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.CompareTo(FFT.TimeStamps.DateStamp)">CompareTo(DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(DateStamp other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_CreateFrom_DateTime_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.CreateFrom(DateTime)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L184">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_CreateFrom_" data-uid="FFT.TimeStamps.DateStamp.CreateFrom*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_CreateFrom_DateTime_" data-uid="FFT.TimeStamps.DateStamp.CreateFrom(DateTime)">CreateFrom(DateTime)</h4>
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> from the given <code data-dev-comment-type="paramref" class="paramref">date</code> parameter.
+Compute intensive. Do not use in hot path.
+<code data-dev-comment-type="paramref" class="paramref">date</code> must be a <a class="xref" href="FFT.TimeStamps.DateStamp.html#FFT_TimeStamps_DateStamp_DateTime">DateTime</a> with
+a) <see cref="!:DateTime.Kind"></see> equal to <see cref="!:DateTimeKind.Utc"></see>,
+b) <see cref="!:DateTime.TimeOfDay"></see> equal to <see cref="!:TimeSpan.Zero"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp CreateFrom(DateTime date)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">date</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Equals_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Equals(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L310">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Equals_" data-uid="FFT.TimeStamps.DateStamp.Equals*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Equals_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.Equals(FFT.TimeStamps.DateStamp)">Equals(DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(DateStamp other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Equals_System_Object_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L305">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Equals_" data-uid="FFT.TimeStamps.DateStamp.Equals*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Equals_System_Object_" data-uid="FFT.TimeStamps.DateStamp.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_FromString_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.FromString(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L146">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_FromString_" data-uid="FFT.TimeStamps.DateStamp.FromString*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_FromString_ReadOnlySpan_System_Char__" data-uid="FFT.TimeStamps.DateStamp.FromString(ReadOnlySpan{System.Char})">FromString(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parses a <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> from the format 'yyyy-MM-dd'.
+Compute intensive. Do not use in hot path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp FromString(ReadOnlySpan&lt;char&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_FromString_System_String_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.FromString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L133">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_FromString_" data-uid="FFT.TimeStamps.DateStamp.FromString*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_FromString_System_String_" data-uid="FFT.TimeStamps.DateStamp.FromString(System.String)">FromString(String)</h4>
+  <div class="markdown level1 summary"><p>Parses a <a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a> from the format 'yyyy-MM-dd'.
+Compute intensive. Do not use in hot path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp FromString(string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetDaysSince_DayOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetDaysSince(DayOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L274">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetDaysSince_" data-uid="FFT.TimeStamps.DateStamp.GetDaysSince*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetDaysSince_DayOfWeek_" data-uid="FFT.TimeStamps.DateStamp.GetDaysSince(DayOfWeek)">GetDaysSince(DayOfWeek)</h4>
+  <div class="markdown level1 summary"><p>Calculates the number of days that have elapsed between the current value and the most recent occurence of <code data-dev-comment-type="paramref" class="paramref">dayOfWeek</code>.
+The result can range from 0 to 6.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetDaysSince(DayOfWeek dayOfWeek)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DayOfWeek</span></td>
+        <td><span class="parametername">dayOfWeek</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetDaysSince_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetDaysSince(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L258">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetDaysSince_" data-uid="FFT.TimeStamps.DateStamp.GetDaysSince*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetDaysSince_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.GetDaysSince(FFT.TimeStamps.DateStamp)">GetDaysSince(DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Calculates the difference between the current value and <code data-dev-comment-type="paramref" class="paramref">other</code>.
+The result is a positive value if the current value is greater than <code data-dev-comment-type="paramref" class="paramref">other</code>, negative otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetDaysSince(DateStamp other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetDaysUntil_DayOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetDaysUntil(DayOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L285">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetDaysUntil_" data-uid="FFT.TimeStamps.DateStamp.GetDaysUntil*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetDaysUntil_DayOfWeek_" data-uid="FFT.TimeStamps.DateStamp.GetDaysUntil(DayOfWeek)">GetDaysUntil(DayOfWeek)</h4>
+  <div class="markdown level1 summary"><p>Calculates the number of days that will pass from the current value until the soonest occurence of <code data-dev-comment-type="paramref" class="paramref">dayOfWeek</code>.
+The result can range from 0 to 6.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetDaysUntil(DayOfWeek dayOfWeek)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DayOfWeek</span></td>
+        <td><span class="parametername">dayOfWeek</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetDaysUntil_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetDaysUntil(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L266">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetDaysUntil_" data-uid="FFT.TimeStamps.DateStamp.GetDaysUntil*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetDaysUntil_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.GetDaysUntil(FFT.TimeStamps.DateStamp)">GetDaysUntil(DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Calculates the difference between the current value and <code data-dev-comment-type="paramref" class="paramref">other</code>.
+The result is a positive value if the current value is less than <code data-dev-comment-type="paramref" class="paramref">other</code>, negative otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetDaysUntil(DateStamp other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetEndTime.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetEndTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L225">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetEndTime_" data-uid="FFT.TimeStamps.DateStamp.GetEndTime*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetEndTime" data-uid="FFT.TimeStamps.DateStamp.GetEndTime">GetEndTime()</h4>
+  <div class="markdown level1 summary"><p>Gets the moment at the end of the day (midnight of the following day) in
+UTC timezone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStamp GetEndTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetEndTime_TimeZoneInfo_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetEndTime(TimeZoneInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L231">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetEndTime_" data-uid="FFT.TimeStamps.DateStamp.GetEndTime*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetEndTime_TimeZoneInfo_" data-uid="FFT.TimeStamps.DateStamp.GetEndTime(TimeZoneInfo)">GetEndTime(TimeZoneInfo)</h4>
+  <div class="markdown level1 summary"><p>Gets the moment at the end of the day (midnight of the following day) in
+the given <code data-dev-comment-type="paramref" class="paramref">timeZone</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStamp GetEndTime(TimeZoneInfo timeZone)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeZoneInfo</span></td>
+        <td><span class="parametername">timeZone</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetHashCode.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L315">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetHashCode_" data-uid="FFT.TimeStamps.DateStamp.GetHashCode*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetHashCode" data-uid="FFT.TimeStamps.DateStamp.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetStartTime.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetStartTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L213">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetStartTime_" data-uid="FFT.TimeStamps.DateStamp.GetStartTime*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetStartTime" data-uid="FFT.TimeStamps.DateStamp.GetStartTime">GetStartTime()</h4>
+  <div class="markdown level1 summary"><p>Gets the moment at the beginning of the day (midnight) in UTC timezone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStamp GetStartTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_GetStartTime_TimeZoneInfo_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.GetStartTime(TimeZoneInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L219">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_GetStartTime_" data-uid="FFT.TimeStamps.DateStamp.GetStartTime*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_GetStartTime_TimeZoneInfo_" data-uid="FFT.TimeStamps.DateStamp.GetStartTime(TimeZoneInfo)">GetStartTime(TimeZoneInfo)</h4>
+  <div class="markdown level1 summary"><p>Gets the moment at the beginning of the day (midnight) in the given
+<code data-dev-comment-type="paramref" class="paramref">timeZone</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStamp GetStartTime(TimeZoneInfo timeZone)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeZoneInfo</span></td>
+        <td><span class="parametername">timeZone</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_IsWeekend.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.IsWeekend%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L357">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_IsWeekend_" data-uid="FFT.TimeStamps.DateStamp.IsWeekend*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_IsWeekend" data-uid="FFT.TimeStamps.DateStamp.IsWeekend">IsWeekend()</h4>
+  <div class="markdown level1 summary"><p>Returns true if the current value is a Saturday or Sunday, false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWeekend()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Max_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Max(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L432">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Max_" data-uid="FFT.TimeStamps.DateStamp.Max*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Max_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.Max(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">Max(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Returns the maximum of the given values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp Max(DateStamp v1, DateStamp v2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">v1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">v2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Max_FFT_TimeStamps_DateStamp___.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Max(FFT.TimeStamps.DateStamp%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L440">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Max_" data-uid="FFT.TimeStamps.DateStamp.Max*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Max_FFT_TimeStamps_DateStamp___" data-uid="FFT.TimeStamps.DateStamp.Max(FFT.TimeStamps.DateStamp[])">Max(DateStamp[])</h4>
+  <div class="markdown level1 summary"><p>Returns the maximum of the given values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp Max(params DateStamp[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Min_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Min(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L408">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Min_" data-uid="FFT.TimeStamps.DateStamp.Min*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Min_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.Min(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">Min(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Returns the minimum of the given values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp Min(DateStamp v1, DateStamp v2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">v1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">v2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Min_FFT_TimeStamps_DateStamp___.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Min(FFT.TimeStamps.DateStamp%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L416">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Min_" data-uid="FFT.TimeStamps.DateStamp.Min*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Min_FFT_TimeStamps_DateStamp___" data-uid="FFT.TimeStamps.DateStamp.Min(FFT.TimeStamps.DateStamp[])">Min(DateStamp[])</h4>
+  <div class="markdown level1 summary"><p>Returns the minimum of the given values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp Min(params DateStamp[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_OrValueIfGreater_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.OrValueIfGreater(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L463">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_OrValueIfGreater_" data-uid="FFT.TimeStamps.DateStamp.OrValueIfGreater*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_OrValueIfGreater_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.OrValueIfGreater(FFT.TimeStamps.DateStamp)">OrValueIfGreater(DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Returns the greater of the two datestamps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp OrValueIfGreater(DateStamp d)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">d</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_OrValueIfLesser_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.OrValueIfLesser(FFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L456">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_OrValueIfLesser_" data-uid="FFT.TimeStamps.DateStamp.OrValueIfLesser*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_OrValueIfLesser_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.OrValueIfLesser(FFT.TimeStamps.DateStamp)">OrValueIfLesser(DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Returns the lesser of the two datestamps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp OrValueIfLesser(DateStamp d)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">d</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Range_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Range(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L165">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Range_" data-uid="FFT.TimeStamps.DateStamp.Range*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Range_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.Range(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">Range(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that yields each date in the range <code data-dev-comment-type="paramref" class="paramref">from</code> until <code data-dev-comment-type="paramref" class="paramref">to</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;DateStamp&gt; Range(DateStamp from, DateStamp to)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">from</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">to</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingBackward_IEnumerable_FFT_TimeStamps_DateStamp__.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingBackward(IEnumerable%7BFFT.TimeStamps.DateStamp%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L385">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingBackward_" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingBackward*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingBackward_IEnumerable_FFT_TimeStamps_DateStamp__" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingBackward(IEnumerable{FFT.TimeStamps.DateStamp})">SkipWeekendAndTheseDatesMovingBackward(IEnumerable&lt;DateStamp&gt;)</h4>
+  <div class="markdown level1 summary"><p>If the current value a weekday and not contained by <code data-dev-comment-type="paramref" class="paramref">datesToSkip</code>, it will be returned.
+Otherise, the most recent weekday in the past that is not contained by <code data-dev-comment-type="paramref" class="paramref">datesToSkip</code> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp SkipWeekendAndTheseDatesMovingBackward(IEnumerable&lt;DateStamp&gt; datesToSkip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>&gt;</td>
+        <td><span class="parametername">datesToSkip</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingForward_IEnumerable_FFT_TimeStamps_DateStamp__.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingForward(IEnumerable%7BFFT.TimeStamps.DateStamp%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L365">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingForward_" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingForward*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_SkipWeekendAndTheseDatesMovingForward_IEnumerable_FFT_TimeStamps_DateStamp__" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendAndTheseDatesMovingForward(IEnumerable{FFT.TimeStamps.DateStamp})">SkipWeekendAndTheseDatesMovingForward(IEnumerable&lt;DateStamp&gt;)</h4>
+  <div class="markdown level1 summary"><p>If the current value a weekday and not contained by <code data-dev-comment-type="paramref" class="paramref">datesToSkip</code>, it will be returned.
+Otherise, the first weekday in the future that is not contained by <code data-dev-comment-type="paramref" class="paramref">datesToSkip</code> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp SkipWeekendAndTheseDatesMovingForward(IEnumerable&lt;DateStamp&gt; datesToSkip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a>&gt;</td>
+        <td><span class="parametername">datesToSkip</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_SkipWeekendMovingBackward.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.SkipWeekendMovingBackward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L345">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_SkipWeekendMovingBackward_" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendMovingBackward*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_SkipWeekendMovingBackward" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendMovingBackward">SkipWeekendMovingBackward()</h4>
+  <div class="markdown level1 summary"><p>If the current value is a weekday, it will be returned unchanged.
+Otherwise, the most recent weekday in the past (a Friday) will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp SkipWeekendMovingBackward()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_SkipWeekendMovingForward.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.SkipWeekendMovingForward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L332">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_SkipWeekendMovingForward_" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendMovingForward*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_SkipWeekendMovingForward" data-uid="FFT.TimeStamps.DateStamp.SkipWeekendMovingForward">SkipWeekendMovingForward()</h4>
+  <div class="markdown level1 summary"><p>If the current value is a weekday, it will be returned unchanged.
+Otherwise, the first weekday in the future (a Monday) will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp SkipWeekendMovingForward()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_Today_TimeZoneInfo_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.Today(TimeZoneInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L196">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_Today_" data-uid="FFT.TimeStamps.DateStamp.Today*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_Today_TimeZoneInfo_" data-uid="FFT.TimeStamps.DateStamp.Today(TimeZoneInfo)">Today(TimeZoneInfo)</h4>
+  <div class="markdown level1 summary"><p>Gets the current date in the <code data-dev-comment-type="paramref" class="paramref">timeZone</code> given.
+Compute intensive. Do not use in hot path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateStamp Today(TimeZoneInfo timeZone)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeZoneInfo</span></td>
+        <td><span class="parametername">timeZone</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_ToString.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L203">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_ToString_" data-uid="FFT.TimeStamps.DateStamp.ToString*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_ToString" data-uid="FFT.TimeStamps.DateStamp.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Expresses the value in the format 'yyyy-MM-dd'.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_ToWeekFloor.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.ToWeekFloor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L296">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_ToWeekFloor_" data-uid="FFT.TimeStamps.DateStamp.ToWeekFloor*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_ToWeekFloor" data-uid="FFT.TimeStamps.DateStamp.ToWeekFloor">ToWeekFloor()</h4>
+  <div class="markdown level1 summary"><p>Returns the Sunday at the beginning of the week.
+The same value is returned if the value is already Sunday.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateStamp ToWeekFloor()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_Equality_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_Equality(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L473">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_Equality_" data-uid="FFT.TimeStamps.DateStamp.op_Equality*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_Equality_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_Equality(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">Equality(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_GreaterThan_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_GreaterThan(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L481">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_GreaterThan_" data-uid="FFT.TimeStamps.DateStamp.op_GreaterThan*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_GreaterThan_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_GreaterThan(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">GreaterThan(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_GreaterThanOrEqual_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_GreaterThanOrEqual(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L489">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_GreaterThanOrEqual_" data-uid="FFT.TimeStamps.DateStamp.op_GreaterThanOrEqual*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_GreaterThanOrEqual_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_GreaterThanOrEqual(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">GreaterThanOrEqual(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_Inequality_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_Inequality(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L477">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_Inequality_" data-uid="FFT.TimeStamps.DateStamp.op_Inequality*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_Inequality_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_Inequality(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">Inequality(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_LessThan_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_LessThan(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L485">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_LessThan_" data-uid="FFT.TimeStamps.DateStamp.op_LessThan*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_LessThan_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_LessThan(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">LessThan(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp_op_LessThanOrEqual_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp.op_LessThanOrEqual(FFT.TimeStamps.DateStamp%2CFFT.TimeStamps.DateStamp)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L493">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_DateStamp_op_LessThanOrEqual_" data-uid="FFT.TimeStamps.DateStamp.op_LessThanOrEqual*"></a>
+  <h4 id="FFT_TimeStamps_DateStamp_op_LessThanOrEqual_FFT_TimeStamps_DateStamp_FFT_TimeStamps_DateStamp_" data-uid="FFT.TimeStamps.DateStamp.op_LessThanOrEqual(FFT.TimeStamps.DateStamp,FFT.TimeStamps.DateStamp)">LessThanOrEqual(DateStamp, DateStamp)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(DateStamp left, DateStamp right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IComparable&lt;&gt;</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_DateStamp.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.DateStamp%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/DateStamp.cs/#L469" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace FFT.TimeStamps
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace FFT.TimeStamps
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+    <style>    
+      .hljs { white-space: pre; overflow-x: auto; }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FFT.TimeStamps">
+  
+  <h1 id="FFT_TimeStamps" data-uid="FFT.TimeStamps" class="text-break">Namespace FFT.TimeStamps
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="FFT.TimeStamps.ConversionIterators.html">ConversionIterators</a></h4>
+      <section><p>Provides methods for creating <a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html">ITimeZoneConversionIterator</a> and <a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html">IToTimeStampConversionIterator</a>.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.DateTimes.html">DateTimes</a></h4>
+      <section><p>Contains methods for manipulating <see cref="!:DateTime"></see> values.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.PeriodOfTime.html">PeriodOfTime</a></h4>
+      <section><p>Represents the beginning and end of a time period.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.PeriodOfWeekIterator.html">PeriodOfWeekIterator</a></h4>
+      <section><p>This class allows you to keep track of the current time in terms of &quot;periods of the week&quot; in a specific timezone.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.Ticks.html">Ticks</a></h4>
+      <section><p>Contains methods for manipulating time when it is represented in ticks (ten-millionths of a second).</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeStamp.TimeStampJsonConverter.html">TimeStamp.TimeStampJsonConverter</a></h4>
+      <section><p>This is the default <see cref="!:System.Text.Json.Serialization.JsonConverter"></see> for the TimeStamp.
+It represents the <a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a> in json text as an <see cref="!:System.Int64"></see> containing the <a class="xref" href="FFT.TimeStamps.TimeStamp.html#FFT_TimeStamps_TimeStamp_TicksUtc">TicksUtc</a> value.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeZoneCalculator.html">TimeZoneCalculator</a></h4>
+      <section><p>Use this class to get extremely fast timezone conversion data.
+see <a href="xref:article-timezonecalculator">Article</a>.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeZoneCalculator.TimeZoneSegment.html">TimeZoneCalculator.TimeZoneSegment</a></h4>
+      <section><p>Represents a period of time in which a particular timezone has a consistent properties such as offset from UTC, ambiguity and validity.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="FFT.TimeStamps.DateStamp.html">DateStamp</a></h4>
+      <section><p>Use this class to specify a particular date in the Gregorian calendar.
+Its intent to to be very clear that it represents a DATE, and not a moment in time,
+and to properly serialize and deserialize as such without the influence of timezone conversions.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.MonthStamp.html">MonthStamp</a></h4>
+      <section><p>Use this class to specify a particular month in the Gregorian calendar.
+Its intent to to be very clear that it is a MONTH, and not a moment in time,
+and to properly serialize and deserialize as such without the influence of timezone conversions.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></h4>
+      <section><p>Expresses a day and time as a point in the week.
+Comparison operators assume the beginning of the week is midnight, Sunday.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a></h4>
+      <section><p>Use this to get extremely fast timestamping when:</p>
+<ol>
+<li>Your primary purpose is fast, efficient storage of exact times, across multiple timezones.</li>
+<li>You run very frequent comparisons of timestamps, possibly as a way of comparing across multiple timezones.</li>
+<li>You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive).</li>
+</ol>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="FFT.TimeStamps.IFromTimeStampConversionIterator.html">IFromTimeStampConversionIterator</a></h4>
+      <section><p>Provides the <a class="xref" href="FFT.TimeStamps.IFromTimeStampConversionIterator.html#FFT_TimeStamps_IFromTimeStampConversionIterator_DifferenceTicks">DifferenceTicks</a> used to convert from a <a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a> to <a class="xref" href="FFT.TimeStamps.IFromTimeStampConversionIterator.html#FFT_TimeStamps_IFromTimeStampConversionIterator_ToTimeZone">ToTimeZone</a>
+at the time given in the last call to <a class="xref" href="FFT.TimeStamps.IFromTimeStampConversionIterator.html#FFT_TimeStamps_IFromTimeStampConversionIterator_MoveTo_System_Int64_">MoveTo(Int64)</a>.
+Also provides methods to directly convert a <a class="xref" href="FFT.TimeStamps.TimeStamp.html">TimeStamp</a> to a <see cref="!:DateTime"></see> or <see cref="!:DateTimeOffset"></see>.
+IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html">ITimeZoneConversionIterator</a></h4>
+      <section><p>Provides the <a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html#FFT_TimeStamps_ITimeZoneConversionIterator_DifferenceTicks">DifferenceTicks</a> used to convert from <a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html#FFT_TimeStamps_ITimeZoneConversionIterator_FromTimeZone">FromTimeZone</a> to <a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html#FFT_TimeStamps_ITimeZoneConversionIterator_ToTimeZone">ToTimeZone</a>
+at the time given in the last call to <a class="xref" href="FFT.TimeStamps.ITimeZoneConversionIterator.html#FFT_TimeStamps_ITimeZoneConversionIterator_MoveTo_System_Int64_">MoveTo(Int64)</a>.
+IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.</p>
+</section>
+      <h4><a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html">IToTimeStampConversionIterator</a></h4>
+      <section><p>Provides the <a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html#FFT_TimeStamps_IToTimeStampConversionIterator_DifferenceTicks">DifferenceTicks</a> used to convert from <a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html#FFT_TimeStamps_IToTimeStampConversionIterator_FromTimeZone">FromTimeZone</a> to Utc timezone
+at the time given in the last call to <a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html#FFT_TimeStamps_IToTimeStampConversionIterator_MoveTo_System_Int64_">MoveTo(Int64)</a>.
+Also provides the direct <a class="xref" href="FFT.TimeStamps.IToTimeStampConversionIterator.html#FFT_TimeStamps_IToTimeStampConversionIterator_GetTimeStamp_System_Int64_">GetTimeStamp(Int64)</a> method.
+IMPORTANT!! Inputs must be in SEQUENTIAL ascending chronological order to get correct results from a conversion iterator.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="FFT.TimeStamps.TimeKind.html">TimeKind</a></h4>
+      <section><p>Use this to indicate whether time is being expressed in the utc timezone or some other specific (known) timezone.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>

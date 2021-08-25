@@ -1,0 +1,1095 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct TimeOfWeek
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct TimeOfWeek
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script> 
+    <style>    
+      .hljs { white-space: pre; overflow-x: auto; }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FFT.TimeStamps.TimeOfWeek">
+  
+  
+  <h1 id="FFT_TimeStamps_TimeOfWeek" data-uid="FFT.TimeStamps.TimeOfWeek" class="text-break">Struct TimeOfWeek
+  </h1>
+  <div class="markdown level0 summary"><p>Expresses a day and time as a point in the week.
+Comparison operators assume the beginning of the week is midnight, Sunday.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a>&gt;</div>
+    <div><span class="xref">IComparable</span>&lt;<a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a>&gt;</div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FFT.TimeStamps.html">FFT.TimeStamps</a></h6>
+  <h6><strong>Assembly</strong>: FFT.TimeStamps.dll</h6>
+  <h5 id="FFT_TimeStamps_TimeOfWeek_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct TimeOfWeek : IEquatable&lt;TimeOfWeek&gt;, IComparable&lt;TimeOfWeek&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek__ctor_DayOfWeek_TimeSpan_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.%23ctor(DayOfWeek%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L35">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek__ctor_" data-uid="FFT.TimeStamps.TimeOfWeek.#ctor*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek__ctor_DayOfWeek_TimeSpan_" data-uid="FFT.TimeStamps.TimeOfWeek.#ctor(DayOfWeek,TimeSpan)">TimeOfWeek(DayOfWeek, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeOfWeek(DayOfWeek dayOfWeek, TimeSpan timeOfDay)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DayOfWeek</span></td>
+        <td><span class="parametername">dayOfWeek</span></td>
+        <td><p>The day of week for this value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">timeOfDay</span></td>
+        <td><p>The tine of day for this value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek__ctor_System_Int64_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.%23ctor(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L22">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek__ctor_" data-uid="FFT.TimeStamps.TimeOfWeek.#ctor*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek__ctor_System_Int64_" data-uid="FFT.TimeStamps.TimeOfWeek.#ctor(System.Int64)">TimeOfWeek(Int64)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeOfWeek(long ticksSinceWeekFloor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">ticksSinceWeekFloor</span></td>
+        <td><p>The number of ticks (ten-millionths of a second) since midnight, Sunday.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_DayOfWeek.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.DayOfWeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L55">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_DayOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.DayOfWeek*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_DayOfWeek" data-uid="FFT.TimeStamps.TimeOfWeek.DayOfWeek">DayOfWeek</h4>
+  <div class="markdown level1 summary"><p>Gets the day of week component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DayOfWeek DayOfWeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DayOfWeek</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_EndOfWeek.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.EndOfWeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L45">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_EndOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.EndOfWeek*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_EndOfWeek" data-uid="FFT.TimeStamps.TimeOfWeek.EndOfWeek">EndOfWeek</h4>
+  <div class="markdown level1 summary"><p>Special value that represents the end of the week, or the beginning of the next week.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeOfWeek EndOfWeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_IsEndOfWeek.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.IsEndOfWeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L73">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_IsEndOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.IsEndOfWeek*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_IsEndOfWeek" data-uid="FFT.TimeStamps.TimeOfWeek.IsEndOfWeek">IsEndOfWeek</h4>
+  <div class="markdown level1 summary"><p>Returns true if this value is equal to the special <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html#FFT_TimeStamps_TimeOfWeek_EndOfWeek">EndOfWeek</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEndOfWeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_TicksSinceWeekFloor.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.TicksSinceWeekFloor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L50">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_TicksSinceWeekFloor_" data-uid="FFT.TimeStamps.TimeOfWeek.TicksSinceWeekFloor*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_TicksSinceWeekFloor" data-uid="FFT.TimeStamps.TimeOfWeek.TicksSinceWeekFloor">TicksSinceWeekFloor</h4>
+  <div class="markdown level1 summary"><p>The number of ticks (ten-millionths of a second) that have elapsed since the beginning of the week, midnight Sunday.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long TicksSinceWeekFloor { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_TimeOfDay.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.TimeOfDay%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L64">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_TimeOfDay_" data-uid="FFT.TimeStamps.TimeOfWeek.TimeOfDay*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_TimeOfDay" data-uid="FFT.TimeStamps.TimeOfWeek.TimeOfDay">TimeOfDay</h4>
+  <div class="markdown level1 summary"><p>Gets the time of day component of the current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan TimeOfDay { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_Add_TimeSpan_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.Add(TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L105">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_Add_" data-uid="FFT.TimeStamps.TimeOfWeek.Add*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_Add_TimeSpan_" data-uid="FFT.TimeStamps.TimeOfWeek.Add(TimeSpan)">Add(TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Adds the given amount of time to the <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a> and returns the new <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a>.
+The result wraps around the end of the week back to the beginning, so the result of an add operation could
+be &quot;less than&quot; the original value. You can add positive or negative time values. Negative time values will
+also &quot;wrap backwards&quot; around the week.
+The result will always be less than <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html#FFT_TimeStamps_TimeOfWeek_EndOfWeek">EndOfWeek</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeOfWeek Add(TimeSpan time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">time</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_CompareTo_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.CompareTo(FFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L150">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_CompareTo_" data-uid="FFT.TimeStamps.TimeOfWeek.CompareTo*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_CompareTo_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.CompareTo(FFT.TimeStamps.TimeOfWeek)">CompareTo(TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(TimeOfWeek other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_CreateFrom_DateTime_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.CreateFrom(DateTime)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L82">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_CreateFrom_" data-uid="FFT.TimeStamps.TimeOfWeek.CreateFrom*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_CreateFrom_DateTime_" data-uid="FFT.TimeStamps.TimeOfWeek.CreateFrom(DateTime)">CreateFrom(DateTime)</h4>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a> for the given <code data-dev-comment-type="paramref" class="paramref">dateTime</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeOfWeek CreateFrom(DateTime dateTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">dateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_Equals_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.Equals(FFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L140">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_Equals_" data-uid="FFT.TimeStamps.TimeOfWeek.Equals*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_Equals_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.Equals(FFT.TimeStamps.TimeOfWeek)">Equals(TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(TimeOfWeek other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_Equals_System_Object_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L135">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_Equals_" data-uid="FFT.TimeStamps.TimeOfWeek.Equals*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_Equals_System_Object_" data-uid="FFT.TimeStamps.TimeOfWeek.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_FromString_System_String_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.FromString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L89">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_FromString_" data-uid="FFT.TimeStamps.TimeOfWeek.FromString*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_FromString_System_String_" data-uid="FFT.TimeStamps.TimeOfWeek.FromString(System.String)">FromString(String)</h4>
+  <div class="markdown level1 summary"><p>Parses the given <code data-dev-comment-type="paramref" class="paramref">value</code> to create the <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a> it represents.
+Valid inputs are any string output by <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html#FFT_TimeStamps_TimeOfWeek_ToString">ToString()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeOfWeek FromString(string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_GetHashCode.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L145">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_GetHashCode_" data-uid="FFT.TimeStamps.TimeOfWeek.GetHashCode*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_GetHashCode" data-uid="FFT.TimeStamps.TimeOfWeek.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_ToString.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L126">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_ToString_" data-uid="FFT.TimeStamps.TimeOfWeek.ToString*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_ToString" data-uid="FFT.TimeStamps.TimeOfWeek.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string in the format $&quot;{DayOfWeek} {TimeOfDay:c}&quot;
+If the value is <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html#FFT_TimeStamps_TimeOfWeek_EndOfWeek">EndOfWeek</a>, the string &quot;EndOfWeek&quot; is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_ToString_System_String_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.ToString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L118">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_ToString_" data-uid="FFT.TimeStamps.TimeOfWeek.ToString*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_ToString_System_String_" data-uid="FFT.TimeStamps.TimeOfWeek.ToString(System.String)">ToString(String)</h4>
+  <div class="markdown level1 summary"><p>Returns a string in the format $&quot;{DayOfWeek} {TimeOfDay.ToString(timeOfDayFormat)}&quot;
+If the value is <a class="xref" href="FFT.TimeStamps.TimeOfWeek.html#FFT_TimeStamps_TimeOfWeek_EndOfWeek">EndOfWeek</a>, the string &quot;EndOfWeek&quot; is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string timeOfDayFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">timeOfDayFormat</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_Equality_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_Equality(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L176">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_Equality_" data-uid="FFT.TimeStamps.TimeOfWeek.op_Equality*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_Equality_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_Equality(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">Equality(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_GreaterThan_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_GreaterThan(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L160">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_GreaterThan_" data-uid="FFT.TimeStamps.TimeOfWeek.op_GreaterThan*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_GreaterThan_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_GreaterThan(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">GreaterThan(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_GreaterThanOrEqual_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_GreaterThanOrEqual(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L168">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_GreaterThanOrEqual_" data-uid="FFT.TimeStamps.TimeOfWeek.op_GreaterThanOrEqual*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_GreaterThanOrEqual_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_GreaterThanOrEqual(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">GreaterThanOrEqual(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_Inequality_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_Inequality(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L180">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_Inequality_" data-uid="FFT.TimeStamps.TimeOfWeek.op_Inequality*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_Inequality_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_Inequality(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">Inequality(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_LessThan_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_LessThan(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L164">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_LessThan_" data-uid="FFT.TimeStamps.TimeOfWeek.op_LessThan*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_LessThan_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_LessThan(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">LessThan(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek_op_LessThanOrEqual_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek.op_LessThanOrEqual(FFT.TimeStamps.TimeOfWeek%2CFFT.TimeStamps.TimeOfWeek)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L172">View Source</a>
+  </span>
+  <a id="FFT_TimeStamps_TimeOfWeek_op_LessThanOrEqual_" data-uid="FFT.TimeStamps.TimeOfWeek.op_LessThanOrEqual*"></a>
+  <h4 id="FFT_TimeStamps_TimeOfWeek_op_LessThanOrEqual_FFT_TimeStamps_TimeOfWeek_FFT_TimeStamps_TimeOfWeek_" data-uid="FFT.TimeStamps.TimeOfWeek.op_LessThanOrEqual(FFT.TimeStamps.TimeOfWeek,FFT.TimeStamps.TimeOfWeek)">LessThanOrEqual(TimeOfWeek, TimeOfWeek)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(TimeOfWeek left, TimeOfWeek right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FFT.TimeStamps.TimeOfWeek.html">TimeOfWeek</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IComparable&lt;&gt;</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/new/main/apiSpec/new?filename=FFT_TimeStamps_TimeOfWeek.md&amp;value=---%0Auid%3A%20FFT.TimeStamps.TimeOfWeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FastFinTech/FFT.TimeStamps/blob/main/src/FFT.TimeStamps/TimeOfWeek.cs/#L156" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="//unpkg.com/highlightjs-dotnetconfig@0.9.1/dist/dotnetconfig.min.js"></script>
+  </body>
+</html>
