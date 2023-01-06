@@ -126,6 +126,7 @@ namespace FFT.TimeStamps
       return new MonthStamp(month);
     }
 
+#if NET
     /// <summary>
     /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// </summary>
@@ -138,7 +139,9 @@ namespace FFT.TimeStamps
         throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
       return FromString(value.AsSpan());
     }
+#endif
 
+#if NET
     /// <summary>
     /// Parses a <see cref="MonthStamp"/> from the format 'yyyy-MM'.
     /// </summary>
@@ -157,10 +160,12 @@ namespace FFT.TimeStamps
 
       throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM'.");
     }
+#endif
+
   }
 
-  // Get months since / until
-  public partial struct MonthStamp
+    // Get months since / until
+    public partial struct MonthStamp
   {
     /// <summary>
     /// Calculates the difference, in months, between the current value and <paramref name="other"/>.

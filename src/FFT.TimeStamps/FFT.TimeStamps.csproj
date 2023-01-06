@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net5</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
 
     <PackageId>FFT.TimeStamps</PackageId>
     <Summary>Timestamping for high performance applications.</Summary>
@@ -16,4 +17,8 @@
     <PackageTags>time;timestamp</PackageTags>
     <ApplicationIcon>FFT.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+  </ItemGroup>
 </Project>

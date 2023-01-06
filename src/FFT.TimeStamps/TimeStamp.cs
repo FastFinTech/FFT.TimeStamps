@@ -6,8 +6,6 @@ namespace FFT.TimeStamps
   using System;
   using System.Diagnostics;
   using System.Runtime.CompilerServices;
-  using System.Runtime.InteropServices;
-  using System.Text.Json.Serialization;
 
   /// <summary>
   /// Use this to get extremely fast timestamping when:
@@ -16,7 +14,9 @@ namespace FFT.TimeStamps
   /// 2. You DON'T often need to extract string representations, or get the day/month/year/hour/minute/second properties (compute intensive).
   /// </summary>
   [DebuggerTypeProxy(typeof(DebuggerView))]
+#if NET
   [JsonConverter(typeof(TimeStampJsonConverter))]
+#endif
   public readonly partial struct TimeStamp : IComparable<TimeStamp>, IEquatable<TimeStamp>
   {
     /// <summary>

@@ -124,6 +124,7 @@ namespace FFT.TimeStamps
       get => new MonthStamp(Year, Month);
     }
 
+#if NET
     /// <summary>
     /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// Compute intensive. Do not use in hot path.
@@ -136,7 +137,9 @@ namespace FFT.TimeStamps
         throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
       return FromString(value.AsSpan());
     }
+#endif
 
+#if NET
     /// <summary>
     /// Parses a <see cref="DateStamp"/> from the format 'yyyy-MM-dd'.
     /// Compute intensive. Do not use in hot path.
@@ -157,6 +160,7 @@ namespace FFT.TimeStamps
 
       throw new ArgumentException($"${nameof(value)} is not in correct format 'yyyy-MM-dd'.");
     }
+#endif
 
     /// <summary>
     /// Returns an enumerator that yields each date in the range <paramref name="from"/> until <paramref name="to"/>.

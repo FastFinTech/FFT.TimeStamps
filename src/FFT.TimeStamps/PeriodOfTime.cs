@@ -8,7 +8,7 @@ namespace FFT.TimeStamps
   /// <summary>
   /// Represents the beginning and end of a time period.
   /// </summary>
-  public sealed class PeriodOfTime
+  public sealed class PeriodOfTime : IEquatable<PeriodOfTime>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="PeriodOfTime"/> class.
@@ -32,12 +32,12 @@ namespace FFT.TimeStamps
     public TimeStamp End { get; }
 
     /// <inheritdoc/>
-    public override bool Equals(object obj)
-      => obj is PeriodOfTime other
-      // no need to check exact type because this class is sealed
-      // && other.GetType() == typeof(PeriodOfTime)
-      && Start == other.Start
-      && End == other.End;
+    public override bool Equals(object? obj)
+      => Equals(obj as PeriodOfTime);
+
+    /// <inheritdoc/>
+    public bool Equals(PeriodOfTime? other)
+      => other is not null && Start == other.Start && End == other.End;
 
     /// <inheritdoc/>
     public override int GetHashCode()

@@ -55,8 +55,13 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TimeZoneCalculator Get(TimeZoneInfo timeZone)
-      => _store.GetOrAdd(timeZone.Id, static (id, tz) => new(tz), timeZone);
-
+#if NET
+      // New api does not necessitate creation of closure because it allows args to be passed to a static method
+      => _store.GetOrAdd(timeZone.Id, static (_, tz) => new(tz), timeZone);
+#else
+      // Avoid creating the closure if possible.
+      => _store.TryGetValue(timeZone.Id, out var result) ? result : _store.GetOrAdd(timeZone.Id, id => new(timeZone));
+#endif
     /// <summary>
     /// Returns a <see cref="TimeZoneSegment"/> active at the given <paramref name="timeStamp"/>.
     /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <see cref="TimeKind.Utc"/>.
