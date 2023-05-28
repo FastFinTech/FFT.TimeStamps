@@ -4,6 +4,7 @@
 namespace FFT.TimeStamps
 {
   using System;
+  using System.Collections.Generic;
   using System.Globalization;
   using System.Runtime.CompilerServices;
 
@@ -71,6 +72,17 @@ namespace FFT.TimeStamps
     {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
       get => DateTime.Year;
+    }
+
+    /// <summary>
+    /// Gets each of the months in the range from <paramref name="start"/> to <paramref name="end"/>, inclusive.
+    /// </summary>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="end"/> is less than <paramref name="start"/>.</exception>
+    public static IEnumerable<MonthStamp> Range(MonthStamp start, MonthStamp end)
+    {
+      if (end < start) throw new ArgumentException($"{nameof(end)} must be greater than or equal to {nameof(start)}.", nameof(end));
+      for (var month = start; month <= end; month = month.AddMonths(1))
+        yield return month;
     }
 
     /// <summary>
@@ -164,8 +176,8 @@ namespace FFT.TimeStamps
 
   }
 
-    // Get months since / until
-    public partial struct MonthStamp
+  // Get months since / until
+  public partial struct MonthStamp
   {
     /// <summary>
     /// Calculates the difference, in months, between the current value and <paramref name="other"/>.
