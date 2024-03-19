@@ -5,11 +5,14 @@ namespace FFT.TimeStamps
 {
   using System;
   using System.Runtime.CompilerServices;
+  using System.Runtime.Serialization;
 
   /// <summary>
   /// Expresses a day and time as a point in the week.
   /// Comparison operators assume the beginning of the week is midnight, Sunday.
   /// </summary>
+
+  [DataContract]
   public readonly partial struct TimeOfWeek : IEquatable<TimeOfWeek>, IComparable<TimeOfWeek>
   {
     private const long TICKS_PER_WEEK = 7 * TimeSpan.TicksPerDay;
@@ -47,6 +50,7 @@ namespace FFT.TimeStamps
     /// <summary>
     /// The number of ticks (ten-millionths of a second) that have elapsed since the beginning of the week, midnight Sunday.
     /// </summary>
+    [DataMember]
     public long TicksSinceWeekFloor { get; }
 
     /// <summary>
@@ -133,7 +137,7 @@ namespace FFT.TimeStamps
   {
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
       => obj is TimeOfWeek timeOfWeek && Equals(timeOfWeek);
 
     /// <inheritdoc/>

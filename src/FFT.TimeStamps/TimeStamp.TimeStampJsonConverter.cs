@@ -16,7 +16,7 @@ namespace FFT.TimeStamps
     /// It represents the <see cref="TimeStamp"/> in json text as an <see
     /// cref="long"/> containing the <see cref="TimeStamp.TicksUtc"/> value.
     /// </summary>
-    public class TimeStampJsonConverter : JsonConverter<TimeStamp>
+    public sealed class TimeStampJsonConverter : JsonConverter<TimeStamp>
     {
       /// <inheritdoc />
       public override TimeStamp Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

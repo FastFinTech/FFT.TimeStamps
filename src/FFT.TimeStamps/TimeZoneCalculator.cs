@@ -4,12 +4,7 @@
 namespace FFT.TimeStamps
 {
   using System;
-  using System.Collections.Concurrent;
-  using System.Collections.Generic;
-  using System.Linq;
   using System.Runtime.CompilerServices;
-  using static System.DateTimeKind;
-  using static System.Math;
 
   /// <summary>
   /// Use this class to get extremely fast timezone conversion data.
@@ -22,16 +17,15 @@ namespace FFT.TimeStamps
     /// </summary>
     private const long APPROXIMATE_TICKS_PER_YEAR = TimeSpan.TicksPerDay * 365;
 
-    /// <devremarks>
-    /// Keying the dictionary off the TimeZoneInfo object didn't seem to work, so it's keyed off the TimeZoneInfo.Id string instead.
-    /// </devremarks>
-    private static readonly ConcurrentDictionary<string, TimeZoneCalculator> _store = new();
-
-    private readonly Dictionary<int, List<TimeZoneSegment>> _utcRecords = new();
-    private readonly Dictionary<int, List<TimeZoneSegment>> _timezoneRecords = new();
+    private readonly SegmentStore _utcStore;
+    private readonly SegmentStore _timeZoneStore;
 
     private TimeZoneCalculator(TimeZoneInfo timeZone)
-      => TimeZone = timeZone;
+    {
+      TimeZone = timeZone;
+      _utcStore = new(TimeKind.Utc, timeZone);
+      _timeZoneStore = new(TimeKind.TimeZone, timeZone);
+    }
 
     /// <summary>
     /// The timezone for which this offset cache is applicable.
@@ -55,13 +49,8 @@ namespace FFT.TimeStamps
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TimeZoneCalculator Get(TimeZoneInfo timeZone)
-#if NET
-      // New api does not necessitate creation of closure because it allows args to be passed to a static method
-      => _store.GetOrAdd(timeZone.Id, static (_, tz) => new(tz), timeZone);
-#else
-      // Avoid creating the closure if possible.
-      => _store.TryGetValue(timeZone.Id, out var result) ? result : _store.GetOrAdd(timeZone.Id, id => new(timeZone));
-#endif
+      => Store.Get(timeZone);
+
     /// <summary>
     /// Returns a <see cref="TimeZoneSegment"/> active at the given <paramref name="timeStamp"/>.
     /// The returned segment will have its <see cref="TimeZoneSegment.SegmentKind"/> property set to <see cref="TimeKind.Utc"/>.
@@ -77,27 +66,12 @@ namespace FFT.TimeStamps
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TimeZoneSegment GetSegment(long ticks, TimeKind ticksKind)
     {
-      var approximateYear = (int)(ticks / APPROXIMATE_TICKS_PER_YEAR);
-      var dictionary = ticksKind switch
+      return ticksKind switch
       {
-        TimeKind.Utc => _utcRecords,
-        TimeKind.TimeZone => _timezoneRecords,
-        _ => throw new ArgumentException(nameof(ticksKind)),
+        TimeKind.Utc => _utcStore.GetSegmentAt(ticks),
+        TimeKind.TimeZone => _timeZoneStore.GetSegmentAt(ticks),
+        _ => throw new NotImplementedException(),
       };
-
-      if (!dictionary.TryGetValue(approximateYear, out var segments))
-      {
-        segments = CreateSegments(approximateYear, ticksKind);
-        dictionary[approximateYear] = segments;
-      }
-
-      foreach (var segment in segments)
-      {
-        if (segment.StartTicks <= ticks)
-          return segment;
-      }
-
-      throw new Exception("Boom"); // compiler happiness - never actually executes.
     }
 
     /// <summary>
@@ -118,124 +92,5 @@ namespace FFT.TimeStamps
     public long ToUtcTicks(long timeZoneTicks)
       => timeZoneTicks - GetSegment(timeZoneTicks, TimeKind.TimeZone).OffsetTicks;
 
-    private List<TimeZoneSegment> CreateSegments(int approximateYear, TimeKind ticksKind)
-    {
-      return CreateCore(approximateYear, ticksKind)
-        .Reverse()
-        .ToList();
-
-      IEnumerable<TimeZoneSegment> CreateCore(int approximateYear, TimeKind ticksKind)
-      {
-        var startOfYear = approximateYear * APPROXIMATE_TICKS_PER_YEAR;
-        var endOfYear = startOfYear + APPROXIMATE_TICKS_PER_YEAR;
-        var info = GetInfo(startOfYear, ticksKind);
-        var builder = default(Builder);
-        builder.Kind = ticksKind;
-        builder.Calculator = this;
-        builder.Info = info;
-        builder.StartTicks = startOfYear;
-        builder.EndTicks = startOfYear;
-        while (true)
-        {
-          var ticks = Min(endOfYear, builder.EndTicks.AddDays(7));
-          info = GetInfo(ticks, ticksKind);
-          if (builder.Info.Equals(info))
-          {
-            builder.EndTicks = ticks;
-            if (ticks == endOfYear)
-            {
-              yield return builder.Build();
-              yield break;
-            }
-          }
-          else
-          {
-            while (true)
-            {
-              ticks = Min(endOfYear, builder.EndTicks.AddMinutes(1));
-              info = GetInfo(ticks, ticksKind);
-              builder.EndTicks = ticks;
-              if (ticks == endOfYear)
-              {
-                yield return builder.Build();
-                yield break;
-              }
-
-              if (!builder.Info.Equals(info))
-              {
-                yield return builder.Build();
-                builder = default(Builder);
-                builder.Kind = ticksKind;
-                builder.Calculator = this;
-                builder.Info = info;
-                builder.StartTicks = ticks;
-                builder.EndTicks = ticks;
-                break;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    private OffsetInfo GetInfo(long ticks, TimeKind ticksKind)
-    {
-      if (ticksKind == TimeKind.Utc)
-      {
-        return new OffsetInfo
-        {
-          OffsetTicks = TimeZone.GetUtcOffset(new DateTime(ticks, Utc)).Ticks,
-          IsInvalid = false,
-          IsAmbiguous = false,
-        };
-      }
-      else if (ticksKind == TimeKind.TimeZone)
-      {
-        var at = new DateTime(ticks, Unspecified);
-        return new OffsetInfo
-        {
-          OffsetTicks = TimeZone.GetUtcOffset(at).Ticks,
-          IsInvalid = TimeZone.IsInvalidTime(at),
-          IsAmbiguous = TimeZone.IsAmbiguousTime(at),
-        };
-      }
-      else
-      {
-        throw new ArgumentException(nameof(ticksKind));
-      }
-    }
-
-#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
-    private struct OffsetInfo
-#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
-    {
-      public long OffsetTicks;
-      public bool IsInvalid;
-      public bool IsAmbiguous;
-
-      public override bool Equals(object obj)
-        => obj is OffsetInfo other
-        && OffsetTicks == other.OffsetTicks
-        && IsInvalid == other.IsInvalid
-        && IsAmbiguous == other.IsAmbiguous;
-    }
-
-    private struct Builder
-    {
-      public OffsetInfo Info;
-      public long StartTicks;
-      public long EndTicks;
-      public TimeKind Kind;
-      public TimeZoneCalculator Calculator;
-
-      public TimeZoneSegment Build() => new TimeZoneSegment(
-        segmentKind: Kind,
-        startTicks: StartTicks,
-        endTicks: EndTicks,
-        isInvalid: Info.IsInvalid,
-        isAmbiguous: Info.IsAmbiguous,
-        offsetTicks: Info.OffsetTicks,
-        calculator: Calculator);
-    }
   }
 }
