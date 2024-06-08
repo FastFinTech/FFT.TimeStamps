@@ -220,14 +220,14 @@ public partial class Ticks
   /// </summary>
   [MethodImpl(MethodImplOptions.AggressiveInlining)]
   public static long AddMicroseconds(this long ticks, double microseconds)
-      => ticks + (long)(microseconds * TimeSpan.TicksPerMillisecond / 1000);
+      => ticks + (long)(microseconds * (TimeSpan.TicksPerMillisecond / 1000));
 
   /// <summary>
   /// Adds the given number of <paramref name="microseconds"/>.
   /// </summary>
   [MethodImpl(MethodImplOptions.AggressiveInlining)]
   public static long AddMicroseconds(this long ticks, long microseconds)
-      => ticks + (microseconds * TimeSpan.TicksPerMillisecond / 1000);
+      => ticks + (microseconds * (TimeSpan.TicksPerMillisecond / 1000));
 
   /// <summary>
   /// Adds the given number of <paramref name="seconds"/>.
@@ -609,5 +609,5 @@ public partial class Ticks
   /// <param name="unixMicroseconds">The time since midnight, 1 Jan 1970, in microseconds.</param>
   [MethodImpl(MethodImplOptions.AggressiveInlining)]
   public static long FromUnixMicroseconds(this long unixMicroseconds)
-    => _unixEpoch + (unixMicroseconds * TimeSpan.TicksPerMillisecond / 1000);
+    => _unixEpoch + (unixMicroseconds * (TimeSpan.TicksPerMillisecond / 1000));
 }
